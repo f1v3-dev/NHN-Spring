@@ -119,5 +119,3 @@
     this.greeter = greeter;
 }
 ```
-
-## 필드 주입 (Field Injection)
