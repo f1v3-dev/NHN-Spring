@@ -1,14 +1,13 @@
-package com.nhnacademy.edu.springframework.init;
+package com.nhnacademy.edu.springframework.destroy;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class InitMain {
+public class DestroyMain {
     public static void main(String[] args) {
 
         try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml")) {
             MessageSender emailMessageSender = context.getBean("emailMessageSender", MessageSender.class);
-            MessageSender smsMessageSender1 = context.getBean("smsMessageSender", MessageSender.class);
-            MessageSender smsMessageSender2 = context.getBean("smsMessageSender", MessageSender.class);
+            MessageSender emailMessageSender2 = context.getBean("emailMessageSender", MessageSender.class);
         }
     }
 }
