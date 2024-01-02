@@ -92,7 +92,7 @@ _**Spring Beans != JavaBeans**_
 ### 정의
 
 - `central interface` within a Spring application for providing configuration information to the application
-- Configuration Metadata이 xml인지, annotation인지, groovy이던간에 ApplicationContext가 관리
+- Configuration Metadata가 xml인지, annotation인지, groovy이던간에 ApplicationContext가 관리
 
 ### ApplicationContext 역할
 
