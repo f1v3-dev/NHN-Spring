@@ -84,7 +84,6 @@
 Java @configuration 에서 @AspectJ 지원을 활성화 하려면 @EnableAspectJAutoProxy 를 사용하여 설정합니다.
 
 ```java
-
 @Configuration
 @EnableAspectJAutoProxy
 public class AppConfig {
@@ -96,7 +95,6 @@ public class AppConfig {
 
 @AspectJ 지원을 활성화 한 후 Bean으로 선언하고, `@Aspect` 어노테이션을 설정하면 해당 스프링빈은 Aspect가 된다.
 ```java
-
 @Aspect
 @Componet
 public class LoggingAspect {
