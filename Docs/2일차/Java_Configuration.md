@@ -10,7 +10,6 @@
 ## @Bean (Java Config)
 - 메서드의 return type이 Spring bean `type`
 - 메서드명이 Spring bean `name`
-- 
 
 ```java
 @Configuration
