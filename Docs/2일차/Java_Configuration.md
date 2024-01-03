@@ -30,7 +30,7 @@ public class ApplicationConfig {
 ```
 
 ### Bean 생성 - default method
-- default 메세드를 가진 인터페이스를 구현하는 방식으로 두 설정을 합성할 수 있다.
+- default 메서드를 가진 인터페이스를 구현하는 방식으로 두 설정을 합성할 수 있다.
 ```java
 public interface BaseJavaConfig {
     @Bean
