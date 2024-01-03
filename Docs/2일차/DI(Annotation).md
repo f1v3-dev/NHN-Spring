@@ -241,8 +241,6 @@ public class JavaConfig {
     public AService aService() {
         return new AService(aRepository());
     }
-    
-    // 인자(Parameter)로 전달하는 방식
 }
 ```
 
