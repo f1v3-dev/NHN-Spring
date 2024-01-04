@@ -77,7 +77,7 @@
 
 - @AspectJ 스타일은 일반 java 에 annotation 을 설정하는 방식입니다.
 - 스프링 프레임워크는 AspectJ 5 의 anntation 을 사용하지만 AspectJ의 컴파일러나 위버(Weaver) 를 사용하지 않습니다.
-  - e.g. import org.aspectj.lang.annotation.Aspect
+    - e.g. import org.aspectj.lang.annotation.Aspect
 
 ## @AspectJ 지원 활성화
 
@@ -94,6 +94,7 @@ public class AppConfig {
 ## Aspect 선언
 
 @AspectJ 지원을 활성화 한 후 Bean으로 선언하고, `@Aspect` 어노테이션을 설정하면 해당 스프링빈은 Aspect가 된다.
+
 ```java
 @Aspect
 @Componet
@@ -101,3 +102,107 @@ public class LoggingAspect {
   ...
 }
 ```
+
+### AspectJ 사용 요약
+
+![AspectJ 사용 요약](../img/AspectJ.png)
+
+## 포인트컷 (@Pointcut)
+
+> Aspect Class를 작성한다면, @Aspect, @Component 어노테이션을 클래스가 가지고 있어야 한다
+
+- 타겟의 여러 조인포인트 중 **어드바이스를 적용할 대상(클래스) 지정**하는 키워드
+- 스프링 AOP는 스프링 빈의 메서드 실행 조인 포인트만 지원
+- 포인트컷 선언은 `포인트컷 표현식(pointcut expression)`과 `포인트컷 시그니처(pointcut signature)`로 구성
+- 정교해야되고 명확해야 함
+```java
+@Pointcut("execution(* transfer(..)") // the pointcut expression
+private void anyOldTransfer() {} // the pointcut signature
+```
+
+### Pointcut Expression
+```java
+@Pointcut(
+          "execution("                           // Pointcut Designator
+           + "[접근제한자 패턴] "                   // public
+           + "리턴타입 패턴"                       // long
+           + "[패키지명, 클래스 경로 패턴]"          // com.nhnacademy.GreetingService
+           + "메소드명 패턴(파라미터 타입 패턴|..)"   // .greet(User, String)
+           + "[throws 예외 타입 패턴]"            
+           +")"   
+          )
+
+// ex.
+@Pointcut("execution(public boolean com.nhnacademy.edu.springframework.greeting.service.Greeter.sayHello(..)")
+
+```
+
+### 포인트컷 지정자 - Pointcut Designator
+
+1. execution
+   - 메서드 실행 조인포인트와 매칭
+   - 스프링 AOP의 주요 포인트컷 지정자
+2. within
+   - 주어진 타입(클래스)로 조인 포인트 범위를 제한
+
+> **execution vs within**
+> - execution : 메서드 지칭
+> - within : 클래스 지칭
+
+
+3. this
+   - 스프링 AOP Proxy 객체에 매칭
+   - Proxy 객체에 Advice 파라미터에 바인딩하는 용도로 사용
+4. target
+   - 주어진 타입을 구현한 타겟 객체에 매칭
+   - 타겟 객체를 Advice 파라미터에 바인딩하는 용도로 사용
+5. `bean`
+- 스프링 AOP에서 지원하는 추가적인 포인트컷 지정자
+- 스프링 빈 이름에 해당하는 메서드 실행을 매칭
+```java
+bean(idOrNameOfBean)
+
+bean(*Service)
+```
+
+6. args
+   - this와 within이랑 같이 주로 사용한다.
+
+7. @target
+   - 어떤 어노테이션을 가진 모든 타겟 객체의 메서드 실행
+   - ex. `@target(org.springframework.transaction.annotation.Transactional)`
+
+### 포인트컷 - 조합
+- 포인트컷 표현식은 &&, ||, !으로 조합할 수 있다.
+```java
+// anyPublicOperation 포인트컷은 모든 public 메소드 실행에 매칭 됩니다.
+@Pointcut("execution(public * *(..))")
+private void anyPublicOperation() {} 
+
+// inTrading 포인트컷은 com.xyz.myapp.trading 패키지 내의 메소드 실행에 매칭
+@Pointcut("within(com.xyz.myapp.trading..*)")
+private void inTrading() {} 
+
+// tradingOperation 포인트컷은 com.xyz.myapp.trading 패키지 내의 퍼블릭 메소드 실행에 매칭
+@Pointcut("anyPublicOperation() && inTrading()")
+private void tradingOperation() {} 
+```
+
+## Advice
+- 메서드 실행 전 후, 전/후를 결정하기 위해 사용
+
+| 형태              | 설명                                   |
+|-----------------|--------------------------------------|
+| Before          | Join Point 앞에서 실행할 Advice            |
+| After	          | Join Point 뒤에서 실행할 Advice            |
+| AfterReturning	 | Join Point가 완전히 정상 종료한다음 실행하는 Advice |
+| Around	         | Join Point 앞과 뒤에서 실행되는 Advice        |
+| AfterThrowing   | 	Join Point에서 예외가 발생했을때 실행되는 Advice  |
+
+
+![Advice](../img/Advice.png)
+
+> Advice에 Pointcut signature를 넣을 수 있다.
+
+Object, Throwable같은 최상위 객체를 파라미터로 받고 instance of를 활용하여 처리하는게 best!
+
