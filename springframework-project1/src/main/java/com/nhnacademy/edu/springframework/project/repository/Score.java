@@ -1,6 +1,6 @@
 package com.nhnacademy.edu.springframework.project.repository;
 
-public class Score implements Comparable<Score> {
+public class Score {
     private final int studentSeq;
     private final int score;
 
@@ -26,15 +26,4 @@ public class Score implements Comparable<Score> {
         return "Score{" + "studentSeq=" + studentSeq + ", score=" + score + '}';
     }
 
-    @Override
-    public int compareTo(Score score) {
-
-        if (this.getScore() > score.getScore()) {
-            return 1;
-        } else if (this.getScore() == score.getScore()) {
-            return 0;
-        } else {
-            return -1;
-        }
-    }
 }
