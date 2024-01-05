@@ -1,6 +1,5 @@
 package com.nhnacademy.edu.springframework.project.repository;
 
-import java.util.Objects;
 import org.springframework.lang.NonNull;
 
 public class Student {
