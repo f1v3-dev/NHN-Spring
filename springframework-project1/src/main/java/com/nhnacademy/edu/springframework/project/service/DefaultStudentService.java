@@ -28,19 +28,10 @@ public class DefaultStudentService implements StudentService {
         // TODO 4 : 성적 순으로 학생 정보(Student)를 반환합니다.
         // 소팅 문제입니다. Java Stream API 의 소팅 관련 메서드를 사용하세요.
 
-
-        // how to null checking ?
-        // sorted(Comparator.comparing(Member::getAge, Comparator.nullsLast(Comparator.naturalOrder())))
-//        return studentRepository.findAll()
-//                .stream()
-//                .sorted(Comparator.comparing(Student::getScore))
-//                .collect(Collectors.toList());
-
-        // this code is not null-safe
         return studentRepository.findAll()
                 .stream()
                 .filter(student -> Objects.nonNull(student.getScore()))
-                .sorted(Comparator.comparing(Student::getScore))
+                .sorted(Comparator.comparing(student -> student.getScore().getScore()))
                 .collect(Collectors.toList());
     }
 
