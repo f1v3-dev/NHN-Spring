@@ -8,7 +8,6 @@ import com.nhnacademy.edu.springframework.project.repository.Student;
 import com.nhnacademy.edu.springframework.project.repository.Students;
 import java.util.Collection;
 import java.util.List;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,8 +48,7 @@ class StudentServiceTest {
     @DisplayName("StudentService - getPassedStudent test")
     void getPassedStudents() {
 
-        when(studentRepository.findAll())
-                .thenReturn(studentList);
+        when(studentRepository.findAll()).thenReturn(studentList);
 
         Collection<Student> passedStudents = service.getPassedStudents();
 
@@ -62,8 +60,7 @@ class StudentServiceTest {
     @DisplayName("StudentService - getStudentsOrderByScore")
     void getStudentsOrderByScore() {
 
-        when(studentRepository.findAll())
-                .thenReturn(studentList);
+        when(studentRepository.findAll()).thenReturn(studentList);
 
         Collection<Student> students = service.getStudentsOrderByScore();
 

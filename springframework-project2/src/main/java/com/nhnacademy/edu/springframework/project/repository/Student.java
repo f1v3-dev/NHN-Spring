@@ -9,7 +9,7 @@ public class Student {
     private Score score;
 
     public Student(int seq, @NonNull String name) {
-        if (Objects.isNull(name) || name.isEmpty()) {
+        if (name.isEmpty()) {
             throw new IllegalArgumentException("Student name is not valid");
         }
         this.seq = seq;
@@ -29,19 +29,12 @@ public class Student {
     }
 
     public void setScore(@NonNull Score score) {
-        if (Objects.isNull(score)) {
-            throw new IllegalArgumentException("Score is not valid");
-        }
 
         this.score = score;
     }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "seq=" + seq +
-                ", name='" + name + '\'' +
-                ", score=" + score +
-                '}' + '\n';
+        return "Student{" + "seq=" + seq + ", name='" + name + '\'' + ", score=" + score + '}' + '\n';
     }
 }

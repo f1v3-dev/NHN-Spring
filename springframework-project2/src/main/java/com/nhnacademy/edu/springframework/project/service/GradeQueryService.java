@@ -1,6 +1,5 @@
 package com.nhnacademy.edu.springframework.project.service;
 
-import com.nhnacademy.edu.springframework.project.annotation.TraceTimeElapsed;
 import com.nhnacademy.edu.springframework.project.repository.Score;
 import java.util.List;
 import org.springframework.stereotype.Service;
