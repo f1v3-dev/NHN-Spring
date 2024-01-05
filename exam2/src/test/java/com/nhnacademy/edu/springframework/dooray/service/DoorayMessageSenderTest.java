@@ -41,6 +41,6 @@ class DoorayMessageSenderTest {
         doNothing().when(hookSender).send(any());
         boolean actual = messageSender.sendMessage(user, message);
 
-        Assertions.assertThat(actual).isEqualTo(true);
+        Assertions.assertThat(actual).isTrue();
     }
 }
