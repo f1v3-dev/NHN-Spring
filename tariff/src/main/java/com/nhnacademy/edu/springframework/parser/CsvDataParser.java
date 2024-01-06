@@ -23,7 +23,7 @@ public class CsvDataParser implements DataParser {
         try (FileInputStream file = new FileInputStream(loader.getResource(filePath).getFile());
              BufferedReader br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))) {
 
-            // 첫 번째 라인은 헤더이므로 읽고 버림
+            // 첫 번째 라인 : Column Name - skip
             br.readLine();
 
             String line;
@@ -41,9 +41,6 @@ public class CsvDataParser implements DataParser {
 
     private static WaterBill getWaterBill(String line) {
         String[] split = line.split(",");
-
-        // 순번, 지자체명, 업종, 단계, 구간시작(세제곱미터), 구간끝(세제곱미터)  , 구간금액(원)  , 단계별 기본요금(원)
-        // 1,   동두천시, 가정용, 1, 1, 20, 690,
 
         String city = split[1].trim();
         String sector = split[2].trim();

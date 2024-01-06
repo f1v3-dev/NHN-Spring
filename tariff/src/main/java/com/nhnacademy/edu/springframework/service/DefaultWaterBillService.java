@@ -30,8 +30,7 @@ public class DefaultWaterBillService implements WaterBillService {
                 .limit(5)
                 .collect(Collectors.toList());
 
-        findBills
-                .forEach(findBill -> findBill.setBillTotal(findBill.getUnitPrice() * usage));
+        findBills.forEach(findBill -> findBill.setBillTotal(findBill.getUnitPrice() * usage));
 
         resultReport.report(findBills);
     }
