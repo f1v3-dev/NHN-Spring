@@ -17,7 +17,7 @@ class DataLoadServiceTest {
     DataLoadService service;
 
     @BeforeEach
-    public void init() {
+    public void setup() {
         service = new CsvDataLoadService();
     }
 
@@ -32,16 +32,10 @@ class DataLoadServiceTest {
     void loadAndMerge() {
         Scores scores = CsvScores.getInstance();
         Students students = CsvStudents.getInstance();
-        assertAll(
-                () -> assertEquals(0, scores.findAll().size()),
-                () -> assertEquals(0, students.findAll().size())
-        );
+        assertAll(() -> assertEquals(0, scores.findAll().size()), () -> assertEquals(0, students.findAll().size()));
 
         service.loadAndMerge();
-        assertAll(
-                () -> assertEquals(3, scores.findAll().size()),
-                () -> assertEquals(4, students.findAll().size())
-        );
+        assertAll(() -> assertEquals(3, scores.findAll().size()), () -> assertEquals(4, students.findAll().size()));
     }
 
 

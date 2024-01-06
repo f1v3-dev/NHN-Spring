@@ -18,13 +18,13 @@ class GradeQueryServiceTest {
     GradeQueryService service;
 
     @BeforeEach
-    public void init() {
+    public void setup() {
         service = new DefaultGradeQueryService();
 
         DataLoadService dataLoadService = new CsvDataLoadService();
         dataLoadService.loadAndMerge();
     }
-    
+
     @AfterEach
     public void clear() {
         CsvScores.getInstance().findAll().clear();

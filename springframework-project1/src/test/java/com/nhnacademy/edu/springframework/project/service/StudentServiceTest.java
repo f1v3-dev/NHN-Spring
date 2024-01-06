@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.nhnacademy.edu.springframework.project.repository.CsvScores;
 import com.nhnacademy.edu.springframework.project.repository.CsvStudents;
-import com.nhnacademy.edu.springframework.project.repository.StudentService;
+import com.nhnacademy.edu.springframework.project.repository.Student;
 import java.util.Collection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +16,7 @@ class StudentServiceTest {
     StudentService service;
 
     @BeforeEach
-    public void init() {
+    public void setup() {
         service = new DefaultStudentService();
 
         DataLoadService dataLoadService = new CsvDataLoadService();

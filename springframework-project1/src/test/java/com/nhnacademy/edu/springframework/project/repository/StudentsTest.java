@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
-import com.nhnacademy.edu.springframework.project.service.Student;
 import java.util.Collection;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +15,7 @@ class StudentsTest {
     Students students;
 
     @BeforeEach
-    public void init() {
+    public void setup() {
         students = CsvStudents.getInstance();
     }
 

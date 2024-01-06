@@ -18,9 +18,7 @@ public class CsvScores implements Scores {
     }
 
 
-    /**
-     * TODO 2 : Java Singleton 패턴으로 getInstance() 를 구현하세요.
-     **/
+    // TODO 2 : Java Singleton 패턴으로 getInstance() 를 구현하세요.
 
     private static class CsvScoreHolder {
         private static final CsvScores csvScores = new CsvScores();
