@@ -7,10 +7,10 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 
-@Component
+@Repository
 public class CsvStudents implements Students {
 
     private final Collection<Student> students = new ArrayList<>();
@@ -34,7 +34,7 @@ public class CsvStudents implements Students {
             }
         } catch (NullPointerException np) {
             np.getStackTrace();
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.getStackTrace();
         }
     }
