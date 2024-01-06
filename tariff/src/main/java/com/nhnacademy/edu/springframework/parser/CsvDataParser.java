@@ -28,7 +28,7 @@ public class CsvDataParser implements DataParser {
 
             String line;
             while ((line = br.readLine()) != null) {
-                WaterBill tariff = getWaterBill(line);
+                WaterBill tariff = createWaterBill(line);
                 billList.add(tariff);
             }
         } catch (IOException e) {
@@ -39,7 +39,7 @@ public class CsvDataParser implements DataParser {
     }
 
 
-    private static WaterBill getWaterBill(String line) {
+    private static WaterBill createWaterBill(String line) {
         String[] split = line.split(",");
 
         String city = split[1].trim();
