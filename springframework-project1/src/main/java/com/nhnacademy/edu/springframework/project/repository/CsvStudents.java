@@ -2,7 +2,6 @@ package com.nhnacademy.edu.springframework.project.repository;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -37,7 +36,7 @@ public class CsvStudents implements Students {
         try (FileInputStream file = new FileInputStream(loader.getResource("data/student.csv").getFile());
              BufferedReader br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))) {
 
-            String line = "";
+            String line;
             while ((line = br.readLine()) != null) {
                 String[] split = line.split(",");
                 int seq = Integer.parseInt(split[0]);
@@ -46,10 +45,10 @@ public class CsvStudents implements Students {
                 Student student = new Student(seq, name);
                 students.add(student);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (NullPointerException np) {
+            np.getStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.getStackTrace();
         }
     }
 
