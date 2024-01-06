@@ -28,7 +28,6 @@ public class Student {
     }
 
     public void setScore(@NonNull Score score) {
-
         this.score = score;
     }
 
