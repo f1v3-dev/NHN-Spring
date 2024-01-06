@@ -5,25 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.util.Collection;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 
 class StudentsTest {
 
-    Students students = new CsvStudents();
-
+    Students students;
 
     @BeforeEach
     public void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
-
-    @AfterEach
-    public void clear() {
-        students.findAll().clear();
+        students = new CsvStudents();
     }
 
 

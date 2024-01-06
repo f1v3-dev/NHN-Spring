@@ -5,16 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import java.util.List;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ScoresTest {
-    Scores scores = new CsvScores();
+    Scores scores;
 
-    @AfterEach
-    public void clear() {
-        scores.findAll().clear();
+    @BeforeEach
+    public void setup() {
+        scores = new CsvScores();
     }
 
     @Test

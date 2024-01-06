@@ -15,7 +15,7 @@ class ScoresTest {
     private Scores scores;
 
     @BeforeEach
-    public void init() {
+    public void setup() {
         scores = CsvScores.getInstance();
     }
 

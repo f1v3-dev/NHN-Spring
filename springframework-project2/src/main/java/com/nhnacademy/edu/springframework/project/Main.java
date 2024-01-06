@@ -1,9 +1,9 @@
 package com.nhnacademy.edu.springframework.project;
 
 import com.nhnacademy.edu.springframework.project.config.JavaConfig;
-import com.nhnacademy.edu.springframework.project.service.StudentService;
-import com.nhnacademy.edu.springframework.project.service.DataLoadService;
 import com.nhnacademy.edu.springframework.project.repository.Student;
+import com.nhnacademy.edu.springframework.project.service.DataLoadService;
+import com.nhnacademy.edu.springframework.project.service.StudentService;
 import java.util.Collection;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
