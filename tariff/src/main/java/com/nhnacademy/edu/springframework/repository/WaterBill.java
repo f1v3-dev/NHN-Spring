@@ -1,7 +1,7 @@
 package com.nhnacademy.edu.springframework.repository;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Objects;
 
 public class WaterBill {
 
@@ -28,6 +28,8 @@ public class WaterBill {
 
     @JsonProperty("단계별 기본요금(원)")
     private Integer basicPriceByStep;
+
+    @JsonIgnore
     private Integer billTotal;
 
     public WaterBill() {
@@ -97,28 +99,12 @@ public class WaterBill {
     }
 
 
-    //    @Override
-//    public String toString() {
-//        return "WaterBill{" +
-//                "city='" + city + '\'' +
-//                ", sector='" + sector + '\'' +
-//                ", unitPrice=" + unitPrice +
-//                ", billTotal=" + billTotal + '}';
-//    }
-
-
     @Override
     public String toString() {
         return "WaterBill{" +
-                "id=" + id +
-                ", city='" + city + '\'' +
+                "city='" + city + '\'' +
                 ", sector='" + sector + '\'' +
-                ", step=" + step +
-                ", beginSection=" + beginSection +
-                ", endSection=" + endSection +
                 ", unitPrice=" + unitPrice +
-                ", basicPriceByStep=" + basicPriceByStep +
-                ", billTotal=" + billTotal +
-                '}';
+                ", billTotal=" + billTotal + '}';
     }
 }
