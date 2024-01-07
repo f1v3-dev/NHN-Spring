@@ -19,9 +19,7 @@ public class ElapsedTimeAspect {
         StopWatch clock = new StopWatch();
         try {
             clock.start();
-
-            Object retVal = pjp.proceed();
-            return retVal;
+            return pjp.proceed();
         } finally {
             clock.stop();
 

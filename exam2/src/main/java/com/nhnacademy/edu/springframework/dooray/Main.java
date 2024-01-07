@@ -12,7 +12,7 @@ public class Main {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(JavaConfig.class);
         MessageSendService service = context.getBean("messageSendService", MessageSendService.class);
-
+        
         service.doSendMessage(user, "안녕하세요");
     }
 }
