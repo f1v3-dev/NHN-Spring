@@ -21,8 +21,8 @@ class DefaultResultReportTest {
     void reportTest() {
 
         List<WaterBill> waterBills =
-                List.of(new WaterBill("광주광역시", "욕탕용", 1, 412, 2170),
-                        new WaterBill("화순군", "상업용", 5, 50, 440));
+                List.of(new WaterBill(1, "광주광역시", "욕탕용", 1, 1, 412, 2170, 0),
+                        new WaterBill(2, "화순군", "상업용", 5, 5, 50, 440, 0));
 
         ReflectionTestUtils.invokeMethod(resultReport, "report", waterBills);
     }

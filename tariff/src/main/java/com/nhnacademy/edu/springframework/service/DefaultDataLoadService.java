@@ -4,11 +4,11 @@ import com.nhnacademy.edu.springframework.repository.WaterBillRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CsvDataLoadService implements DataLoadService {
+public class DefaultDataLoadService implements DataLoadService {
 
     private final WaterBillRepository waterBillRepository;
 
-    public CsvDataLoadService(WaterBillRepository waterBillRepository) {
+    public DefaultDataLoadService(WaterBillRepository waterBillRepository) {
         this.waterBillRepository = waterBillRepository;
     }
 

@@ -13,15 +13,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class CsvDataParser implements DataParser {
 
-    private final List<WaterBill> billList = new ArrayList<>();
 
     @Override
     public List<WaterBill> parse(String filePath) {
 
+        List<WaterBill> billList = new ArrayList<>();
+
         ClassLoader loader = getClass().getClassLoader();
 
-        try (FileInputStream file = new FileInputStream(loader.getResource(filePath).getFile());
-             BufferedReader br = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8))) {
+        try (FileInputStream inputStream = new FileInputStream(loader.getResource(filePath).getFile());
+             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
             // 첫 번째 라인 : Column Name - skip
             br.readLine();
@@ -32,7 +33,7 @@ public class CsvDataParser implements DataParser {
                 billList.add(tariff);
             }
         } catch (IOException e) {
-            e.getStackTrace();
+            throw new RuntimeException(e.getMessage());
         }
 
         return billList;
@@ -40,14 +41,29 @@ public class CsvDataParser implements DataParser {
 
 
     private static WaterBill createWaterBill(String line) {
+
+        // 단계별 기본요금이 입력되어있지 않은 경우 0을 더해줌
+        if (line.endsWith(",")) {
+            line += "0";
+        }
+
         String[] split = line.split(",");
 
-        String city = split[1].trim();
-        String sector = split[2].trim();
-        int beginSection = Integer.parseInt(split[4]);
-        int endSection = Integer.parseInt(split[5]);
-        int unitCost = Integer.parseInt(split[6]);
+        WaterBill waterBill = new WaterBill(
+                Integer.parseInt(split[0]),
+                split[1].trim(),
+                split[2].trim(),
+                Integer.parseInt(split[3]),
+                Integer.parseInt(split[4]),
+                Integer.parseInt(split[5]),
+                Integer.parseInt(split[6]),
+                Integer.parseInt(split[7])
+        );
 
-        return new WaterBill(city, sector, beginSection, endSection, unitCost);
+        if (waterBill.getBillTotal() == null) {
+            waterBill.setBillTotal(0);
+        }
+
+        return waterBill;
     }
 }

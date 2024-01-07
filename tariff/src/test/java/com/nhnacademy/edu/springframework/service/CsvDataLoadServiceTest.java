@@ -12,7 +12,7 @@ import org.mockito.MockitoAnnotations;
 class CsvDataLoadServiceTest {
 
     @InjectMocks
-    CsvDataLoadService dataLoadService;
+    DefaultDataLoadService dataLoadService;
 
     @Mock
     WaterBillRepository waterBillRepository;

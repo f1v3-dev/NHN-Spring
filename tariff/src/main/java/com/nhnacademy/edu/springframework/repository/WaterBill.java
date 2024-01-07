@@ -1,23 +1,53 @@
 package com.nhnacademy.edu.springframework.repository;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Objects;
+
 public class WaterBill {
 
-    private final String city;
+    @JsonProperty("순번")
+    private Integer id;
 
-    private final String sector;
-    private final int beginSection;
+    @JsonProperty("지자체명")
+    private String city;
 
-    private final int endSection;
+    @JsonProperty("업종")
+    private String sector;
 
-    private final int unitPrice;
-    private int billTotal;
+    @JsonProperty("단계")
+    private Integer step;
 
-    public WaterBill(String city, String sector, int beginSection, int endSection, int unitPrice) {
+    @JsonProperty("구간시작(세제곱미터)")
+    private Integer beginSection;
+
+    @JsonProperty("구간끝(세제곱미터)")
+    private Integer endSection;
+
+    @JsonProperty("구간금액(원)")
+    private Integer unitPrice;
+
+    @JsonProperty("단계별 기본요금(원)")
+    private Integer basicPriceByStep;
+    private Integer billTotal;
+
+    public WaterBill() {
+    }
+
+    public WaterBill(Integer id, String city, String sector, Integer step, Integer beginSection, Integer endSection,
+                     Integer unitPrice, Integer basicPriceByStep) {
+        this.id = id;
         this.city = city;
         this.sector = sector;
+        this.step = step;
         this.beginSection = beginSection;
         this.endSection = endSection;
         this.unitPrice = unitPrice;
+        this.basicPriceByStep = basicPriceByStep;
+    }
+
+
+    public Integer getId() {
+        return id;
     }
 
     public String getCity() {
@@ -28,38 +58,67 @@ public class WaterBill {
         return sector;
     }
 
-    public int getUnitPrice() {
+    public Integer getUnitPrice() {
         return unitPrice;
     }
 
-    public int getBillTotal() {
+    public Integer getBillTotal() {
         return billTotal;
     }
 
-    public int getBeginSection() {
+    public Integer getBeginSection() {
         return beginSection;
     }
 
-    public int getEndSection() {
+    public Integer getEndSection() {
         return endSection;
     }
 
-    public void setBillTotal(int billTotal) {
+
+    public Integer getStep() {
+        return step;
+    }
+
+    public Integer getBasicPriceByStep() {
+        return basicPriceByStep;
+    }
+
+
+    public void setBasicPriceByStep(Integer basicPriceByStep) {
+        this.basicPriceByStep = basicPriceByStep;
+    }
+
+    public void setBillTotal(Integer billTotal) {
         this.billTotal = billTotal;
     }
 
-
-    public boolean isInRange(int usage) {
+    public boolean isInRange(Integer usage) {
         return beginSection <= usage && usage <= endSection;
     }
+
+
+    //    @Override
+//    public String toString() {
+//        return "WaterBill{" +
+//                "city='" + city + '\'' +
+//                ", sector='" + sector + '\'' +
+//                ", unitPrice=" + unitPrice +
+//                ", billTotal=" + billTotal + '}';
+//    }
+
 
     @Override
     public String toString() {
         return "WaterBill{" +
-                "city='" + city + '\'' +
+                "id=" + id +
+                ", city='" + city + '\'' +
                 ", sector='" + sector + '\'' +
+                ", step=" + step +
+                ", beginSection=" + beginSection +
+                ", endSection=" + endSection +
                 ", unitPrice=" + unitPrice +
-                ", billTotal=" + billTotal + '}';
+                ", basicPriceByStep=" + basicPriceByStep +
+                ", billTotal=" + billTotal +
+                '}';
     }
-
 }
