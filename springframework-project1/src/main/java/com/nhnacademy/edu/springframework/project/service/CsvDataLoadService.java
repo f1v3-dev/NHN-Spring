@@ -13,6 +13,7 @@ public class CsvDataLoadService implements DataLoadService {
 
         Students students = CsvStudents.getInstance();
         students.load();
+
         students.merge(scores.findAll());
     }
 }
