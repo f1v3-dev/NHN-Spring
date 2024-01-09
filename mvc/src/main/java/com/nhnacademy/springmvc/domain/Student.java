@@ -39,6 +39,8 @@ public class Student {
     }
 
     public Student hideScoreStudent() {
-        return new Student(this.name, this.email, null, null);
+        Student hideStudent = new Student(this.name, this.email, null, null);
+        hideStudent.setId(this.getId());
+        return hideStudent;
     }
 }
