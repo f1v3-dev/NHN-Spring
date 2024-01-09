@@ -1,6 +1,7 @@
 package com.nhnacademy.springmvc.repository;
 
 import com.nhnacademy.springmvc.domain.Student;
+import com.nhnacademy.springmvc.domain.StudentRequest;
 import com.nhnacademy.springmvc.exception.StudentNotFoundException;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -41,15 +42,15 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
-    public void modify(Student student) {
-        Student originStudent = getStudent(student.getId());
-        if (Objects.isNull(originStudent)) {
+    public void modify(Long studentId, StudentRequest studentRequest) {
+        Student originStudent = getStudent(studentId);
+        if (Objects.isNull(originStudent) || !exists(studentId)) {
             throw new StudentNotFoundException();
         }
 
-        originStudent.setName(student.getName());
-        originStudent.setEmail(student.getEmail());
-        originStudent.setScore(student.getScore());
-        originStudent.setComment(student.getComment());
+        originStudent.setName(studentRequest.getName());
+        originStudent.setEmail(studentRequest.getEmail());
+        originStudent.setScore(studentRequest.getScore());
+        originStudent.setComment(studentRequest.getComment());
     }
 }

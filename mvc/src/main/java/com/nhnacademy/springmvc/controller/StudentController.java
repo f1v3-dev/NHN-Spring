@@ -34,7 +34,7 @@ public class StudentController {
         this.studentRepository = studentRepository;
     }
 
-    @ModelAttribute
+    @ModelAttribute("student")
     public Student getStudent(@PathVariable("studentId") Long id) {
         Student student = studentRepository.getStudent(id);
 
@@ -46,7 +46,7 @@ public class StudentController {
     }
 
     @GetMapping("/{studentId}")
-    public String viewStudent(@ModelAttribute Student student,
+    public String viewStudent(@ModelAttribute("student") Student student,
                               @RequestParam(name = "hideScore", required = false) String hide,
                               ModelMap modelMap) {
 
@@ -61,7 +61,7 @@ public class StudentController {
     }
 
     @GetMapping("/{studentId}/modify")
-    public ModelAndView studentModifyForm(@ModelAttribute Student student) {
+    public ModelAndView modifyStudentForm(@ModelAttribute Student student) {
 
         ModelAndView mav = new ModelAndView("studentModify");
         mav.addObject("student", student);
@@ -69,24 +69,20 @@ public class StudentController {
     }
 
     @PostMapping("/{studentId}/modify")
-    public String modifyUser(@ModelAttribute Student student,
-                             @Valid @ModelAttribute StudentRequest studentRequest,
-                             BindingResult bindingResult,
-                             Model model) {
+    public String modifyStudent(@PathVariable("studentId") Long id,
+                                @Valid @ModelAttribute StudentRequest studentRequest,
+                                BindingResult bindingResult,
+                                Model model) {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationFailedException(bindingResult);
         }
 
-        student.setName(studentRequest.getName());
-        student.setScore(studentRequest.getScore());
-        student.setEmail(studentRequest.getEmail());
-        student.setComment(studentRequest.getComment());
+        studentRepository.modify(id, studentRequest);
 
-        studentRepository.modify(student);
-
+        Student student = studentRepository.getStudent(id);
         model.addAttribute("student", student);
-        return "studentView";
+        return "redirect:/student/" + student.getId();
     }
 
     @ExceptionHandler(StudentNotFoundException.class)

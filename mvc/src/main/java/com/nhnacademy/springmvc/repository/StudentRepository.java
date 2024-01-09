@@ -1,6 +1,7 @@
 package com.nhnacademy.springmvc.repository;
 
 import com.nhnacademy.springmvc.domain.Student;
+import com.nhnacademy.springmvc.domain.StudentRequest;
 
 public interface StudentRepository {
 
@@ -10,6 +11,6 @@ public interface StudentRepository {
 
     Student getStudent(long id);
 
-    void modify(Student student);
+    void modify(Long studentId, StudentRequest studentRequest);
 
 }
