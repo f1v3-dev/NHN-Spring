@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,15 +46,16 @@ public class StudentController {
 
     @GetMapping("/{studentId}")
     public String viewStudent(@ModelAttribute("student") Student student,
-                              @RequestParam(name = "hideScore", required = false) String hide,
                               ModelMap modelMap) {
+        modelMap.put("student", student);
+        return "studentView";
+    }
 
-        if (Objects.isNull(hide)) {
-            modelMap.put("student", student);
-        } else if (hide.equals("yes")) {
-            Student hideStudent = Student.constructHideScoreStudent(student.getName(), student.getEmail());
-            modelMap.put("student", hideStudent);
-        }
+    @GetMapping(value = "/{studentId}", params = "hideScore=yes")
+    public String hideScoreViewStudent(@ModelAttribute("student") Student student,
+                                       ModelMap modelMap) {
+
+        modelMap.put("student", student.hideScoreStudent());
 
         return "studentView";
     }

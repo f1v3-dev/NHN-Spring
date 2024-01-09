@@ -38,18 +38,7 @@ public class Student {
         return new Student(name, email, score, comment);
     }
 
-    public static Student constructHideScoreStudent(String name, String email) {
-        return new Student(name, email, null, null);
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", score=" + score +
-                ", comment='" + comment + '\'' +
-                '}';
+    public Student hideScoreStudent() {
+        return new Student(this.name, this.email, null, null);
     }
 }
