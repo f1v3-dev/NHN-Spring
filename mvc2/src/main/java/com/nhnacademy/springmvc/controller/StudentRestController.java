@@ -43,7 +43,12 @@ public class StudentRestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerStudent(@RequestBody RestStudent student) {
+    public void registerStudent(@Valid @RequestBody RestStudent student,
+                                BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationFailedException(bindingResult);
+        }
 
         studentRepository.register(student.getName(),
                 student.getEmail(),

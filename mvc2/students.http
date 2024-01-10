@@ -1,10 +1,12 @@
 
 ### !! 아래의 HTTP API를 사용하기 위해 WebConfig에서 LoginCheckInterceptor에 "/students/**"을 추가하였습니다.
 
-### GET /students/{stduentId} (생성된 학생 조회)
+### GET /students/1 (존재하는 학생 조회)
 GET http://localhost:8080/students/1
 Content-Type: application/json
 
+### GET /students/99 (생성되지 않은 학생 조회)
+GET http://localhost:8080/students/99
 
 ### POST /students
 POST http://localhost:8080/students
@@ -17,7 +19,16 @@ Content-Type: application/json
   "comment": "열심히 함"
 }
 
+### POST /students (Validation 실패)
+POST http://localhost:8080/students
+Content-Type: application/json
 
+{
+  "name": "",
+  "email": "f1v3",
+  "score": 9999,
+  "comment": ""
+}
 
 ### GET /students/2 (POST로 생성한 학생 조회)
 GET http://localhost:8080/students/2

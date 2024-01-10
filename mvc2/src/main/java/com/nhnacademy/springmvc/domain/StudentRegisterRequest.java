@@ -18,6 +18,7 @@ public class StudentRegisterRequest {
     @Range(min = 0, max = 100)
     Integer score;
 
+    @NotBlank
     @Length(max = 200)
     String comment;
 }
