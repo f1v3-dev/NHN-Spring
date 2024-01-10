@@ -1,11 +1,10 @@
 package com.nhnacademy.springmvc.domain;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import lombok.Value;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 @Value
 public class StudentRegisterRequest {
@@ -16,8 +15,7 @@ public class StudentRegisterRequest {
     @Email
     String email;
 
-    @Min(0)
-    @Max(100)
+    @Range(min = 0, max = 100)
     Integer score;
 
     @Length(max = 200)

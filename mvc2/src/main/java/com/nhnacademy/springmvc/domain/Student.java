@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 @Getter
 @Setter
@@ -20,8 +21,7 @@ public class Student {
     @Email
     private String email;
 
-    @Min(0)
-    @Max(100)
+    @Range(min = 0, max = 100)
     private Integer score;
 
     @Length(max = 200)
