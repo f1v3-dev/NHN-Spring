@@ -4,10 +4,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 import org.hibernate.validator.constraints.Length;
 
 @Value
+@NoArgsConstructor(force = true)
 public class StudentRegisterRequest {
 
     @NotBlank

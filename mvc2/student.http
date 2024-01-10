@@ -1,3 +1,4 @@
+### !!주의 : WebConfig에서 LoginCheckInterceptor에 "/students/**"을 추가해야 아래의 HTTP API를 사용할 수 있습니다.
 
 ### GET /students/{stduentId} (생성된 학생 조회)
 GET http://localhost:8080/students/1
