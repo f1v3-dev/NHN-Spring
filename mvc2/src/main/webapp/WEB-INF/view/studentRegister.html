@@ -1,0 +1,35 @@
+<html>
+<head xmlns:th="http://www.thymeleaf.org">
+	<meta charset="UTF-8"/>
+	<title>학생 정보 등록</title>
+</head>
+<body>
+
+<form th:action="@{/student/register}" method="post">
+	<div>
+		<label for="name" th:text="#{name}">이름: </label>
+		<input type="text" id="name" th:name="name"/>
+	</div>
+	<br/>
+
+	<div>
+		<label for="email" th:text="#{email}">이메일: </label>
+		<input type="text" id="email" th:name="email"/>
+	</div>
+	<br/>
+
+	<div>
+		<label for="score" th:text="#{score}">성적: </label>
+		<input type="text" id="score" th:name="score"/>
+	</div>
+	<br/>
+
+	<div>
+		<label for="comment" th:text="#{comment}">평가: </label>
+		<textarea id="comment" th:name="comment" rows="10" cols="80"></textarea>
+	</div>
+	<br/>
+	<input type="submit"/>
+</form>
+</body>
+</html>

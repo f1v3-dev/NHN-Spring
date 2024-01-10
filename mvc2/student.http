@@ -1,0 +1,34 @@
+
+### GET /students/{stduentId} (생성된 학생 조회)
+GET http://localhost:8080/students/1
+Content-Type: application/json
+
+
+### POST /students
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+  "name": "정승조",
+  "email": "f1v3@kakao.com",
+  "score": 50,
+  "comment": "열심히 함"
+}
+
+
+
+### GET /students/2 (POST로 생성한 학생 조회)
+GET http://localhost:8080/students/2
+
+
+
+### PUT /students/2 (학생 정보 수정)
+PUT http://localhost:8080/students/2
+Content-Type: application/json
+
+{
+  "name": "정승조",
+  "email": "f1v3@kakao.com",
+  "score": 100,
+  "comment": "열심히 함"
+}

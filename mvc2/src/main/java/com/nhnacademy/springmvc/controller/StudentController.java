@@ -1,7 +1,7 @@
 package com.nhnacademy.springmvc.controller;
 
 import com.nhnacademy.springmvc.domain.Student;
-import com.nhnacademy.springmvc.domain.StudentRequest;
+import com.nhnacademy.springmvc.domain.StudentRegisterRequest;
 import com.nhnacademy.springmvc.exception.StudentNotFoundException;
 import com.nhnacademy.springmvc.exception.ValidationFailedException;
 import com.nhnacademy.springmvc.repository.StudentRepository;
@@ -48,7 +48,7 @@ public class StudentController {
     public String viewStudent(@ModelAttribute("student") Student student,
                               ModelMap modelMap) {
         modelMap.put("student", student);
-        return "studentView";
+        return "/studentView";
     }
 
     @GetMapping(value = "/{studentId}", params = "hideScore=yes")
@@ -57,20 +57,20 @@ public class StudentController {
 
         modelMap.put("student", student.hideScoreStudent());
 
-        return "studentView";
+        return "/studentView";
     }
 
     @GetMapping("/{studentId}/modify")
     public ModelAndView modifyStudentForm(@ModelAttribute Student student) {
 
-        ModelAndView mav = new ModelAndView("studentModify");
+        ModelAndView mav = new ModelAndView("/studentModify");
         mav.addObject("student", student);
         return mav;
     }
 
     @PostMapping("/{studentId}/modify")
     public String modifyStudent(@PathVariable("studentId") Long id,
-                                @Valid @ModelAttribute StudentRequest studentRequest,
+                                @Valid @ModelAttribute StudentRegisterRequest modifiedStudent,
                                 BindingResult bindingResult,
                                 Model model) {
 
@@ -78,7 +78,7 @@ public class StudentController {
             throw new ValidationFailedException(bindingResult);
         }
 
-        studentRepository.modify(id, studentRequest);
+        studentRepository.modify(id, modifiedStudent);
 
         Student student = studentRepository.getStudent(id);
         model.addAttribute("student", student);

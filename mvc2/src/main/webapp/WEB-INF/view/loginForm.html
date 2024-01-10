@@ -1,0 +1,13 @@
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+	<form th:action="@{/login}" method="post">
+		ID: <input type="text" th:name="id" /><br />
+		PWD: <input type="password" th:name="pwd" /><br />
+		<br />
+		<input type="submit" />
+	</form>
+</body>
+</html>

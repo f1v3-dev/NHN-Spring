@@ -1,0 +1,15 @@
+<html>
+<head>
+	<title>Login Success</title>
+</head>
+<body>
+	<div>
+		<label for="name">Login Success: </label>
+		<span id="name" th:text="${id}"></span>
+	</div>
+
+	<div>
+		<button th:onclick="|location.href='@{/logout}'|">Logout</button>
+	</div>
+</body>
+</html>

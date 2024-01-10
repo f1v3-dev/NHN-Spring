@@ -8,7 +8,7 @@ import lombok.Value;
 import org.hibernate.validator.constraints.Length;
 
 @Value
-public class StudentRequest {
+public class StudentRegisterRequest {
 
     @NotBlank
     String name;

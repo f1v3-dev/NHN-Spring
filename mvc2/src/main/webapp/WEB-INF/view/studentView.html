@@ -1,0 +1,32 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>학생 정보 조회</title>
+</head>
+<body>
+	<div th:object="${student}">
+		<div>
+			<label for="name" th:text="#{name}">이름: </label>
+			<span id="name" th:text="*{name}"></span>
+		</div>
+
+		<div>
+			<label for="email" th:text="#{email}">이메일: </label>
+			<span id="email" th:text="*{email}"></span>
+		</div>
+
+		<div th:if="*{score != null}">
+			<label for="score" th:text="#{score}">성적: </label>
+			<span id="score" th:text="*{score}"></span>
+		</div>
+
+		<div th:if="*{comment != null}">
+			<label for="comment" th:text="#{comment}">평가: </label>
+			<span id="comment" th:text="*{comment}"></span>
+		</div>
+
+	<br/>
+	<a th:href="@{/student/{id}/modify(id=${student.id})}">정보 수정</a><br/>
+	</div>
+</body>
+</html>

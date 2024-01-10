@@ -6,7 +6,9 @@
     <title>학생 정보 조회</title>
 </head>
 <body>
-    이름: ${student.name}<br/>
+    <div>
+        <p></p>이름: ${student.name}<br/>
+    </div>
     이메일: ${student.email}<br/>
     성적: ${student.score}<br/>
     평가: ${student.comment}<br/>
