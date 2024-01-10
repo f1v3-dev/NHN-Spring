@@ -8,7 +8,6 @@ import com.nhnacademy.springmvc.exception.ValidationFailedException;
 import com.nhnacademy.springmvc.repository.StudentRepository;
 import java.util.Objects;
 import javax.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @RestController
 @RequestMapping("/students")
 public class StudentRestController {
@@ -31,12 +29,6 @@ public class StudentRestController {
     public StudentRestController(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
-
-    /**
-     * 학생 정보 등록: POST /students
-     * 학생 정보 조회: GET /students/{studentId}
-     * 학생 정보 수정: PUT /students/{studentId}
-     */
 
     @GetMapping("/{studentId}")
     public ResponseEntity<Student> viewStudent(@PathVariable("studentId") Long id) {
@@ -76,9 +68,9 @@ public class StudentRestController {
 
         studentRepository
                 .modify(id, new StudentRegisterRequest(student.getName(),
-                                            student.getEmail(),
-                                            student.getScore(),
-                                            student.getComment()));
+                        student.getEmail(),
+                        student.getScore(),
+                        student.getComment()));
     }
 
 }

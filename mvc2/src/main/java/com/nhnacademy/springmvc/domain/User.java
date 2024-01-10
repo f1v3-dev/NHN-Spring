@@ -1,21 +1,13 @@
 package com.nhnacademy.springmvc.domain;
 
-import lombok.Getter;
+import lombok.Value;
 
+@Value
 public class User {
 
-    @Getter
-    private final String id;
+    String id;
 
-    @Getter
-    private final String password;
+    String password;
 
-    @Getter
-    private final String name;
-
-    public User(String id, String password, String name) {
-        this.id = id;
-        this.password = password;
-        this.name = name;
-    }
+    String name;
 }
