@@ -1,5 +1,6 @@
 package com.nhnacademy.springmvc.controller;
 
+import com.nhnacademy.springmvc.domain.RestStudent;
 import com.nhnacademy.springmvc.domain.Student;
 import com.nhnacademy.springmvc.domain.StudentRegisterRequest;
 import com.nhnacademy.springmvc.exception.StudentNotFoundException;
@@ -23,11 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/students")
-public class StudentInfoController {
+public class StudentRestController {
 
     private final StudentRepository studentRepository;
 
-    public StudentInfoController(StudentRepository studentRepository) {
+    public StudentRestController(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
@@ -50,7 +51,7 @@ public class StudentInfoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerStudent(@RequestBody StudentRegisterRequest student) {
+    public void registerStudent(@RequestBody RestStudent student) {
 
         studentRepository.register(student.getName(),
                 student.getEmail(),
@@ -62,7 +63,7 @@ public class StudentInfoController {
     @PutMapping("/{studentId}")
     @ResponseStatus(HttpStatus.OK)
     public void modifyStudent(@PathVariable("studentId") Long id,
-                              @Valid @RequestBody StudentRegisterRequest student,
+                              @Valid @RequestBody RestStudent student,
                               BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -73,7 +74,11 @@ public class StudentInfoController {
             throw new StudentNotFoundException();
         }
 
-        studentRepository.modify(id, student);
+        studentRepository
+                .modify(id, new StudentRegisterRequest(student.getName(),
+                                            student.getEmail(),
+                                            student.getScore(),
+                                            student.getComment()));
     }
 
 }

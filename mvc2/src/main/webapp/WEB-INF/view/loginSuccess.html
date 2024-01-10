@@ -11,5 +11,17 @@
 	<div>
 		<button th:onclick="|location.href='@{/logout}'|">Logout</button>
 	</div>
+
+	<div>
+		<p>Locale 선택</p>
+		<ul>
+			<li><a th:href="@{'?locale=ko'}">한국어</a></li>
+			<li>
+				<a th:href="@{'?locale=en'}">영어</a>
+			</li>
+		</ul>
+
+		<p>현재 Locale: <span th:text="${#locale}"></span></p>
+	</div>
 </body>
 </html>

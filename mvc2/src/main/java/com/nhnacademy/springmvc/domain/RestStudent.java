@@ -4,12 +4,15 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import lombok.Value;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
-@Value
-public class StudentRegisterRequest {
-
+@NoArgsConstructor
+@Getter
+@Setter
+public class RestStudent {
     @NotBlank
     String name;
 

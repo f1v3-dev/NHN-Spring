@@ -74,6 +74,8 @@ public class StudentController {
                                 BindingResult bindingResult,
                                 Model model) {
 
+        log.info("modifiedStudent: {}", modifiedStudent);
+
         if (bindingResult.hasErrors()) {
             throw new ValidationFailedException(bindingResult);
         }
