@@ -1,0 +1,60 @@
+
+### !! 아래의 HTTP API를 사용하기 위해 WebConfig에서 LoginCheckInterceptor에 "/students/**"을 추가하였습니다.
+
+### GET /students/{stduentId} (생성된 학생 조회)
+GET http://localhost:8080/students/1
+Content-Type: application/json
+
+
+### POST /students (JSON)
+POST http://localhost:8080/students
+Content-Type: application/json
+
+{
+  "name": "정승조",
+  "email": "f1v3@kakao.com",
+  "score": 50,
+  "comment": "열심히 함"
+}
+
+### POST /students (XML)
+POST http://localhost:8080/students
+Content-Type: application/xml;charset=UTF-8
+
+<Student>
+    <name>테스터</name>
+    <email>test@nhnacademy.com</email>
+    <score>75</score>
+    <comment>테스터</comment>
+</Student>
+
+
+
+
+
+### GET /students/2 (POST로 생성한 학생 조회)
+GET http://localhost:8080/students/2
+
+
+
+### PUT /students/2 (학생 정보 수정)
+PUT http://localhost:8080/students/2
+Content-Type: application/json
+
+{
+  "name": "정승조",
+  "email": "f1v3@kakao.com",
+  "score": 100,
+  "comment": "열심히 함"
+}
+
+### PUT /students/999 (존재하지 않는 학생 수정)
+PUT http://localhost:8080/students/999
+Content-Type: application/xml
+
+<Student>
+    <name>테스터</name>
+    <email>test@nhnacademy.com</email>
+    <score>100</score>
+    <comment>테스터입니다.</comment>
+</Student>

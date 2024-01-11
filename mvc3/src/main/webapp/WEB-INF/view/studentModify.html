@@ -1,0 +1,37 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>학생 정보 수정</title>
+</head>
+
+<body>
+
+<form th:action="@{/student/{id}/modify(id=${student.id})}" th:object="${student}" method="post">
+	<div>
+		<label for="name" th:text="#{name}">이름: </label>
+		<input type="text" id="name" th:name="name" th:value="*{name}"/>
+	</div>
+	<br/>
+
+	<div>
+		<label for="email" th:text="#{email}">이메일: </label>
+		<input type="text" id="email" th:name="email" th:value="*{email}"/>
+	</div>
+	<br/>
+
+	<div>
+		<label for="score" th:text="#{score}">성적: </label>
+		<input type="text" id="score" th:name="score" th:value="*{score}"/>
+	</div>
+	<br/>
+
+	<div>
+		<label for="comment" th:text="#{comment}">평가: </label>
+		<textarea id="comment" th:name="comment" rows="10" cols="80" th:field="*{comment}"></textarea>
+	</div>
+	<br/>
+	<input type="submit"/>
+</form>
+
+</body>
+</html>
