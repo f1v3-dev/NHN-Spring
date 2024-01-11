@@ -33,7 +33,6 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.jsp("/WEB-INF/view/", ".jsp");
         registry.viewResolver(thymeleafViewResolver());
     }
 

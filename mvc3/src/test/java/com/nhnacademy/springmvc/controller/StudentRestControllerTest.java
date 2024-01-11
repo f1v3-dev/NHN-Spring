@@ -55,14 +55,8 @@ class StudentRestControllerTest {
         student.setId(1L);
 
 
-        xmlStudent =
-                "<Student>" +
-                        "<id>1</id>" +
-                        "<name>테스터</name>" +
-                        "<email>test@nhnacademy.com</email>" +
-                        "<score>75</score>" +
-                        "<comment>테스터</comment>" +
-                        "</Student>";
+        xmlStudent = "<Student>" + "<id>1</id>" + "<name>테스터</name>" + "<email>test@nhnacademy.com</email>" +
+                "<score>75</score>" + "<comment>테스터</comment>" + "</Student>";
 
         jsonStudent = new ObjectMapper().writeValueAsString(student);
     }
@@ -74,15 +68,11 @@ class StudentRestControllerTest {
         when(studentRepository.getStudent(anyLong())).thenReturn(student);
 
 
-        mockMvc.perform(get("/students/{studentId}", 1)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(jsonStudent))
+        mockMvc.perform(get("/students/{studentId}", 1).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON)).andExpect(content().json(jsonStudent))
                 .andDo(print());
 
-        Mockito.verify(studentRepository, times(1))
-                .getStudent(anyLong());
+        Mockito.verify(studentRepository, times(1)).getStudent(anyLong());
     }
 
     @Test
@@ -95,11 +85,9 @@ class StudentRestControllerTest {
                         .accept(MediaType.APPLICATION_XML))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_XML + ";charset=UTF-8"))
-                .andExpect(content().xml(xmlStudent))
-                .andDo(print());
+                .andExpect(content().xml(xmlStudent)).andDo(print());
 
-        Mockito.verify(studentRepository, times(1))
-                .getStudent(anyLong());
+        Mockito.verify(studentRepository, times(1)).getStudent(anyLong());
     }
 
     @Test
@@ -115,8 +103,7 @@ class StudentRestControllerTest {
         assertThat(throwable).isInstanceOf(NestedServletException.class)
                 .hasCauseInstanceOf(StudentNotFoundException.class);
 
-        Mockito.verify(studentRepository, times(1))
-                .getStudent(anyLong());
+        Mockito.verify(studentRepository, times(1)).getStudent(anyLong());
 
     }
 
@@ -125,18 +112,14 @@ class StudentRestControllerTest {
     void registerStudent_Success_Json() throws Exception {
 
         Student newStudent = Student.create("테스터", "test@nhnacademy.com", 75, "테스터");
-        when(studentRepository.register(anyString(), anyString(), anyInt(), anyString()))
-                .thenReturn(newStudent);
+        when(studentRepository.register(anyString(), anyString(), anyInt(), anyString())).thenReturn(newStudent);
 
         String expectResult = new ObjectMapper().writeValueAsString(newStudent);
 
-        mockMvc.perform(post("/students")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(expectResult))
+        mockMvc.perform(post("/students").contentType(MediaType.APPLICATION_JSON).content(expectResult))
                 .andExpect(status().isCreated());
 
-        Mockito.verify(studentRepository, times(1))
-                .register(anyString(), anyString(), anyInt(), anyString());
+        Mockito.verify(studentRepository, times(1)).register(anyString(), anyString(), anyInt(), anyString());
     }
 
     @Test
@@ -145,24 +128,15 @@ class StudentRestControllerTest {
 
 
         Student newStudent = Student.create("테스터", "test@nhnacademy.com", 75, "테스터");
-        when(studentRepository.register(anyString(), anyString(), anyInt(), anyString()))
-                .thenReturn(newStudent);
+        when(studentRepository.register(anyString(), anyString(), anyInt(), anyString())).thenReturn(newStudent);
 
-        String expectResult =
-                "<Student>\n" +
-                        "    <name>테스터</name>\n" +
-                        "    <email>test@nhnacademy.com</email>\n" +
-                        "    <score>75</score>\n" +
-                        "    <comment>테스터</comment>\n" +
-                        "</Student>\n";
+        String expectResult = "<Student>\n" + "    <name>테스터</name>\n" + "    <email>test@nhnacademy.com</email>\n" +
+                "    <score>75</score>\n" + "    <comment>테스터</comment>\n" + "</Student>\n";
 
-        mockMvc.perform(post("/students")
-                        .contentType(MediaType.APPLICATION_XML)
-                        .content(expectResult))
+        mockMvc.perform(post("/students").contentType(MediaType.APPLICATION_XML).content(expectResult))
                 .andExpect(status().isCreated());
 
-        Mockito.verify(studentRepository, times(1))
-                .register(anyString(), anyString(), anyInt(), anyString());
+        Mockito.verify(studentRepository, times(1)).register(anyString(), anyString(), anyInt(), anyString());
     }
 
 
@@ -171,24 +145,17 @@ class StudentRestControllerTest {
     void registerStudent_Fail() {
 
         String invalidRegister =
-                "<Student>\n" +
-                        "    <name></name>\n" +
-                        "    <email>INVALID</email>\n" +
-                        "    <score>9999</score>\n" +
-                        "    <comment></comment>\n" +
-                        "</Student>\n";
+                "<Student>\n" + "    <name></name>\n" + "    <email>INVALID</email>\n" + "    <score>9999</score>\n" +
+                        "    <comment></comment>\n" + "</Student>\n";
 
-        Throwable throwable = catchThrowable(() ->
-                mockMvc.perform(post("/students")
-                                .contentType(MediaType.APPLICATION_XML)
-                                .content(invalidRegister))
+        Throwable throwable = catchThrowable(
+                () -> mockMvc.perform(post("/students").contentType(MediaType.APPLICATION_XML).content(invalidRegister))
                         .andDo(print()));
 
         assertThat(throwable).isInstanceOf(NestedServletException.class)
                 .hasCauseInstanceOf(ValidationFailedException.class);
 
-        Mockito.verify(studentRepository, times(0))
-                .register(anyString(), anyString(), anyInt(), anyString());
+        Mockito.verify(studentRepository, times(0)).register(anyString(), anyString(), anyInt(), anyString());
     }
 
     @Test
@@ -203,11 +170,9 @@ class StudentRestControllerTest {
         mockMvc.perform(put("/students/{studentId}", 1)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonStudent))
-                .andExpect(status().isOk())
-                .andDo(print());
+                .andExpect(status().isOk()).andDo(print());
 
-        Mockito.verify(studentRepository, times(1))
-                .modify(anyLong(), any());
+        Mockito.verify(studentRepository, times(1)).modify(anyLong(), any());
     }
 
     @Test
@@ -216,17 +181,16 @@ class StudentRestControllerTest {
 
         when(studentRepository.exists(anyLong())).thenReturn(false);
 
-        Throwable throwable = catchThrowable(() ->
-                mockMvc.perform(put("/students/{studentId}", 1)
+        Throwable throwable = catchThrowable(() -> mockMvc.perform(
+                        put("/students/{studentId}", 1)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(jsonStudent))
-                        .andDo(print()));
+                .andDo(print()));
 
         assertThat(throwable).isInstanceOf(NestedServletException.class)
                 .hasCauseInstanceOf(StudentNotFoundException.class);
 
-        Mockito.verify(studentRepository, times(0))
-                .modify(anyLong(), any());
+        Mockito.verify(studentRepository, times(0)).modify(anyLong(), any());
     }
 
     @Test
@@ -237,16 +201,15 @@ class StudentRestControllerTest {
         Student invalidStudent = Student.create("", "INVALID", 9999, "");
         String invalid = new ObjectMapper().writeValueAsString(invalidStudent);
 
-        Throwable throwable = catchThrowable(() ->
-                mockMvc.perform(put("/students/{studentId}", 1)
+        Throwable throwable = catchThrowable(() -> mockMvc.perform(
+                        put("/students/{studentId}", 1)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(invalid))
-                        .andDo(print()));
+                .andDo(print()));
 
         assertThat(throwable).isInstanceOf(NestedServletException.class)
                 .hasCauseInstanceOf(ValidationFailedException.class);
 
-        Mockito.verify(studentRepository, times(0))
-                .modify(anyLong(), any());
+        Mockito.verify(studentRepository, times(0)).modify(anyLong(), any());
     }
 }

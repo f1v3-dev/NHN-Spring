@@ -77,4 +77,5 @@ public class StudentRestController {
                         student.getScore(),
                         student.getComment()));
     }
+
 }
