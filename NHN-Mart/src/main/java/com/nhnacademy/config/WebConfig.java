@@ -1,6 +1,7 @@
 package com.nhnacademy.config;
 
 import com.nhnacademy.controller.ControllerBase;
+import com.nhnacademy.interceptor.AdminCheckFilter;
 import com.nhnacademy.interceptor.LoginCheckInterceptor;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -8,9 +9,12 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -18,6 +22,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackageClasses = ControllerBase.class)
+@PropertySource("classpath:config.properties")
 public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -30,6 +35,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginCheckInterceptor()).excludePathPatterns("/login");
+        registry.addInterceptor(new AdminCheckFilter()).addPathPatterns("/admin/**");
     }
 
     @Bean
@@ -45,6 +51,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.addDialect(new Java8TimeDialect());
 
         return templateEngine;
     }

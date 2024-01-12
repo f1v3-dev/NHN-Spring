@@ -2,7 +2,9 @@ package com.nhnacademy.repository;
 
 import com.nhnacademy.domain.Category;
 import com.nhnacademy.domain.Inquiry;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface InquiryRepository {
 
@@ -13,4 +15,8 @@ public interface InquiryRepository {
     Inquiry getInquiry(long id);
 
     boolean exists(long id);
+
+    Map<Long, Inquiry> getAllInquiry();
+
+    void answer(Long inquiryId, String answer, String answerWriterName);
 }

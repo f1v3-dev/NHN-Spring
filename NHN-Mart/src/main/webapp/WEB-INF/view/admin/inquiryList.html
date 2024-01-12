@@ -25,28 +25,9 @@
 
 <div style="width: 1000px; margin: auto;">
 
-	<h2 style="margin-top: 50px"> 내 문의 내역 </h2>
-	<button style="float: right;" class="btn btn-outline-dark"
-	        type="button" th:onclick="|location.href='@{/cs/inquiry}'|">문의하기
-	</button>
-
-	<div class="btn-group">
-		<button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-			검색
-		</button>
-		<ul class="dropdown-menu">
-			<li class="dropdown-item">
-				<a th:href="@{/cs}" >전체보기</a>
-			</li>
-			<li th:each="categoryValue : ${T(com.nhnacademy.domain.Category).values()}" class="dropdown-item">
-				<a th:href="@{/cs(category=${categoryValue.name()})}" th:text="${categoryValue.getCategoryName()}"></a>
-			</li>
-		</ul>
-	</div>
-
+	<h2 style="margin-top: 50px"> 고객 문의 목록 </h2>
 
 	<table style="margin-top: 50px" class="table table-hover text-center">
-
 		<thead>
 		<tr>
 			<th scope="col">제목</th>
@@ -57,7 +38,7 @@
 		</thead>
 		<tbody class="text-center">
 		<tr th:each="inquiry : ${inquiryList}">
-			<td><a th:href="@{/cs/inquiry/{id}(id=${inquiry.id})}" th:text="${inquiry.title}"></a></td>
+			<td><a th:href="@{/admin/cs/inquiry/{id}(id=${inquiry.id})}" th:text="${inquiry.title}"></a></td>
 			<td th:text="${inquiry.category.categoryName}"></td>
 			<td th:text="${#temporals.format(inquiry.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
 
@@ -70,7 +51,6 @@
 	</table>
 
 	<button class="btn btn-danger btn-lg" th:onclick="|location.href='@{/logout}'|">로그아웃</button>
-
 </div>
 
 </body>

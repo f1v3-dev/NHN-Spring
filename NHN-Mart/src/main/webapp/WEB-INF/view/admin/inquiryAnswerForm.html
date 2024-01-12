@@ -58,30 +58,39 @@
 		</table>
 	</div>
 
-	<!-- 하위의 내용들은 답변이 완료된 경우에만 보여줌 -->
-
-	<div>
-		<table class="table table-bordered text-center align-middle"
-		       style="margin-top: 30px" th:if="${inquiry.isAnswered}">
-			<h3> ANSWER </h3>
-			<tbody>
-			<tr>
-				<td>답변일자</td>
-				<td th:text="${#temporals.format(inquiry.answeredDate, 'yyyy-MM-dd HH:mm')}"></td>
-			</tr>
-
-			<tr>
-				<td style="height:300px;">답변 내용</td>
-				<td th:text="*{answerContent}"></td>
-			</tr>
-
-			<tr>
-				<td>CS 담당자</td>
-				<td th:text="*{answerWriterName}"></td>
-			</tr>
-			</tbody>
-		</table>
+	<div style="margin-top: 50px">
+		<!-- 폼을 테이블로 변경 -->
+		<form th:action="@{'/admin/cs/inquiry/' + ${inquiry.id}}" method="post">
+			<input type="hidden" name="_method" value="put"/>
+			<table class="table table-bordered text-center align-middle">
+				<tbody>
+				<tr>
+					<td colspan="2">
+						<label for="answer">답변을 입력하세요</label>
+						<textarea name="answer" id="answer" cols="30" rows="10"
+						          style="height: 300px; resize: none;" class="form-control"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 50%;">
+						<button class="w-100 btn btn-outline-primary btn-lg mt-3" type="submit">답변하기</button>
+					</td>
+					<td style="width: 50%;">
+						<button class="w-100 btn btn-outline-danger btn-lg mt-3" type="reset"
+						        th:onclick="'location.href=\'' + @{/admin/cs} + '\''">취소
+						</button>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</form>
 	</div>
 </div>
+
+<div style="margin: auto; width: 700px;">
+
+</div>
+
+
 </body>
 </html>

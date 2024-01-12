@@ -1,5 +1,6 @@
 package com.nhnacademy.controller;
 
+import com.nhnacademy.exception.InquiryNotFoundException;
 import com.nhnacademy.exception.UserNotFoundException;
 import com.nhnacademy.exception.ValidationFailedException;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class WebControllerAdvice {
 
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler({UserNotFoundException.class, InquiryNotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleUserNotFoundException(UserNotFoundException exception, Model model) {
 

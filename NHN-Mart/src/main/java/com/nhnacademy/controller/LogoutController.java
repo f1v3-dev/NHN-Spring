@@ -16,6 +16,7 @@ public class LogoutController {
         HttpSession session = request.getSession(false);
 
         if (Objects.nonNull(session) && Objects.nonNull(session.getAttribute("user"))) {
+            session.removeAttribute("user");
             session.invalidate();
             return "redirect:/";
         }

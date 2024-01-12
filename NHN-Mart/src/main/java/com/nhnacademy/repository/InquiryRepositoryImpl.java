@@ -2,6 +2,7 @@ package com.nhnacademy.repository;
 
 import com.nhnacademy.domain.Category;
 import com.nhnacademy.domain.Inquiry;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -48,5 +49,18 @@ public class InquiryRepositoryImpl implements InquiryRepository {
         return inquiryMap.containsKey(id);
     }
 
+    @Override
+    public Map<Long, Inquiry> getAllInquiry() {
+        return inquiryMap;
+    }
 
+    @Override
+    public void answer(Long inquiryId, String answer, String answerWriterName) {
+        Inquiry inquiry = getInquiry(inquiryId);
+
+        inquiry.setAnswered(true);
+        inquiry.setAnswerContent(answer);
+        inquiry.setAnswerWriterName(answerWriterName);
+        inquiry.setAnsweredDate(LocalDateTime.now());
+    }
 }

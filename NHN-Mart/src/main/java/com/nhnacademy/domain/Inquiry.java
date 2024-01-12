@@ -2,6 +2,7 @@ package com.nhnacademy.domain;
 
 import java.time.LocalDateTime;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,9 +15,11 @@ public class Inquiry {
     Category category;
 
     @NotBlank
+    @Size(min = 2, max = 200)
     String title;
 
     @NotBlank
+    @Size(max = 40000)
     String content;
 
     LocalDateTime createdDate;
@@ -24,6 +27,12 @@ public class Inquiry {
     String writerId;
 
     boolean isAnswered;
+
+    LocalDateTime answeredDate;
+
+    String answerContent;
+
+    String answerWriterName;
 
     public Inquiry(Category category, String title, String content, LocalDateTime createdDate, String writerId,
                    boolean isAnswered) {

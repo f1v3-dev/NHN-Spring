@@ -24,7 +24,7 @@
 				<span th:text="${user.name}"></span>님 안녕하세요!
 			</p>
 
-			<button class="btn btn-danger btn-lg" th:if="${user != null}" th:onclick="|location.href='@{/logout}'|">로그아웃</button>
+			<button class="btn btn-danger btn-lg" th:onclick="|location.href='@{/logout}'|">로그아웃</button>
 
 			<button class="btn btn-outline-dark btn-lg" type="button" th:onclick="|location.href='@{/cs}'|">내 문의 목록</button>
 			<button class="btn btn-outline-dark btn-lg" type="button" th:onclick="|location.href='@{/cs/inquiry}'|">문의하기</button>
