@@ -5,28 +5,25 @@ import com.nhnacademy.domain.User;
 import com.nhnacademy.domain.UserLoginRequest;
 import com.nhnacademy.exception.UserNotFoundException;
 import com.nhnacademy.exception.ValidationFailedException;
-import com.nhnacademy.repository.UserRepository;
+import com.nhnacademy.service.UserService;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public LoginController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public LoginController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
@@ -55,15 +52,14 @@ public class LoginController {
             throw new ValidationFailedException(bindingResult);
         }
 
-        if (userRepository.matches(userRequest.getId(), userRequest.getPassword())) {
-            HttpSession session = request.getSession(true);
-            session.setAttribute("user", userRepository.getUser(userRequest.getId()));
-            session.setMaxInactiveInterval(60 * 3);
+        String id = userRequest.getId();
+        String password = userRequest.getPassword();
+        User user = userService.doLogin(id, password);
 
-            return "redirect:/";
-        }
+        HttpSession session = request.getSession(true);
+        session.setAttribute("user", user);
 
-        throw new UserNotFoundException();
+        return "redirect:/";
     }
 
 }

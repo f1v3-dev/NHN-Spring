@@ -1,5 +1,7 @@
 package com.nhnacademy.controller;
 
+import com.nhnacademy.domain.Role;
+import com.nhnacademy.domain.User;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +22,8 @@ public class HomeController {
             model.addAttribute("user", session.getAttribute("user"));
         }
 
-        return "index";
+        User user = (User) session.getAttribute("user");
+
+        return user.getRole() == Role.CUSTOMER ? "customer/home" : "admin/home";
     }
 }

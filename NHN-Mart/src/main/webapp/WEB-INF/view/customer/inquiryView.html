@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	        crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@200&display=swap" rel="stylesheet">
+
+	<meta charset="UTF-8">
+	<title>NHN-Mart</title>
+</head>
+<body>
+<div style="margin: auto; width: 700px">
+
+	<h3> Inquiry View Page </h3>
+	<table class="table table-bordered text-center align-middle">
+		<tbody th:object="${inquiry}">
+		<tr>
+			<td>ID</td>
+			<td th:text="*{id}"></td>
+		</tr>
+
+		<tr>
+			<td>카테고리</td>
+			<td th:text="*{category.categoryName}"></td>
+		</tr>
+
+		<tr>
+			<td>작성일자</td>
+			<td th:text="*{createdDate}"></td>
+		</tr>
+
+
+		<tr>
+			<td >제목</td>
+			<td th:text="*{title}"></td>
+		</tr>
+
+		<tr>
+			<td style="height: 300px">본문</td>
+			<td th:text="*{content}"></td>
+		</tr>
+
+		<!-- 하위의 내용들은 답변이 완료된 경우에만 보여줌-->
+		<tr th:if="*{isAnswered}">
+			<td>답변일자</td>
+			<td th:text="*{answeredDate}"></td>
+
+		<tr th:if="*{isAnswered}">
+			<td>답변 내용</td>
+			<td th:text="*{answerContent}"></td>
+		</tr>
+
+		<tr th:if="*{isAnswered}">
+			<td>CS 담당자</td>
+			<td th:text="*{csManagerName}"></td>
+		</tbody>
+	</table>
+
+</div>
+</body>
+</html>
