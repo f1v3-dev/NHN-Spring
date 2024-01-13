@@ -31,7 +31,6 @@ public class AdminInquiryController {
     private final InquiryService inquiryService;
 
 
-
     public AdminInquiryController(InquiryService inquiryService) {
         this.inquiryService = inquiryService;
     }

@@ -2,7 +2,6 @@ package com.nhnacademy.repository;
 
 import com.nhnacademy.domain.Category;
 import com.nhnacademy.domain.Inquiry;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
