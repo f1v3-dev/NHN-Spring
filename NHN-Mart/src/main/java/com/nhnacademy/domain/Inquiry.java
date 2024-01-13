@@ -7,9 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class Inquiry {
 
+    @Setter
     long id;
 
     Category category;
@@ -24,14 +24,19 @@ public class Inquiry {
 
     LocalDateTime createdDate;
 
+    @Setter
     String writerId;
 
+    @Setter
     boolean isAnswered;
 
+    @Setter
     LocalDateTime answeredDate;
 
+    @Setter
     String answerContent;
 
+    @Setter
     String answerWriterName;
 
     public Inquiry(Category category, String title, String content, LocalDateTime createdDate, String writerId,
