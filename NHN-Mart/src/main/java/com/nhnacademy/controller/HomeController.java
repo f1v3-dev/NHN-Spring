@@ -20,6 +20,8 @@ public class HomeController {
 
         if (Objects.nonNull(session) && Objects.nonNull(session.getAttribute("user"))) {
             model.addAttribute("user", session.getAttribute("user"));
+        } else {
+            return "redirect:/login";
         }
 
         User user = (User) session.getAttribute("user");

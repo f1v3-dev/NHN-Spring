@@ -4,7 +4,7 @@ import com.nhnacademy.domain.Inquiry;
 import com.nhnacademy.domain.InquiryRegisterRequest;
 import com.nhnacademy.domain.User;
 import com.nhnacademy.exception.ValidationFailedException;
-import com.nhnacademy.repository.InquiryRepository;
+import com.nhnacademy.service.InquiryService;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
@@ -25,12 +25,12 @@ public class InquiryRegisterController {
 
     @Value("${upload.dir}")
     private String UPLOAD_DIR;
-    private final InquiryRepository inquiryRepository;
 
-    public InquiryRegisterController(InquiryRepository inquiryRepository) {
-        this.inquiryRepository = inquiryRepository;
+    private final InquiryService inquiryService;
+
+    public InquiryRegisterController(InquiryService inquiryService) {
+        this.inquiryService = inquiryService;
     }
-
 
     @GetMapping("/cs/inquiry")
     public String inquiry() {
@@ -41,7 +41,8 @@ public class InquiryRegisterController {
     public String inquiryRegister(@Valid InquiryRegisterRequest inquiryRequest,
                                   BindingResult bindingResult,
                                   HttpSession session,
-                                  @RequestParam("fileList") List<MultipartFile> fileList) throws IOException {
+                                  @RequestParam(name = "fileList", required = false) List<MultipartFile> fileList)
+            throws IOException {
 
         if (bindingResult.hasErrors()) {
             throw new ValidationFailedException(bindingResult);
@@ -49,10 +50,11 @@ public class InquiryRegisterController {
 
         User user = (User) session.getAttribute("user");
 
-        Inquiry inquiry = inquiryRepository.addInquiry(inquiryRequest.getCategory(),
-                inquiryRequest.getTitle(),
-                inquiryRequest.getContent(),
-                user.getId());
+        Inquiry inquiry =
+                inquiryService.addInquiry(inquiryRequest.getCategory(),
+                        inquiryRequest.getTitle(),
+                        inquiryRequest.getContent(),
+                        user.getId());
 
         if (!fileList.get(0).isEmpty()) {
             for (MultipartFile file : fileList) {

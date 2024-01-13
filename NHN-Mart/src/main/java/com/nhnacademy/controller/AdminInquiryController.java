@@ -28,8 +28,8 @@ public class AdminInquiryController {
     @Value("${upload.dir}")
     private String UPLOAD_DIR;
 
-
     private final InquiryService inquiryService;
+
 
 
     public AdminInquiryController(InquiryService inquiryService) {

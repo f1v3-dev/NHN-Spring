@@ -1,5 +1,6 @@
 package com.nhnacademy.service;
 
+import com.nhnacademy.domain.Category;
 import com.nhnacademy.domain.Inquiry;
 import com.nhnacademy.repository.InquiryRepository;
 import java.util.ArrayList;
@@ -57,5 +58,10 @@ public class InquiryServiceImpl implements InquiryService {
     @Override
     public void answer(Long inquiryId, String answer, String answerWriterName) {
         inquiryRepository.answer(inquiryId, answer, answerWriterName);
+    }
+
+    @Override
+    public Inquiry addInquiry(Category category, String title, String content, String id) {
+        return inquiryRepository.addInquiry(category, title, content, id);
     }
 }

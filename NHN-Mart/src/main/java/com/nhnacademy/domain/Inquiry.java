@@ -24,7 +24,6 @@ public class Inquiry {
 
     LocalDateTime createdDate;
 
-    @Setter
     String writerId;
 
     @Setter

@@ -1,9 +1,7 @@
 package com.nhnacademy.controller;
 
-import com.nhnacademy.domain.Role;
 import com.nhnacademy.domain.User;
 import com.nhnacademy.domain.UserLoginRequest;
-import com.nhnacademy.exception.UserNotFoundException;
 import com.nhnacademy.exception.ValidationFailedException;
 import com.nhnacademy.service.UserService;
 import java.util.Objects;
@@ -32,11 +30,6 @@ public class LoginController {
         HttpSession session = request.getSession(false);
         if (Objects.isNull(session) || Objects.isNull(session.getAttribute("user"))) {
             return "loginForm";
-        }
-
-        User user = (User) session.getAttribute("user");
-        if (user.getRole() == Role.CUSTOMER) {
-            return "customer/home";
         }
 
         return "redirect:/";
