@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -72,6 +74,8 @@ class InquiryControllerTest {
                 .andExpect(view().name("customer/inquiryList"))
                 .andExpect(model().attributeExists("inquiryList"))
                 .andReturn();
+
+        verify(inquiryService, times(1)).findInquiryListByUserId(anyString());
     }
 
     @Test
@@ -105,6 +109,8 @@ class InquiryControllerTest {
 
         assertThat(throwable).isInstanceOf(NestedServletException.class)
                 .hasCauseInstanceOf(InquiryNotFoundException.class);
+
+        verify(inquiryService, times(1)).isExists(anyLong());
     }
 
     @Test
@@ -122,6 +128,9 @@ class InquiryControllerTest {
                 .andExpect(view().name("customer/inquiryView"))
                 .andExpect(model().attributeExists("inquiry"))
                 .andDo(print());
+
+        verify(inquiryService, times(1)).isExists(anyLong());
+        verify(inquiryService, times(1)).findById(anyLong());
     }
 
 }

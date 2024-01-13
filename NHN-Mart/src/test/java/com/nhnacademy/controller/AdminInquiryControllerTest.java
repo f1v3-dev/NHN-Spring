@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -64,18 +66,19 @@ class AdminInquiryControllerTest {
         List<Inquiry> inquiryList = List.of(inquiry);
         when(inquiryService.findNotAnsweredInquiryList()).thenReturn(inquiryList);
 
-        MvcResult mvcResult = mockMvc.perform(get("/admin/cs"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("admin/inquiryList"))
-                .andReturn();
+        MvcResult mvcResult =
+                mockMvc.perform(get("/admin/cs")).andExpect(status().isOk()).andExpect(view().name("admin/inquiryList"))
+                        .andReturn();
 
-        Optional<List> optionalList = Optional.ofNullable(mvcResult.getModelAndView().getModel())
-                .map(m -> m.get("inquiryList"))
-                .map(List.class::cast);
+        Optional<List> optionalList =
+                Optional.ofNullable(mvcResult.getModelAndView().getModel()).map(m -> m.get("inquiryList"))
+                        .map(List.class::cast);
 
         assertThat(optionalList).isPresent();
         assertThat(optionalList.get()).hasSize(1);
         assertThat(optionalList.get().get(0)).isEqualTo(inquiry);
+
+        verify(inquiryService, times(1)).findNotAnsweredInquiryList();
     }
 
     @Test
@@ -83,11 +86,12 @@ class AdminInquiryControllerTest {
     void adminInquiry_Fail() {
         when(inquiryService.isExists(anyLong())).thenReturn(false);
 
-        Throwable throwable = catchThrowable(() ->
-                mockMvc.perform(get("/admin/cs/inquiry/{inquiryId}", 1)));
+        Throwable throwable = catchThrowable(() -> mockMvc.perform(get("/admin/cs/inquiry/{inquiryId}", 1)));
 
         assertThat(throwable).isInstanceOf(NestedServletException.class)
                 .hasCauseInstanceOf(InquiryNotFoundException.class);
+
+        verify(inquiryService, times(1)).isExists(anyLong());
     }
 
     @Test
@@ -99,11 +103,11 @@ class AdminInquiryControllerTest {
 
         ReflectionTestUtils.setField(controller, "UPLOAD_DIR", UPLOAD_DIR);
 
-        mockMvc.perform(get("/admin/cs/inquiry/{inquiryId}", 1))
-                .andExpect(status().isOk())
-                .andExpect(view().name("admin/inquiryAnswerForm"))
-                .andDo(print());
+        mockMvc.perform(get("/admin/cs/inquiry/{inquiryId}", 1)).andExpect(status().isOk())
+                .andExpect(view().name("admin/inquiryAnswerForm")).andDo(print());
 
+        verify(inquiryService, times(1)).isExists(anyLong());
+        verify(inquiryService, times(1)).findById(anyLong());
     }
 
     @Test
@@ -111,9 +115,8 @@ class AdminInquiryControllerTest {
     void answerInquiry_Fail_Invalid() {
         AnswerInquiry answer = new AnswerInquiry("");
 
-        Throwable throwable = catchThrowable(() ->
-                mockMvc.perform(put("/admin/cs/inquiry/{inquiryId}", 1)
-                        .param("answer", answer.getAnswer())));
+        Throwable throwable = catchThrowable(
+                () -> mockMvc.perform(put("/admin/cs/inquiry/{inquiryId}", 1).param("answer", answer.getAnswer())));
 
         assertThat(throwable).isInstanceOf(NestedServletException.class)
                 .hasCauseInstanceOf(ValidationFailedException.class);
@@ -125,12 +128,13 @@ class AdminInquiryControllerTest {
         AnswerInquiry answer = new AnswerInquiry("답변 테스트");
         when(inquiryService.isExists(anyLong())).thenReturn(false);
 
-        Throwable throwable = catchThrowable(() ->
-                mockMvc.perform(put("/admin/cs/inquiry/{inquiryId}", 1)
-                        .param("answer", answer.getAnswer())));
+        Throwable throwable = catchThrowable(
+                () -> mockMvc.perform(put("/admin/cs/inquiry/{inquiryId}", 1).param("answer", answer.getAnswer())));
 
         assertThat(throwable).isInstanceOf(NestedServletException.class)
                 .hasCauseInstanceOf(InquiryNotFoundException.class);
+
+        verify(inquiryService, times(1)).isExists(anyLong());
     }
 
     @Test
@@ -145,12 +149,10 @@ class AdminInquiryControllerTest {
         when(inquiryService.isExists(anyLong())).thenReturn(true);
         doNothing().when(inquiryService).answer(anyLong(), anyString(), anyString());
 
-        mockMvc.perform(put("/admin/cs/inquiry/{inquiryId}", 1)
-                        .param("answer", answer.getAnswer())
-                        .session(session))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/admin/cs"))
-                .andDo(print());
+        mockMvc.perform(put("/admin/cs/inquiry/{inquiryId}", 1).param("answer", answer.getAnswer()).session(session))
+                .andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/admin/cs")).andDo(print());
+
+        verify(inquiryService, times(1)).answer(anyLong(), anyString(), anyString());
     }
 
 }
