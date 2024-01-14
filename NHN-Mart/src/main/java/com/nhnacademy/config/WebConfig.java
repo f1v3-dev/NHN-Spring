@@ -1,7 +1,7 @@
 package com.nhnacademy.config;
 
 import com.nhnacademy.controller.ControllerBase;
-import com.nhnacademy.interceptor.AdminCheckFilter;
+import com.nhnacademy.interceptor.AdminCheckInterceptor;
 import com.nhnacademy.interceptor.LoginCheckInterceptor;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -34,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginCheckInterceptor()).excludePathPatterns("/login");
-        registry.addInterceptor(new AdminCheckFilter()).addPathPatterns("/admin/**");
+        registry.addInterceptor(new AdminCheckInterceptor()).addPathPatterns("/admin/**");
     }
 
     @Bean

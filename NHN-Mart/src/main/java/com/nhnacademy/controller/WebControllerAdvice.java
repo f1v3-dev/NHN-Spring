@@ -14,7 +14,7 @@ public class WebControllerAdvice {
 
     @ExceptionHandler({UserNotFoundException.class, InquiryNotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleUserNotFoundException(UserNotFoundException exception, Model model) {
+    public String handleNotFoundException(Exception exception, Model model) {
 
         model.addAttribute("exception", exception.getMessage());
         return "error/404";
