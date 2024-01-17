@@ -5,8 +5,12 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,12 +27,23 @@ public class OrderDetail {
     @Column(name = "unit_cost")
     private Integer unitCost;
 
+    @MapsId("orderId")
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @MapsId("productId")
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     @NoArgsConstructor
     @AllArgsConstructor
+    @EqualsAndHashCode
     @Getter
     @Setter
     @Embeddable
-    private static class Pk implements Serializable {
+    public static class Pk implements Serializable {
 
         @Column(name = "order_id")
         private Integer orderId;

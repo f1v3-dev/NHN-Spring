@@ -14,10 +14,10 @@ public class User {
 
     @Id
     @Column(name = "user_id")
-    private String id;
+    private String userId;
 
     @Column(name = "user_name")
-    private String name;
+    private String userName;
 
     @Column(name = "user_password")
     private String password;
