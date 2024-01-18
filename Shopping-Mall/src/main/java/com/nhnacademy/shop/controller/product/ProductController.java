@@ -3,7 +3,6 @@ package com.nhnacademy.shop.controller.product;
 import com.nhnacademy.shop.domain.ProductDto;
 import com.nhnacademy.shop.entity.Category;
 import com.nhnacademy.shop.entity.Product;
-import com.nhnacademy.shop.repository.ProductRepository;
 import com.nhnacademy.shop.service.product.ProductService;
 import com.nhnacademy.shop.service.productcategory.ProductCategoryService;
 import java.util.List;
@@ -20,15 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
-    private final ProductRepository productRepository;
 
     private final ProductService productService;
     private final ProductCategoryService productCategoryService;
 
 
-    public ProductController(ProductRepository productRepository, ProductService productService,
-                             ProductCategoryService productCategoryService) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService, ProductCategoryService productCategoryService) {
         this.productService = productService;
         this.productCategoryService = productCategoryService;
     }
@@ -38,7 +34,7 @@ public class ProductController {
             @PageableDefault(size = 5, sort = "productId", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
 
-        Page<ProductDto> productPage = productRepository.getAllBy(pageable);
+        Page<ProductDto> productPage = productService.getProducts(pageable);
 
         model.addAttribute("productList", productPage.getContent());
         model.addAttribute("totalPages", productPage.getTotalPages());
@@ -47,8 +43,7 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public String productView(@PathVariable("productId") Integer productId,
-                              Model model) {
+    public String productView(@PathVariable("productId") Integer productId, Model model) {
 
         List<Category> categoryList = productCategoryService.findCategoriesByProductId(productId);
         Product product = productService.findById(productId);

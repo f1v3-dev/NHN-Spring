@@ -2,6 +2,8 @@ package com.nhnacademy.shop.service.category;
 
 import com.nhnacademy.shop.entity.Category;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface CategoryService {
 
@@ -14,4 +16,6 @@ public interface CategoryService {
     void deleteBy(Integer categoryId);
 
     Category save(String categoryName);
+
+    Page<Category> findAll(Pageable pageable);
 }

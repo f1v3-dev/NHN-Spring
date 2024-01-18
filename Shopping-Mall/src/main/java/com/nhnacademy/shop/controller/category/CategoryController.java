@@ -38,7 +38,7 @@ public class CategoryController {
     public String category(
             @PageableDefault(size = 5, sort = "categoryId", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
-        Page<Category> categoryPage = categoryRepository.findAll(pageable);
+        Page<Category> categoryPage = categoryService.findAll(pageable);
 
         model.addAttribute("categoryList", categoryPage.getContent());
         model.addAttribute("totalPages", categoryPage.getTotalPages());
@@ -48,7 +48,7 @@ public class CategoryController {
 
     @GetMapping("/{categoryId}")
     public String categoryWithProductList(@PathVariable("categoryId") Integer categoryId,
-                                         Model model) {
+                                          Model model) {
 
         List<Product> productList = productCategoryService.findContainsCategory(categoryId);
         Category category = categoryService.findByCategoryId(categoryId);

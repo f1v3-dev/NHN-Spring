@@ -10,5 +10,5 @@ public class CategoryRegisterRequest {
 
     @NotBlank
     @Length(max = 50)
-    private String categoryName;
+    String categoryName;
 }

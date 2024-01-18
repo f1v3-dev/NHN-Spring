@@ -1,13 +1,15 @@
 package com.nhnacademy.shop.service.product;
 
+import com.nhnacademy.shop.domain.ProductDto;
 import com.nhnacademy.shop.entity.Product;
 import com.nhnacademy.shop.exception.ProductNotFoundException;
 import com.nhnacademy.shop.repository.ProductRepository;
 import com.nhnacademy.shop.service.productcategory.ProductCategoryService;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -25,6 +27,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findAllProducts() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public Page<ProductDto> getProducts(Pageable pageable) {
+        return productRepository.getAllBy(pageable);
     }
 
     @Override

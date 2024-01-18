@@ -1,7 +1,6 @@
 package com.nhnacademy.shop.controller.product;
 
 import com.nhnacademy.shop.service.product.ProductService;
-import com.nhnacademy.shop.service.productcategory.ProductCategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

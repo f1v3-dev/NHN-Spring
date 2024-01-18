@@ -7,6 +7,8 @@ import com.nhnacademy.shop.repository.CategoryRepository;
 import com.nhnacademy.shop.repository.ProductCategoryRepository;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -60,5 +62,10 @@ public class CategoryServiceImpl implements CategoryService {
         category.setCategoryName(categoryName);
 
         return categoryRepository.save(category);
+    }
+
+    @Override
+    public Page<Category> findAll(Pageable pageable) {
+        return categoryRepository.findAll(pageable);
     }
 }
