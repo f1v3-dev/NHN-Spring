@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Spring JPA 3일차 과제 - 정승조</title>
+</head>
+<style>
+
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse
+	}
+
+</style>
+<body>
+<h3 th:text="${category.categoryName} + ' 카테고리가 있는 상품 리스트'"></h3>
+
+<div>
+	<table>
+		<tr>
+			<th>상품 ID</th>
+			<th>모델 이름</th>
+			<th>상품 가격</th>
+		</tr>
+		<tr th:each="product : ${productList}">
+			<td th:text="${product.productId}">productId</td>
+			<td th:text="${product.modelName}">modelName</td>
+			<td th:text="${product.unitCost}">unitCost</td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

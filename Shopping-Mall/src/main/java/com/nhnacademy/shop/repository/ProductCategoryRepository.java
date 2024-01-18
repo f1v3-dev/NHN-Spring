@@ -4,14 +4,15 @@ import com.nhnacademy.shop.entity.ProductCategory;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProductCategoryRepository extends JpaRepository<ProductCategory, ProductCategory.Pk> {
+public interface ProductCategoryRepository
+        extends JpaRepository<ProductCategory, ProductCategory.Pk>, ProductCategoryRepositoryCustom {
 
 
     void deleteAllByProduct_ProductId(int productId);
 
     Long countByProduct_ProductId(int productId);
 
-    List<ProductCategory> findAllByProduct_ProductId(int productId);
+    List<ProductCategory> findAllByPk_ProductId(int productId);
 
-    Long countByCategory_CategoryId(int categoryId);
+    Long countByPk_CategoryId(int categoryId);
 }

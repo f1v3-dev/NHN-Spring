@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Spring JPA 3일차 과제 - 정승조</title>
+</head>
+<body>
+<h3>Product Register</h3>
+
+<div>
+	<form th:action="@{/category/register}" method="post">
+		<label for="categoryName"> 카테고리 이름
+			<input type="text" id="categoryName" name="categoryName">
+		</label>
+		<input type="submit" th:value="등록">
+	</form>
+</div>
+</body>
+</html>

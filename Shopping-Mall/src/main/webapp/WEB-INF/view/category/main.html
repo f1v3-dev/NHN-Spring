@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Spring JPA 3일차 과제 - 정승조</title>
+</head>
+<style>
+
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse
+	}
+
+</style>
+<body>
+<h3>Category</h3>
+
+<button th:onclick="|location.href='@{/category/register}'|">카테고리 등록</button>
+
+<div>
+	<table>
+		<tr>
+			<th>카테고리 ID</th>
+			<th>카테고리 명</th>
+		</tr>
+		<tr th:each="category : ${categoryList}">
+			<td th:text="${category.categoryId}">categoryId</td>
+			<td><a th:text="${category.categoryName}" th:href="@{/category/{id}(id = ${category.categoryId})}"></a></td>
+			<td>
+				<form th:action="@{/category/delete}" method="post">
+					<input type="hidden" th:name="categoryId" th:value="${category.categoryId}">
+					<input type="submit" th:value="삭제">
+				</form>
+			</td>
+		</tr>
+	</table>
+
+	<!-- 페이징 처리 -->
+	<span th:each="page : ${#numbers.sequence(1, totalPages)}">
+		<a th:href="@{/category(page=${page - 1})}" th:text="${page}"></a>
+	</span>
+
+
+</div>
+
+<div style="margin-top: 100px">
+	<button th:onclick="|location.href='@{/category}'|">Category</button>
+	<button th:onclick="|location.href='@{/product}'|">Product</button>
+</div>
+</body>
+</html>

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Entity
@@ -18,6 +19,7 @@ public class Category {
     @Column(name = "category_id")
     private Integer categoryId;
 
+    @Setter
     @Column(name = "category_name")
     private String categoryName;
 }
