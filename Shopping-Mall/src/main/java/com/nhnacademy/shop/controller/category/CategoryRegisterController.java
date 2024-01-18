@@ -36,7 +36,7 @@ public class CategoryRegisterController {
         }
 
         categoryService.save(category.getCategoryName());
-        return "redirect:/category/";
+        return "redirect:/category";
     }
 
 }

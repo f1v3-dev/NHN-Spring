@@ -2,6 +2,7 @@ package com.nhnacademy.shop.service.product;
 
 import com.nhnacademy.shop.entity.Product;
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface ProductService {
 
@@ -10,4 +11,6 @@ public interface ProductService {
     Product save(String modelNumber, String modelName, Integer unitCost, String description);
 
     Product findById(Integer productId);
+
+    void deleteBy(Integer productId);
 }

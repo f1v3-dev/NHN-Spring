@@ -47,8 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteBy(Integer categoryId) {
-
-        if (productCategoryRepository.countByPk_CategoryId(categoryId) > 0) {
+        if (productCategoryRepository.countByCategoryId(categoryId) > 0) {
             throw new CategoryUsedProductException();
         }
 

@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Shopping-Mall:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4e1f3b11-9492-42af-8c77-acee61468683" name="변경" comment="Exam: Spring JPA 과제 3일차">
+      <change afterPath="$PROJECT_DIR$/../Docs/Docs.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../NHN-Spring.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/controller/product/ProductDeleteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam2/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam2/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam2/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam2/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/sonarlint/issuestore/0/4/045755d986ee05d0ef2273031c63a3587568cb7b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/sonarlint/issuestore/7/a/7a84884ffd7b3e95e8f1f603fe77810b18c84029" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/sonarlint/issuestore/8/0/80e400e6fe9dc50bd0f76ab150c751bf8d579ac1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/sonarlint/issuestore/e/b/ebfc5fcc50759bd22b0494039854ae9f8ab9d4e0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/sonarlint/issuestore/e/d/ed3712eb2b06ceef45690cadddceb1d5c94ad892" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/sonarlint/securityhotspotstore/0/4/045755d986ee05d0ef2273031c63a3587568cb7b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/sonarlint/securityhotspotstore/7/a/7a84884ffd7b3e95e8f1f603fe77810b18c84029" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/sonarlint/securityhotspotstore/8/0/80e400e6fe9dc50bd0f76ab150c751bf8d579ac1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/sonarlint/securityhotspotstore/e/b/ebfc5fcc50759bd22b0494039854ae9f8ab9d4e0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/sonarlint/securityhotspotstore/e/d/ed3712eb2b06ceef45690cadddceb1d5c94ad892" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../exam3/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/git_toolbox_prj.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/2/f/2f67514040f703353f7eb53a3dbefdaa4c9e9ccc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/4/0/4079cd9d3c17b8136e6a082b3e6071e157063487" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/4/a/4ac45108b1df12b85ab33236a3c1c32dc6dbacff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/4/f/4f54c78b7144787d441a6010bfc7edb89c35b1e8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/5/1/518663240666a4a88bf9d8594ac54afaadf79cb5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/5/c/5c77fe4fc53fcfe5fcfecbd0419f28ed086e86f2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/7/2/7255401957212750de12d06ba16be52fe4768395" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/7/a/7a2bc31132ccfa6e08ebc76f002b01f421f8ccec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/9/f/9fca7bed6863be960e7a2448c7ca11679d73ec87" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/a/4/a422e6ba9e93a07e4803f2e981138ba92f7de2d0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/a/7/a77a3158e2e16d025b7b964e551fdfc1058a7eea" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/a/7/a7bbf0aef27525506b487508898a03e5892fdc93" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/b/2/b26ef6e0476fd612fd18b933eb5d4dff8a912029" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/b/c/bc49926b8b8568b96f92cd762d5ec37ec150d699" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/b/c/bc555ce1db27648cbe13af0f7ce9bbc677e132b4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/c/6/c659e64823986050fbc8c8eb50e0d0ffa365c723" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/d/0/d063f39b192e2237cc5f58d283cce312a6a2038d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/d/4/d4eb945c672572d124baccd5dbd4278cd03d543a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/d/5/d5abbb685b30bcb2293398dc4425841907265e03" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/2/f/2f67514040f703353f7eb53a3dbefdaa4c9e9ccc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/4/0/4079cd9d3c17b8136e6a082b3e6071e157063487" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/4/a/4ac45108b1df12b85ab33236a3c1c32dc6dbacff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/4/f/4f54c78b7144787d441a6010bfc7edb89c35b1e8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/5/1/518663240666a4a88bf9d8594ac54afaadf79cb5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/5/c/5c77fe4fc53fcfe5fcfecbd0419f28ed086e86f2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/7/2/7255401957212750de12d06ba16be52fe4768395" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/7/a/7a2bc31132ccfa6e08ebc76f002b01f421f8ccec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/9/f/9fca7bed6863be960e7a2448c7ca11679d73ec87" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/a/4/a422e6ba9e93a07e4803f2e981138ba92f7de2d0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/a/7/a77a3158e2e16d025b7b964e551fdfc1058a7eea" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/a/7/a7bbf0aef27525506b487508898a03e5892fdc93" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/b/2/b26ef6e0476fd612fd18b933eb5d4dff8a912029" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/b/c/bc49926b8b8568b96f92cd762d5ec37ec150d699" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/b/c/bc555ce1db27648cbe13af0f7ce9bbc677e132b4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/c/6/c659e64823986050fbc8c8eb50e0d0ffa365c723" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/d/0/d063f39b192e2237cc5f58d283cce312a6a2038d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/d/4/d4eb945c672572d124baccd5dbd4278cd03d543a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/d/5/d5abbb685b30bcb2293398dc4425841907265e03" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/httpRequests/http-client.cookies" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/0/4/045755d986ee05d0ef2273031c63a3587568cb7b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/2/f/2f67514040f703353f7eb53a3dbefdaa4c9e9ccc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/4/0/4079cd9d3c17b8136e6a082b3e6071e157063487" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/4/a/4ac45108b1df12b85ab33236a3c1c32dc6dbacff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/4/f/4f54c78b7144787d441a6010bfc7edb89c35b1e8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/5/1/518663240666a4a88bf9d8594ac54afaadf79cb5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/5/c/5c77fe4fc53fcfe5fcfecbd0419f28ed086e86f2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/6/6/6676041c9b092c9bafd5e56901bc762200ad1738" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/7/2/7255401957212750de12d06ba16be52fe4768395" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/7/a/7a2bc31132ccfa6e08ebc76f002b01f421f8ccec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/7/a/7a84884ffd7b3e95e8f1f603fe77810b18c84029" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/8/0/80e400e6fe9dc50bd0f76ab150c751bf8d579ac1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/9/c/9c824a8a9001b8e17f3096d3dae1d340148573f1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/9/f/9fca7bed6863be960e7a2448c7ca11679d73ec87" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/a/4/a422e6ba9e93a07e4803f2e981138ba92f7de2d0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/a/7/a77a3158e2e16d025b7b964e551fdfc1058a7eea" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/a/7/a7bbf0aef27525506b487508898a03e5892fdc93" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/b/2/b26ef6e0476fd612fd18b933eb5d4dff8a912029" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/b/c/bc49926b8b8568b96f92cd762d5ec37ec150d699" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/b/c/bc555ce1db27648cbe13af0f7ce9bbc677e132b4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/b/c/bcc9dc2451ec59242d7829f6ec602bd0eab60827" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/c/6/c659e64823986050fbc8c8eb50e0d0ffa365c723" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/d/0/d063f39b192e2237cc5f58d283cce312a6a2038d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/d/4/d4eb945c672572d124baccd5dbd4278cd03d543a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/d/5/d5abbb685b30bcb2293398dc4425841907265e03" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/e/b/ebfc5fcc50759bd22b0494039854ae9f8ab9d4e0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/e/d/ed3712eb2b06ceef45690cadddceb1d5c94ad892" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/0/4/045755d986ee05d0ef2273031c63a3587568cb7b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/2/f/2f67514040f703353f7eb53a3dbefdaa4c9e9ccc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/4/0/4079cd9d3c17b8136e6a082b3e6071e157063487" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/4/a/4ac45108b1df12b85ab33236a3c1c32dc6dbacff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/4/f/4f54c78b7144787d441a6010bfc7edb89c35b1e8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/5/1/518663240666a4a88bf9d8594ac54afaadf79cb5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/5/c/5c77fe4fc53fcfe5fcfecbd0419f28ed086e86f2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/6/6/6676041c9b092c9bafd5e56901bc762200ad1738" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/7/2/7255401957212750de12d06ba16be52fe4768395" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/7/a/7a2bc31132ccfa6e08ebc76f002b01f421f8ccec" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/7/a/7a84884ffd7b3e95e8f1f603fe77810b18c84029" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/8/0/80e400e6fe9dc50bd0f76ab150c751bf8d579ac1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/9/c/9c824a8a9001b8e17f3096d3dae1d340148573f1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/9/f/9fca7bed6863be960e7a2448c7ca11679d73ec87" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/a/4/a422e6ba9e93a07e4803f2e981138ba92f7de2d0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/a/7/a77a3158e2e16d025b7b964e551fdfc1058a7eea" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/a/7/a7bbf0aef27525506b487508898a03e5892fdc93" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/b/2/b26ef6e0476fd612fd18b933eb5d4dff8a912029" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/b/c/bc49926b8b8568b96f92cd762d5ec37ec150d699" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/b/c/bc555ce1db27648cbe13af0f7ce9bbc677e132b4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/b/c/bcc9dc2451ec59242d7829f6ec602bd0eab60827" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/c/6/c659e64823986050fbc8c8eb50e0d0ffa365c723" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/d/0/d063f39b192e2237cc5f58d283cce312a6a2038d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/d/4/d4eb945c672572d124baccd5dbd4278cd03d543a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/d/5/d5abbb685b30bcb2293398dc4425841907265e03" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/e/b/ebfc5fcc50759bd22b0494039854ae9f8ab9d4e0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/e/d/ed3712eb2b06ceef45690cadddceb1d5c94ad892" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mvc3/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springframework-project2/springframework-project1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tariff/.idea/sonarlint/issuestore/6/6/6676041c9b092c9bafd5e56901bc762200ad1738" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tariff/.idea/sonarlint/issuestore/9/c/9c824a8a9001b8e17f3096d3dae1d340148573f1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tariff/.idea/sonarlint/issuestore/b/c/bcc9dc2451ec59242d7829f6ec602bd0eab60827" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tariff/.idea/sonarlint/securityhotspotstore/6/6/6676041c9b092c9bafd5e56901bc762200ad1738" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tariff/.idea/sonarlint/securityhotspotstore/9/c/9c824a8a9001b8e17f3096d3dae1d340148573f1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tariff/.idea/sonarlint/securityhotspotstore/b/c/bcc9dc2451ec59242d7829f6ec602bd0eab60827" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/repository/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/repository/ProductCategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/repository/ProductCategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/service/category/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/service/category/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/service/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/service/product/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/service/product/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/service/product/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/service/productcategory/ProductCategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/service/productcategory/ProductCategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/service/productcategory/ProductCategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/service/productcategory/ProductCategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/src/main/java/com/nhnacademy/springmvc/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mvc/src/main/java/com/nhnacademy/springmvc/controller/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc/src/main/java/com/nhnacademy/springmvc/controller/WebControllerAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mvc/src/main/java/com/nhnacademy/springmvc/controller/WebControllerAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc3/src/main/java/com/nhnacademy/edu/springframework/aop/service/SmsMessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springframework-core-message-sender/src/main/java/com/nhnacademy/edu/springframework/aop/service/SmsMessageSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc3/src/main/java/com/nhnacademy/springmvc/controller/ErrorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../mvc/src/main/java/com/nhnacademy/springmvc/controller/ErrorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mvc3/src/main/webapp/WEB-INF/view/now.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../springmvc2/src/main/webapp/WEB-INF/view/now.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2ayv612inNYOh9s4OjqC0XdYhI2" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Maven.Shopping-Mall [clean].executor": "Run",
+    "Maven.Shopping-Mall [compile].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "Tomcat 서버.Tomcat 9.0.83.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/seungjo/Desktop/NHN-Spring/Shopping-Mall/src/main/java/com/nhnacademy/shop/controller/category",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "프로젝트",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/controller/category" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/view" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/error" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/webapp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.nhnacademy.shop.exception" />
+      <recent name="com.nhnacademy.shop.controller" />
+      <recent name="com.nhnacademy.shop.enums" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Tomcat 9.0.83" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.83" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="Shopping-Mall:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="cfa42d73-7766-4395-bc6b-0371eef927e5" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="55567" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Shopping-Mall:war exploded" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="4e1f3b11-9492-42af-8c77-acee61468683" name="변경" comment="" />
+      <created>1705303453834</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705303453834</updated>
+      <workItem from="1705303454902" duration="5650000" />
+      <workItem from="1705315825121" duration="2227000" />
+      <workItem from="1705318926227" duration="1319000" />
+      <workItem from="1705392618717" duration="7982000" />
+      <workItem from="1705449452513" duration="2462000" />
+      <workItem from="1705485923701" duration="4390000" />
+      <workItem from="1705490963787" duration="31127000" />
+      <workItem from="1705565952580" duration="6203000" />
+    </task>
+    <task id="LOCAL-00001" summary="Exam: Spring JPA 과제 1일차">
+      <option name="closed" value="true" />
+      <created>1705317007784</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1705317007785</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Exam: Spring JPA 과제 2일차">
+      <option name="closed" value="true" />
+      <created>1705486685451</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1705486685451</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Exam: Spring JPA 과제 3일차">
+      <option name="closed" value="true" />
+      <created>1705560698535</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705560698536</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Exam: Spring JPA 과제 3일차">
+      <option name="closed" value="true" />
+      <created>1705576495212</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1705576495212</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Exam: Spring JPA 과제 1일차" />
+    <MESSAGE value="Exam: Spring JPA 과제 2일차" />
+    <MESSAGE value="Exam: Spring JPA 과제 3일차" />
+    <option name="LAST_COMMIT_MESSAGE" value="Exam: Spring JPA 과제 3일차" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/controller/category/CategoryController.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/controller/category/CategoryController.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/nhnacademy/shop/controller/product/ProductRegisterController.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

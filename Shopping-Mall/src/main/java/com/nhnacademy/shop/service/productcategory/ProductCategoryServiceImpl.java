@@ -5,6 +5,7 @@ import com.nhnacademy.shop.entity.Product;
 import com.nhnacademy.shop.repository.ProductCategoryRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductCategoryServiceImpl implements ProductCategoryService {
@@ -24,5 +25,11 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Override
     public List<Category> findCategoriesByProductId(Integer productId) {
         return productCategoryRepository.findCategoriesByProductId(productId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAllBy(Integer productId) {
+        productCategoryRepository.deleteAllByProduct_ProductId(productId);
     }
 }
