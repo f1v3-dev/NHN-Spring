@@ -15,7 +15,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     Optional<Product> findByModelNumber(String modelNumber);
 
-//    Integer getSearchProductSize(String modelName);
 
     List<Product> findByModelNameLike(String modelName);
 

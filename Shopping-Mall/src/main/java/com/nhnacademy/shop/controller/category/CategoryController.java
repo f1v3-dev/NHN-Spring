@@ -47,8 +47,8 @@ public class CategoryController {
     }
 
     @GetMapping("/{categoryId}")
-    public String hasCategory(@PathVariable("categoryId") Integer categoryId,
-                              Model model) {
+    public String categoryWithProductList(@PathVariable("categoryId") Integer categoryId,
+                                         Model model) {
 
         List<Product> productList = productCategoryService.findContainsCategory(categoryId);
         Category category = categoryService.findByCategoryId(categoryId);

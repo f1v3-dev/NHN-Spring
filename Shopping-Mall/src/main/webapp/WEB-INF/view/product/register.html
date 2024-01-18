@@ -8,10 +8,31 @@
 <h3>Product Register</h3>
 
 <div>
-	<form th:action="@{/category/register}" method="post">
-		<label for="categoryName"> 카테고리 이름
-			<input type="text" id="categoryName" name="categoryName">
-		</label>
+	<form th:action="@{/product/register}" method="post">
+		<div>
+			<label for="modelNumber"> 모델 번호
+				<input type="text" id="modelNumber" name="modelNumber">
+			</label>
+		</div>
+
+		<div>
+			<label for="modelName"> 모델명
+				<input type="text" id="modelName" name="modelName">
+			</label>
+		</div>
+
+		<div>
+			<label for="unitCost"> 상품 가격
+				<input type="number" id="unitCost" name="unitCost">
+			</label>
+		</div>
+
+		<div>
+			<label for="description"> 상세 설명
+				<textarea id="description" name="description"></textarea>
+			</label>
+		</div>
+
 		<input type="submit" th:value="등록">
 	</form>
 </div>

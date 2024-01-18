@@ -31,7 +31,6 @@ public class JpaConfig {
 
     private JpaVendorAdapter jpaVendorAdapters() {
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-//        hibernateJpaVendorAdapter.setDatabase(Database.H2);
         hibernateJpaVendorAdapter.setDatabase(Database.MYSQL);
 
         return hibernateJpaVendorAdapter;

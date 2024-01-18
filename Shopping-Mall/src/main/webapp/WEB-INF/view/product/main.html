@@ -26,7 +26,7 @@
 		</tr>
 		<tr th:each="product : ${productList}">
 			<td th:text="${product.productId}">productId</td>
-			<td th:text="${product.modelName}">modelName</td>
+			<td><a th:text="${product.modelName}" th:href="@{/product/{id}(id = ${product.productId})}"></a></td>
 			<td th:text="${product.unitCost}">unitCost</td>
 			<td>
 				<form th:action="@{/product/delete}" method="post">

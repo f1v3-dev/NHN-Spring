@@ -1,6 +1,6 @@
 package com.nhnacademy.shop.service.productcategory;
 
-import com.nhnacademy.shop.domain.ProductDto;
+import com.nhnacademy.shop.entity.Category;
 import com.nhnacademy.shop.entity.Product;
 import com.nhnacademy.shop.repository.ProductCategoryRepository;
 import java.util.List;
@@ -19,5 +19,10 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Override
     public List<Product> findContainsCategory(Integer categoryId) {
         return productCategoryRepository.findContainsCategory(categoryId);
+    }
+
+    @Override
+    public List<Category> findCategoriesByProductId(Integer productId) {
+        return productCategoryRepository.findCategoriesByProductId(productId);
     }
 }
