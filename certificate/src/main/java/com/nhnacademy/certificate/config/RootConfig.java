@@ -9,9 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 
 
-@Configuration
 @ComponentScan(basePackageClasses = Base.class,
         excludeFilters = @ComponentScan.Filter(Controller.class))
+@Configuration
 public class RootConfig {
 
     @Bean
@@ -36,5 +36,5 @@ public class RootConfig {
 
         return dataSource;
     }
-
 }
+

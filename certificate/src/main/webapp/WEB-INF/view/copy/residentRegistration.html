@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Spring JPA 결산 과제</title>
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+	<!--Google font-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gasoek+One&family=Noto+Sans+KR:wght@200&display=swap"
+	      rel="stylesheet">
+
+	<!--Google icon-->
+	<link rel="stylesheet"
+	      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+</head>
+<body>
+
+
+<div class="album py-5">
+	<div class="container">
+		<table class="table table-bordered" style="text-align: center">
+			<thead class="table-light">
+			<tr>
+				<th colspan="6">
+					주민등록등본 <br/>
+					(발급일 : , 증명서확인번호 : )
+				</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:object="${household}">
+				<td colspan="2">세대주 성명</td>
+				<td th:text="${household.resident.name}"></td>
+				<td>세대구성 <br/> 사유 및 일자</td>
+				<td colspan="2"
+				    th:utext="|${household.householdCompositionReasonCode} <br/> ${household.householdCompositionDate}|">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">주소</td>
+				<td colspan="2">신고일</td>
+			</tr>
+			<tr th:each="address : ${addressList}">
+				<td th:if="${address.lastAddressYN eq 'Y'}">현주소</td>
+				<td th:if="${address.lastAddressYN eq 'N'}">前주소</td>
+				<td colspan="3" th:text="${address.houseMovementAddress}">address</td>
+				<td colspan="2" th:text="${address.pk.houseMovementReportDate}">report date</td>
+			</tr>
+
+			<tr>
+				<td>세대주 관계</td>
+				<td>성명</td>
+				<td colspan="2">주민등록번호</td>
+				<td>신고일</td>
+				<td>변동사유</td>
+			</tr>
+			<tr th:each="resident : ${residentList}">
+				<td th:text="${resident.relationWithHeadOfHousehold}">관계</td>
+				<td th:text="${resident.name}">성명</td>
+				<td colspan="2" th:text="${resident.registrationNumber}">주민번호</td>
+				<td th:text="${resident.reportDate}">신고일</td>
+				<td th:text="${resident.changeReason}">변동사유</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+</body>
+</html>

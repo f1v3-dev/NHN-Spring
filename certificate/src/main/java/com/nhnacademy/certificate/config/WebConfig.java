@@ -4,6 +4,7 @@ import com.nhnacademy.certificate.controller.ControllerBase;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
@@ -26,6 +27,11 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
 
     @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        registry.viewResolver(thymeleafViewResolver());
+    }
+
+    @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
@@ -35,13 +41,8 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
         registry.addInterceptor(new LocaleChangeInterceptor());
     }
 
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.viewResolver(thymeleafViewResolver());
-    }
-
-    private ThymeleafViewResolver thymeleafViewResolver() {
-
+    @Bean
+    public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding("UTF-8");
@@ -50,14 +51,14 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
         return viewResolver;
     }
 
-    private SpringTemplateEngine templateEngine() {
+    public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
         springTemplateEngine.setTemplateResolver(templateResolver());
 
         return springTemplateEngine;
     }
 
-    private SpringResourceTemplateResolver templateResolver() {
+    public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
 
         templateResolver.setApplicationContext(applicationContext);
@@ -68,6 +69,4 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
         return templateResolver;
     }
-
-
 }
