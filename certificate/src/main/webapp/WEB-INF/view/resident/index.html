@@ -16,9 +16,10 @@
 	<!--Google icon-->
 	<link rel="stylesheet"
 	      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
-
 	<style>
 		.btn-custom {
+			border: 0;
+			color: blue;
 			background-color: transparent;
 		}
 	</style>
@@ -46,19 +47,22 @@
 				<td th:text="${resident.name}"></td>
 
 				<td>
-					<form th:action="@{/copy/residents(householdId = ${resident.householdSerialNumber})(residentId = ${resident.residentSerialNumber})}">
+					<form th:if="${resident.householdSerialNumber != null}"
+					      th:action="@{/copy/residents}" method="post">
+						<input th:name="householdId" th:value="${resident.householdSerialNumber}"
+						       hidden="hidden">
+						<input th:name="residentId" th:value="${resident.residentSerialNumber}"
+						       hidden="hidden">
 
-						<button class="btn-custom" th:if="${resident.householdSerialNumber == null}"
-						        th:href="@{/copy/residents(householdId = ${resident.householdSerialNumber})(residentId = ${resident.residentSerialNumber})}">
-							주민등록등본
-						</button>
+						<button class="btn-custom" type="submit">주민등록등본</button>
 					</form>
 				</td>
 
 				<td>
-					<a th:href="@{/familyRelationship(id = ${resident.residentSerialNumber})}">
-						가족관계증명서
-					</a>
+					<form th:action="@{/copy/family}" method="post">
+						<input th:name="residentId" th:value="${resident.residentSerialNumber}" hidden="hidden">
+						<button class="btn-custom" type="submit">가족관계증명서</button>
+					</form>
 				</td>
 				<td>
 					<a th:if="${resident.birthDeathTypeCode eq '출생'}"

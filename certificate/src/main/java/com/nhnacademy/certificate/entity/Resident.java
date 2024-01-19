@@ -57,6 +57,6 @@ public class Resident {
     @OneToMany(mappedBy = "resident")
     private List<FamilyRelationship> familyRelationships;
 
-    @OneToMany
+    @OneToMany(mappedBy = "resident")
     private List<Household> households;
 }

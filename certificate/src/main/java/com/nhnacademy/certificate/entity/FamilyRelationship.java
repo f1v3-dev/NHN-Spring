@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 @Getter
 @Entity
 @Table(name = "family_relationship")
@@ -22,10 +23,10 @@ public class FamilyRelationship {
 
     @MapsId("baseResidentSerialNumber")
     @ManyToOne
-    @JoinColumn(name = "resident_serial_number")
+    @JoinColumn(name = "base_resident_serial_number")
     private Resident resident;
 
-    @Column(name = "family_relationship_cdoe")
+    @Column(name = "family_relationship_code")
     private String familyRelationshipCode;
 
     @Getter
@@ -33,10 +34,12 @@ public class FamilyRelationship {
     @EqualsAndHashCode
     @Embeddable
     public static class Pk implements Serializable {
+
         @Column(name = "family_resident_serial_number")
         private Integer familyResidentSerialNumber;
 
         @Column(name = "base_resident_serial_number")
         private Integer baseResidentSerialNumber;
+
     }
 }

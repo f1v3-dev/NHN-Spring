@@ -1,8 +1,11 @@
 package com.nhnacademy.certificate.service.resident;
 
+import com.nhnacademy.certificate.domain.ResidentDto;
+import com.nhnacademy.certificate.domain.ResidentFamilyDto;
 import com.nhnacademy.certificate.domain.ResidentListDto;
 import com.nhnacademy.certificate.entity.Resident;
 import com.nhnacademy.certificate.repository.resident.ResidentRepository;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,5 +28,15 @@ public class ResidentServiceImpl implements ResidentService {
     @Override
     public Page<ResidentListDto> findList(Pageable pageable) {
         return residentRepository.findList(pageable);
+    }
+
+    @Override
+    public ResidentDto findById(Integer residentSerialNumber) {
+        return residentRepository.findByResidentSerialNumber(residentSerialNumber);
+    }
+
+    @Override
+    public List<ResidentFamilyDto> findFamilyById(Integer residentSerialNumber) {
+        return residentRepository.findFamilyById(residentSerialNumber);
     }
 }

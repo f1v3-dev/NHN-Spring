@@ -1,7 +1,6 @@
 package com.nhnacademy.certificate.controller;
 
 import com.nhnacademy.certificate.domain.ResidentListDto;
-import com.nhnacademy.certificate.service.householdcompositionresident.HouseholdCompositionResidentService;
 import com.nhnacademy.certificate.service.resident.ResidentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,11 +16,9 @@ public class ResidentController {
 
     private final ResidentService residentService;
 
-    private final HouseholdCompositionResidentService hcrService;
 
-    public ResidentController(ResidentService residentService, HouseholdCompositionResidentService hcrService) {
+    public ResidentController(ResidentService residentService) {
         this.residentService = residentService;
-        this.hcrService = hcrService;
     }
 
 

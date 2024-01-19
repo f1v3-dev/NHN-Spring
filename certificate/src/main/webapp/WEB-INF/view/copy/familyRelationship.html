@@ -25,8 +25,8 @@
 		<table class="table table-bordered" style="text-align: center">
 			<thead class="table-light">
 			<tr>
-				<th colspan="6" th:obejct="${issue}">
-					<span th:utext="'주민등록등본 <br/> (발급일: ' + ${issue.certificateIssueDate}
+				<th colspan="5" th:obejct="${issue}">
+					<span th:utext="'가족관계증명서 <br/> (발급일: ' + ${issue.certificateIssueDate}
 							+ ', 증명서확인번호 : '
 							+ ${#strings.substring(issue.certificateConfirmationNumber, 0, 8)}
 							+ '-'
@@ -37,38 +37,30 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr th:object="${household}">
-				<td colspan="2">세대주 성명</td>
-				<td th:text="${household.resident.name}"></td>
-				<td>세대구성 <br/> 사유 및 일자</td>
-				<td colspan="2"
-				    th:utext="|${household.householdCompositionReasonCode} <br/> ${household.householdCompositionDate}|">
-				</td>
+			<tr>
+				<td colspan="2">등록기준지<br/>(본적)</td>
+				<td colspan="3" th:text="${self.registrationBaseAddress}"></td>
 			</tr>
 			<tr>
-				<td colspan="4">주소</td>
-				<td colspan="2">신고일</td>
-			</tr>
-			<tr th:each="address : ${addressList}">
-				<td th:if="${address.lastAddressYN eq 'Y'}">현주소</td>
-				<td th:if="${address.lastAddressYN eq 'N'}">前주소</td>
-				<td colspan="3" th:text="${address.houseMovementAddress}">address</td>
-				<td colspan="2" th:text="${address.pk.houseMovementReportDate}">report date</td>
-			</tr>
-
-			<tr>
-				<td>세대주 관계</td>
+				<td>구분</td>
 				<td>성명</td>
-				<td colspan="2">주민등록번호</td>
-				<td>신고일</td>
-				<td>변동사유</td>
+				<td>출생연월일</td>
+				<td>주민등록번호</td>
+				<td>성별</td>
 			</tr>
-			<tr th:each="resident : ${residentList}">
-				<td th:text="${resident.relationWithHeadOfHousehold}">관계</td>
-				<td th:text="${resident.name}">성명</td>
-				<td colspan="2" th:text="${resident.registrationNumber}">주민번호</td>
-				<td th:text="${resident.reportDate}">신고일</td>
-				<td th:text="${resident.changeReason}">변동사유</td>
+			<tr>
+				<td>본인</td>
+				<td th:text="${self.name}">성명</td>
+				<td th:text="${self.birthDate}"></td>
+				<td th:text="${self.residentRegistrationNumber}"></td>
+				<td th:text="${self.genderCode}"></td>
+			</tr>
+			<tr th:each="member : ${family}">
+				<td th:text="${member.familyRelationCode}"></td>
+				<td th:text="${member.name}"></td>
+				<td th:text="${member.birthDate}"></td>
+				<td th:text="${member.residentRegistrationNumber}"></td>
+				<td th:text="${member.genderCode}"></td>
 			</tr>
 			</tbody>
 		</table>
