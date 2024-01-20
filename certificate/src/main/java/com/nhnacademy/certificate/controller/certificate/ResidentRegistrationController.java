@@ -1,4 +1,4 @@
-package com.nhnacademy.certificate.controller.copy;
+package com.nhnacademy.certificate.controller.certificate;
 
 import com.nhnacademy.certificate.domain.IssueDto;
 import com.nhnacademy.certificate.domain.ResidentResponseDto;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/copy/residents")
+@RequestMapping("/certificate/residents")
 public class ResidentRegistrationController {
 
     private final HouseholdCompositionResidentService hcrService;
@@ -39,7 +39,7 @@ public class ResidentRegistrationController {
 
     @GetMapping("/{serialNumber}")
     public String getResidentRegistration(@PathVariable("serialNumber") Integer householdSerialNumber,
-                                          @RequestParam("certificate") Long certificateConfirmationNumber,
+                                          @RequestParam("certificateId") Long certificateConfirmationNumber,
                                           Model model) {
 
         List<HouseholdMovementAddress> addressList = addressService.findBySerialNumber(householdSerialNumber);
@@ -51,7 +51,7 @@ public class ResidentRegistrationController {
         model.addAttribute("addressList", addressList);
         model.addAttribute("residentList", residentList);
         model.addAttribute("issue", issue);
-        return "copy/residentRegistration";
+        return "certificate/residentRegistration";
     }
 
     @PostMapping
@@ -61,7 +61,7 @@ public class ResidentRegistrationController {
 
         CertificateIssue register = certificateIssueService.register(residentSerialNumber, "주민등록등본");
 
-        return "redirect:/copy/residents/" + householdSerialNumber + "?certificate=" +
+        return "redirect:/certificate/residents/" + householdSerialNumber + "?certificateId=" +
                 register.getCertificateConfirmationNumber();
     }
 }

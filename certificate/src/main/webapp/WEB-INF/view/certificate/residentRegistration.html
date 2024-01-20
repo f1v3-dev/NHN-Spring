@@ -22,7 +22,7 @@
 
 <div class="album py-5">
 	<div class="container">
-		<table class="table table-bordered" style="text-align: center">
+		<table class="table table-bordered" style="text-align: center; vertical-align: middle">
 			<thead class="table-light">
 			<tr>
 				<th colspan="6" th:obejct="${issue}">
@@ -38,14 +38,14 @@
 			</thead>
 			<tbody>
 			<tr th:object="${household}">
-				<td colspan="2">세대주 성명</td>
+				<td class="table-light" colspan="2">세대주 성명</td>
 				<td th:text="${household.resident.name}"></td>
-				<td>세대구성 <br/> 사유 및 일자</td>
+				<td class="table-light">세대구성 <br/> 사유 및 일자</td>
 				<td colspan="2"
 				    th:utext="|${household.householdCompositionReasonCode} <br/> ${household.householdCompositionDate}|">
 				</td>
 			</tr>
-			<tr>
+			<tr class="table-light">
 				<td colspan="4">주소</td>
 				<td colspan="2">신고일</td>
 			</tr>
@@ -56,7 +56,7 @@
 				<td colspan="2" th:text="${address.pk.houseMovementReportDate}">report date</td>
 			</tr>
 
-			<tr>
+			<tr class="table-light">
 				<td>세대주 관계</td>
 				<td>성명</td>
 				<td colspan="2">주민등록번호</td>

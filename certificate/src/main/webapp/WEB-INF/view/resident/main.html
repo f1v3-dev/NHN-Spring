@@ -22,6 +22,11 @@
 			color: blue;
 			background-color: transparent;
 		}
+
+		a {
+			text-decoration: none;
+			color: blue;
+		}
 	</style>
 </head>
 <body>
@@ -30,7 +35,7 @@
 <div class="album py-5">
 	<div class="container">
 		<h2 style="margin-top: 50px; margin-bottom: 30px"> 주민 목록 </h2>
-		<table class="table table-bordered" style="text-align: center">
+		<table class="table table-bordered" style="text-align: center; vertical-align: middle">
 			<thead class="table-light">
 			<tr>
 				<th>이름</th>
@@ -48,7 +53,7 @@
 
 				<td>
 					<form th:if="${resident.householdSerialNumber != null}"
-					      th:action="@{/copy/residents}" method="post">
+					      th:action="@{/certificate/residents}" method="post">
 						<input th:name="householdId" th:value="${resident.householdSerialNumber}"
 						       hidden="hidden">
 						<input th:name="residentId" th:value="${resident.residentSerialNumber}"
@@ -59,20 +64,20 @@
 				</td>
 
 				<td>
-					<form th:action="@{/copy/family}" method="post">
+					<form th:action="@{/certificate/family}" method="post">
 						<input th:name="residentId" th:value="${resident.residentSerialNumber}" hidden="hidden">
 						<button class="btn-custom" type="submit">가족관계증명서</button>
 					</form>
 				</td>
 				<td>
 					<a th:if="${resident.birthDeathTypeCode eq '출생'}"
-					   th:href="@{/birth(id = ${resident.residentSerialNumber})}">
+					   th:href="@{/certificate/birth(serialNumber = ${resident.residentSerialNumber})}">
 						출생신고서
 					</a>
 				</td>
 				<td>
 					<a th:if="${resident.birthDeathTypeCode eq '사망'}"
-					   th:href="@{/death(id = ${resident.residentSerialNumber})}">
+					   th:href="@{/certificate/death(serialNumber = ${resident.residentSerialNumber})}">
 						사망신고서
 					</a>
 				</td>

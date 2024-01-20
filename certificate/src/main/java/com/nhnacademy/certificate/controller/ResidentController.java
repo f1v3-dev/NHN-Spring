@@ -30,7 +30,7 @@ public class ResidentController {
         model.addAttribute("residentList", residentPage.getContent());
         model.addAttribute("totalPages", residentPage.getTotalPages());
 
-        return "resident/index";
+        return "resident/main";
     }
 
 }

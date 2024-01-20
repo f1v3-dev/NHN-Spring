@@ -22,7 +22,7 @@
 
 <div class="album py-5">
 	<div class="container">
-		<table class="table table-bordered" style="text-align: center">
+		<table class="table table-bordered" style="text-align: center; vertical-align: middle">
 			<thead class="table-light">
 			<tr>
 				<th colspan="5" th:obejct="${issue}">
@@ -38,10 +38,10 @@
 			</thead>
 			<tbody>
 			<tr>
-				<td colspan="2">등록기준지<br/>(본적)</td>
+				<td class="table-light" colspan="2">등록기준지<br/>(본적)</td>
 				<td colspan="3" th:text="${self.registrationBaseAddress}"></td>
 			</tr>
-			<tr>
+			<tr class="table-light">
 				<td>구분</td>
 				<td>성명</td>
 				<td>출생연월일</td>

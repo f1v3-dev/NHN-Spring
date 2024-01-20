@@ -1,4 +1,4 @@
-package com.nhnacademy.certificate.controller.copy;
+package com.nhnacademy.certificate.controller.certificate;
 
 import com.nhnacademy.certificate.domain.IssueDto;
 import com.nhnacademy.certificate.domain.ResidentDto;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/copy/family")
+@RequestMapping("/certificate/family")
 public class FamilyRelationshipController {
 
     private final CertificateIssueService certificateIssueService;
@@ -30,7 +30,7 @@ public class FamilyRelationshipController {
 
     @GetMapping("/{serialNumber}")
     public String getFamilyRelationship(@PathVariable("serialNumber") Integer residentSerialNumber,
-                                        @RequestParam("certificate") Long certificateConfirmationNumber,
+                                        @RequestParam("certificateId") Long certificateConfirmationNumber,
                                         Model model) {
 
         IssueDto issue = certificateIssueService.findById(certificateConfirmationNumber);
@@ -41,7 +41,7 @@ public class FamilyRelationshipController {
         model.addAttribute("self", self);
         model.addAttribute("family", family);
 
-        return "copy/familyRelationship";
+        return "certificate/familyRelationship";
     }
 
 
@@ -51,7 +51,7 @@ public class FamilyRelationshipController {
 
         CertificateIssue register = certificateIssueService.register(residentSerialNumber, "가족관계증명서");
 
-        return "redirect:/copy/family/" + residentSerialNumber + "?certificate=" +
+        return "redirect:/certificate/family/" + residentSerialNumber + "?certificateId=" +
                 register.getCertificateConfirmationNumber();
     }
 }
