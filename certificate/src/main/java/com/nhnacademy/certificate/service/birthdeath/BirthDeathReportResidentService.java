@@ -1,7 +1,10 @@
 package com.nhnacademy.certificate.service.birthdeath;
 
 import com.nhnacademy.certificate.domain.BirthReportResidentResponseDto;
+import com.nhnacademy.certificate.domain.DeathReportResidentResponseDto;
 
 public interface BirthDeathReportResidentService {
-    BirthReportResidentResponseDto findReportResident(Integer residentSerialNumber);
+    BirthReportResidentResponseDto findBirthReportResident(Integer residentSerialNumber);
+
+    DeathReportResidentResponseDto findDeathReportResident(Integer residentSerialNumber);
 }

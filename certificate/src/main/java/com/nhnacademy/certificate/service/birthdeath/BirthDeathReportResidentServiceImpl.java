@@ -1,6 +1,7 @@
 package com.nhnacademy.certificate.service.birthdeath;
 
 import com.nhnacademy.certificate.domain.BirthReportResidentResponseDto;
+import com.nhnacademy.certificate.domain.DeathReportResidentResponseDto;
 import com.nhnacademy.certificate.repository.birthdeath.BirthDeathReportResidentRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,12 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
     }
 
     @Override
-    public BirthReportResidentResponseDto findReportResident(Integer residentSerialNumber) {
-        return birthDeathRepository.findReportResident(residentSerialNumber);
+    public BirthReportResidentResponseDto findBirthReportResident(Integer residentSerialNumber) {
+        return birthDeathRepository.findBirthReportResident(residentSerialNumber);
+    }
+
+    @Override
+    public DeathReportResidentResponseDto findDeathReportResident(Integer residentSerialNumber) {
+        return birthDeathRepository.findDeathReportResident(residentSerialNumber);
     }
 }

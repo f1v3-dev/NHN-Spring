@@ -1,6 +1,7 @@
 package com.nhnacademy.certificate.service.resident;
 
 import com.nhnacademy.certificate.domain.ResidentBirthDto;
+import com.nhnacademy.certificate.domain.ResidentDeathDto;
 import com.nhnacademy.certificate.domain.ResidentDto;
 import com.nhnacademy.certificate.domain.ResidentFamilyDto;
 import com.nhnacademy.certificate.domain.ResidentListDto;
@@ -20,4 +21,6 @@ public interface ResidentService {
     List<ResidentFamilyDto> findFamilyById(Integer residentSerialNumber);
 
     ResidentBirthDto findBirthResident(Integer residentSerialNumber);
+
+    ResidentDeathDto findDeathResident(Integer residentSerialNumber);
 }

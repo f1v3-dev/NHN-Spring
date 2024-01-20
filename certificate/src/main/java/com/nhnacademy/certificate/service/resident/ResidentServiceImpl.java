@@ -1,6 +1,7 @@
 package com.nhnacademy.certificate.service.resident;
 
 import com.nhnacademy.certificate.domain.ResidentBirthDto;
+import com.nhnacademy.certificate.domain.ResidentDeathDto;
 import com.nhnacademy.certificate.domain.ResidentDto;
 import com.nhnacademy.certificate.domain.ResidentFamilyDto;
 import com.nhnacademy.certificate.domain.ResidentListDto;
@@ -44,5 +45,10 @@ public class ResidentServiceImpl implements ResidentService {
     @Override
     public ResidentBirthDto findBirthResident(Integer residentSerialNumber) {
         return residentRepository.findBirthResidentByResidentSerialNumber(residentSerialNumber);
+    }
+
+    @Override
+    public ResidentDeathDto findDeathResident(Integer residentSerialNumber) {
+        return residentRepository.findDeathResidentByResidentSerialNumber(residentSerialNumber);
     }
 }

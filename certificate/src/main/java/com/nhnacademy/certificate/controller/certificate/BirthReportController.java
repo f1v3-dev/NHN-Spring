@@ -36,7 +36,7 @@ public class BirthReportController {
                                  Model model) {
         ResidentBirthDto birthResident = residentService.findBirthResident(residentSerialNumber);
         BirthReportResidentResponseDto reportResident =
-                birthDeathReportResidentService.findReportResident(residentSerialNumber);
+                birthDeathReportResidentService.findBirthReportResident(residentSerialNumber);
         List<ParentResponseDto> parents = familyRelationshipService.findParents(residentSerialNumber);
 
         System.out.println("birthResident.getBirthDate = " + birthResident.getBirthDate());

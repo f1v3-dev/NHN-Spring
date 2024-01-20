@@ -6,17 +6,19 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class BirthReportResidentResponseDto {
-
-    private String email;
-
-    private String phoneNumber;
-
-    private String qualificationCode;
+public class DeathReportResidentResponseDto {
 
     private String name;
 
     private String residentRegistrationNumber;
 
+    private String qualificationCode;
+
+    private String email;
+
+    private String phoneNumber;
+
     private LocalDate birthDeathReportDate;
+
+
 }
