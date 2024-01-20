@@ -23,8 +23,7 @@ public class ResidentController {
 
 
     @GetMapping
-    public String index(@PageableDefault(size = 3) Pageable pageable,
-                        Model model) {
+    public String index(@PageableDefault(size = 3) Pageable pageable, Model model) {
 
         Page<ResidentListDto> residentPage = residentService.findList(pageable);
 

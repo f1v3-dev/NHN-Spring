@@ -61,22 +61,11 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport
         QResident resident = QResident.resident;
         QFamilyRelationship familyRelationship = QFamilyRelationship.familyRelationship;
 
-//        select fr.family_resident_serial_number
-//        from resident as r
-//        left join family_relationship as fr
-//        on r.resident_serial_number = fr.base_resident_serial_number
-//        where fr.base_resident_serial_number = 4;
 
-        List<Integer> list = from(resident)
-                .innerJoin(resident.familyRelationships, familyRelationship)
-                .where(resident.residentSerialNumber.eq(residentSerialNumber))
-                .select(resident.residentSerialNumber)
-                .fetch();
-
-
-        return from(resident)
-                .innerJoin(resident.familyRelationships, familyRelationship)
-                .where(resident.residentSerialNumber.in(list))
+        List<ResidentFamilyDto> dtoList = from(familyRelationship)
+                .join(resident)
+                .on(familyRelationship.pk.familyResidentSerialNumber.eq(resident.residentSerialNumber))
+                .where(familyRelationship.pk.baseResidentSerialNumber.eq(residentSerialNumber))
                 .select(Projections.constructor(ResidentFamilyDto.class,
                         familyRelationship.familyRelationshipCode,
                         resident.name,
@@ -84,5 +73,12 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport
                         resident.residentRegistrationNumber,
                         resident.genderCode))
                 .fetch();
+
+        for (ResidentFamilyDto residentFamilyDto : dtoList) {
+            System.out.println(residentFamilyDto.getName());
+        }
+
+
+        return dtoList;
     }
 }
