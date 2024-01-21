@@ -2,7 +2,6 @@ package com.nhnacademy.certificate.controller.certificate;
 
 import com.nhnacademy.certificate.domain.IssueListDto;
 import com.nhnacademy.certificate.service.certificateissue.CertificateIssueService;
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
