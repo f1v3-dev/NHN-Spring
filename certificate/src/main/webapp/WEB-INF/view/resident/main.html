@@ -85,7 +85,7 @@
 				</td>
 				<td>
 					<a th:if="${resident.certificateNumber != null}"
-					   th:href="@{/certificate/list/{id}(id = ${resident.certificateNumber})}">
+					   th:href="@{/certificate/issuanceList/{serialNumber}(serialNumber = ${resident.certificateNumber})}">
 						발급목록
 					</a>
 				</td>

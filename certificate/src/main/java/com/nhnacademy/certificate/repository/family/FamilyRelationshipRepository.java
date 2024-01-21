@@ -10,15 +10,6 @@ public interface FamilyRelationshipRepository extends JpaRepository<FamilyRelati
 
     List<FamilyRelationship> findDistinctBy();
 
-
-    /*
-    SELECT r.*
-    FROM resident r
-        JOIN family_relationship f
-        ON r.resident_serial_number = f.family_resident_serial_number
-    WHERE f.base_resident_serial_number = 7
-    AND f.family_relationship_code IN ('부', '모');
-     */
     @Query("SELECT new com.nhnacademy.certificate.domain.ParentResponseDto(f.familyRelationshipCode, r.name, r.residentRegistrationNumber) " +
             "FROM Resident r " +
             " JOIN FamilyRelationship f " +

@@ -16,6 +16,14 @@
 	<!--Google icon-->
 	<link rel="stylesheet"
 	      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+	<style>
+		.btn-custom {
+			border: 0;
+			color: blue;
+			background-color: transparent;
+		}
+
+	</style>
 </head>
 <body>
 
@@ -26,48 +34,26 @@
 			주민 목록
 		</button>
 
+		<h2 style="margin-top: 50px; margin-bottom: 30px"> 발급 목록 </h2>
 		<table class="table table-bordered" style="text-align: center; vertical-align: middle">
 			<thead class="table-light">
 			<tr>
-				<th colspan="5" th:obejct="${issue}">
-					<span th:utext="'가족관계증명서 <br/> (발급일: ' + ${issue.certificateIssueDate}
-							+ ', 증명서확인번호 : '
-							+ ${#strings.substring(issue.certificateConfirmationNumber, 0, 8)}
-							+ '-'
-							+ ${#strings.substring(issue.certificateConfirmationNumber, 8, 16)}
-							+ ')'">
-					</span>
-				</th>
+				<th>증명서 확인 번호</th>
+				<th>증명서 유형 코드</th>
+				<th>증명서 발급 일자</th>
 			</tr>
 			</thead>
 			<tbody>
-			<tr>
-				<td class="table-light" colspan="2">등록기준지<br/>(본적)</td>
-				<td colspan="3" th:text="${self.registrationBaseAddress}"></td>
-			</tr>
-			<tr class="table-light">
-				<td>구분</td>
-				<td>성명</td>
-				<td>출생연월일</td>
-				<td>주민등록번호</td>
-				<td>성별</td>
-			</tr>
-			<tr>
-				<td>본인</td>
-				<td th:text="${self.name}">성명</td>
-				<td th:text="${self.birthDate}"></td>
-				<td th:text="${self.residentRegistrationNumber}"></td>
-				<td th:text="${self.genderCode}"></td>
-			</tr>
-			<tr th:each="member : ${family}">
-				<td th:text="${member.familyRelationshipCode}"></td>
-				<td th:text="${member.name}"></td>
-				<td th:text="${member.birthDate}"></td>
-				<td th:text="${member.residentRegistrationNumber}"></td>
-				<td th:text="${member.genderCode}"></td>
-			</tr>
+			<tr th:each="issue : ${issueList}">
+				<td th:text="${issue.certificateConfirmationNumber}"></td>
+				<td th:text="${issue.certificateTypeCode}">
+				<td th:text="${issue.certificateIssueDate}">
 			</tbody>
 		</table>
+
+		<span th:each="page : ${#numbers.sequence(1, totalPages)}">
+			<a th:href="@{/certificate/issuanceList/{serialNumber}(serialNumber=${serialNumber}, page=${page - 1})}" th:text="${page}"></a>
+		</span>
 	</div>
 </div>
 

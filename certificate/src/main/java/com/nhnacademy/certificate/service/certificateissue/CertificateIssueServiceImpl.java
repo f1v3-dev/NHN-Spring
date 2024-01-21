@@ -1,14 +1,18 @@
 package com.nhnacademy.certificate.service.certificateissue;
 
 import com.nhnacademy.certificate.domain.IssueDto;
+import com.nhnacademy.certificate.domain.IssueListDto;
 import com.nhnacademy.certificate.entity.CertificateIssue;
 import com.nhnacademy.certificate.entity.Resident;
+import com.nhnacademy.certificate.exception.CertificateListNotFoundException;
 import com.nhnacademy.certificate.exception.ResidentNotFoundException;
 import com.nhnacademy.certificate.repository.certificateissue.CertificateIssueRepository;
 import com.nhnacademy.certificate.repository.resident.ResidentRepository;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Random;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,5 +55,17 @@ public class CertificateIssueServiceImpl implements CertificateIssueService {
     @Override
     public IssueDto findById(Long certificateConfirmationNumber) {
         return certificateIssueRepository.findByCertificateConfirmationNumber(certificateConfirmationNumber);
+    }
+
+    @Override
+    public Page<IssueListDto> findBySerialNumber(Integer serialNumber, Pageable pageable) {
+        Page<IssueListDto> issueListPage =
+                certificateIssueRepository.findPagesByResident(serialNumber, pageable);
+
+        if (issueListPage.isEmpty()) {
+            throw new CertificateListNotFoundException();
+        }
+
+        return issueListPage;
     }
 }
