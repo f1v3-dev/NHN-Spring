@@ -2,7 +2,7 @@ package com.nhnacademy.certificate.service.birthdeath;
 
 import com.nhnacademy.certificate.domain.BirthReportResidentResponseDto;
 import com.nhnacademy.certificate.domain.DeathReportResidentResponseDto;
-import com.nhnacademy.certificate.domain.rest.BirthRequestDto;
+import com.nhnacademy.certificate.domain.rest.BirthDeathRequestDto;
 import com.nhnacademy.certificate.entity.BirthDeathReportResident;
 import com.nhnacademy.certificate.entity.Resident;
 import com.nhnacademy.certificate.exception.ResidentNotFoundException;
@@ -35,9 +35,9 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
     }
 
     @Override
-    public BirthDeathReportResident registerBirth(Integer reportSerialNumber, BirthRequestDto birthReport) {
-
-        Resident birthResident = residentRepository.findById(birthReport.getTargetSerialNumber())
+    public BirthDeathReportResident register(Integer reportSerialNumber, BirthDeathRequestDto report,
+                                             String birthDeathTypeCode) {
+        Resident birthResident = residentRepository.findById(report.getTargetSerialNumber())
                 .orElseThrow(ResidentNotFoundException::new);
 
         Resident reportResident = residentRepository.findById(reportSerialNumber)
@@ -45,9 +45,9 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
 
 
         BirthDeathReportResident.Pk pk = new BirthDeathReportResident.Pk();
-        pk.setBirthDeathTypeCode("출생");
+        pk.setBirthDeathTypeCode(birthDeathTypeCode);
         pk.setReportResidentSerialNumber(reportResident.getResidentSerialNumber());
-        pk.setResidentSerialNumber(birthReport.getTargetSerialNumber());
+        pk.setResidentSerialNumber(report.getTargetSerialNumber());
 
 
         if (birthDeathRepository.existsByPk_ResidentSerialNumberAndPk_BirthDeathTypeCode
@@ -55,53 +55,57 @@ public class BirthDeathReportResidentServiceImpl implements BirthDeathReportResi
             throw new IllegalArgumentException("Already registered birth report!");
         }
 
-        BirthDeathReportResident birthReportResident = new BirthDeathReportResident();
-        birthReportResident.setResident(birthResident);
-        birthReportResident.setBirthDeathReportDate(LocalDate.now());
-        birthReportResident.setBirthReportQualificationsCode(birthReport.getBirthReportQualificationsCode());
-        birthReportResident.setEmailAddress(birthReport.getEmailAddress());
-        birthReportResident.setPhoneNumber(birthReport.getPhoneNumber());
+        return getSavedReportResident(report, birthDeathTypeCode, birthResident, pk);
 
-
-        birthReportResident.setPk(pk);
-
-        return birthDeathRepository.save(birthReportResident);
     }
 
     @Override
-    public BirthDeathReportResident modify(Integer reportSerialNumber, BirthRequestDto birthReport) {
-
-        Resident birthResident = residentRepository.findById(birthReport.getTargetSerialNumber())
+    public BirthDeathReportResident modify(Integer reportSerialNumber, BirthDeathRequestDto report,
+                                           String birthDeathTypeCode) {
+        Resident birthResident = residentRepository.findById(report.getTargetSerialNumber())
                 .orElseThrow(ResidentNotFoundException::new);
 
         Resident reportResident = residentRepository.findById(reportSerialNumber)
                 .orElseThrow(ResidentNotFoundException::new);
 
         BirthDeathReportResident.Pk pk = new BirthDeathReportResident.Pk();
-        pk.setBirthDeathTypeCode("출생");
+        pk.setBirthDeathTypeCode(birthDeathTypeCode);
         pk.setReportResidentSerialNumber(reportResident.getResidentSerialNumber());
         pk.setResidentSerialNumber(birthResident.getResidentSerialNumber());
 
-        if (!birthDeathRepository.existsById(pk)) {
+        if (!birthDeathRepository.existsByPk_ResidentSerialNumberAndPk_BirthDeathTypeCode(pk.getResidentSerialNumber(),
+                pk.getBirthDeathTypeCode())) {
             throw new IllegalArgumentException("Not registered birth report!");
         }
 
+        return getSavedReportResident(report, birthDeathTypeCode, birthResident, pk);
+    }
+
+    private BirthDeathReportResident getSavedReportResident(BirthDeathRequestDto report, String birthDeathTypeCode,
+                                                            Resident birthResident,
+                                                            BirthDeathReportResident.Pk pk) {
         BirthDeathReportResident birthReportResident = new BirthDeathReportResident();
         birthReportResident.setResident(birthResident);
         birthReportResident.setBirthDeathReportDate(LocalDate.now());
-        birthReportResident.setBirthReportQualificationsCode(birthReport.getBirthReportQualificationsCode());
-        birthReportResident.setEmailAddress(birthReport.getEmailAddress());
-        birthReportResident.setPhoneNumber(birthReport.getPhoneNumber());
+        birthReportResident.setEmailAddress(report.getEmailAddress());
+        birthReportResident.setPhoneNumber(report.getPhoneNumber());
         birthReportResident.setPk(pk);
+
+        if (birthDeathTypeCode.equals("출생")) {
+            birthReportResident.setBirthReportQualificationsCode(report.getReportQualificationsCode());
+        } else {
+            birthReportResident.setDeathReportQualificationsCode(report.getReportQualificationsCode());
+        }
 
         return birthDeathRepository.save(birthReportResident);
     }
 
+
     @Override
-    public void deleteBirthReport(Integer reportSerialNumber, Integer targetSerialNumber) {
+    public void delete(Integer reportSerialNumber, Integer targetSerialNumber, String birthDeathTypeCode) {
 
         BirthDeathReportResident.Pk pk = new BirthDeathReportResident.Pk();
-        pk.setBirthDeathTypeCode("출생");
+        pk.setBirthDeathTypeCode(birthDeathTypeCode);
         pk.setReportResidentSerialNumber(reportSerialNumber);
         pk.setResidentSerialNumber(targetSerialNumber);
 

@@ -74,11 +74,6 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport
                         resident.genderCode))
                 .fetch();
 
-        for (ResidentFamilyDto residentFamilyDto : dtoList) {
-            System.out.println(residentFamilyDto.getName());
-        }
-
-
         return dtoList;
     }
 }

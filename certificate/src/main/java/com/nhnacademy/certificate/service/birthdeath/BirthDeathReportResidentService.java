@@ -2,7 +2,7 @@ package com.nhnacademy.certificate.service.birthdeath;
 
 import com.nhnacademy.certificate.domain.BirthReportResidentResponseDto;
 import com.nhnacademy.certificate.domain.DeathReportResidentResponseDto;
-import com.nhnacademy.certificate.domain.rest.BirthRequestDto;
+import com.nhnacademy.certificate.domain.rest.BirthDeathRequestDto;
 import com.nhnacademy.certificate.entity.BirthDeathReportResident;
 
 public interface BirthDeathReportResidentService {
@@ -10,11 +10,14 @@ public interface BirthDeathReportResidentService {
 
     DeathReportResidentResponseDto findDeathReportResident(Integer residentSerialNumber);
 
-    BirthDeathReportResident registerBirth(Integer reportSerialNumber, BirthRequestDto birthReport);
+    BirthDeathReportResident register(Integer reportSerialNumber, BirthDeathRequestDto birthReport,
+                                      String birthDeathTypeCode);
 
-    BirthDeathReportResident modify(Integer reportSerialNumber, BirthRequestDto birthReport);
+    BirthDeathReportResident modify(Integer reportSerialNumber, BirthDeathRequestDto birthReport,
+                                    String birthDeathTypeCode);
 
-    void deleteBirthReport(Integer reportSerialNumber, Integer targetSerialNumber);
+
+    void delete(Integer reportSerialNumber, Integer targetSerialNumber, String birthDeathTypeCode);
 
 
 }

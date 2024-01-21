@@ -14,45 +14,45 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/residents/{serialNumber}/birth")
-public class BirthReportRestController {
-    private final String typeCode = "출생";
+@RequestMapping("/residents/{serialNumber}/death")
+public class DeathReportRestController {
 
-    private final BirthDeathReportResidentService birthReportService;
+    private final String typeCode = "사망";
+
+    private final BirthDeathReportResidentService deathReportService;
 
 
-    public BirthReportRestController(BirthDeathReportResidentService birthReportService) {
-        this.birthReportService = birthReportService;
+    public DeathReportRestController(BirthDeathReportResidentService deathReportService) {
+        this.deathReportService = deathReportService;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerBirthReport(@RequestBody BirthDeathRequestDto birthReport,
-                                    @PathVariable("serialNumber")
-                                    Integer reportSerialNumber) {
+    public void registerDeathReport(@RequestBody BirthDeathRequestDto deathReport,
+                                    @PathVariable("serialNumber") Integer reportSerialNumber) {
 
-        birthReportService.register(reportSerialNumber, birthReport, typeCode);
+        deathReportService.register(reportSerialNumber, deathReport, typeCode);
     }
 
     @PutMapping("/{targetSerialNumber}")
     @ResponseStatus(HttpStatus.OK)
-    public void modifyBirthReport(@RequestBody BirthDeathRequestDto birthReport,
+    public void modifyDeathReport(@RequestBody BirthDeathRequestDto deathReport,
                                   @PathVariable("serialNumber")
                                   Integer reportSerialNumber,
                                   @PathVariable("targetSerialNumber")
                                   Integer targetSerialNumber) {
 
-        birthReport.setTargetSerialNumber(targetSerialNumber);
-        birthReportService.modify(reportSerialNumber, birthReport, typeCode);
+        deathReport.setTargetSerialNumber(targetSerialNumber);
+        deathReportService.modify(reportSerialNumber, deathReport, typeCode);
 
     }
 
     @DeleteMapping("/{targetSerialNumber}")
-    public ResponseEntity<BirthDeathRequestDto> deleteBirthReport(
+    public ResponseEntity<BirthDeathRequestDto> deleteDeathReport(
             @PathVariable("serialNumber") Integer reportSerialNumber,
             @PathVariable("targetSerialNumber") Integer targetSerialNumber) {
 
-        birthReportService.delete(reportSerialNumber, targetSerialNumber, typeCode);
+        deathReportService.delete(reportSerialNumber, targetSerialNumber, typeCode);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

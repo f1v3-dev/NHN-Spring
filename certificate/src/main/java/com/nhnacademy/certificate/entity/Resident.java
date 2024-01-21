@@ -9,10 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
-@ToString
 @Getter
+@Setter
 @Entity
 @Table(name = "resident")
 public class Resident {
@@ -57,7 +58,7 @@ public class Resident {
     @OneToMany(mappedBy = "resident", cascade = CascadeType.REMOVE)
     private List<CertificateIssue> certificateIssues;
 
-    @OneToMany(mappedBy = "resident", cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "resident", cascade = {CascadeType.REMOVE, CascadeType.MERGE})
     private List<FamilyRelationship> familyRelationships;
 
     @OneToMany(mappedBy = "resident", cascade = CascadeType.REMOVE)

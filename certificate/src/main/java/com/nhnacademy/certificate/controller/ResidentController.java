@@ -8,10 +8,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/residents")
 public class ResidentController {
 
     private final ResidentService residentService;
@@ -21,7 +19,7 @@ public class ResidentController {
     }
 
 
-    @GetMapping
+    @GetMapping("/residents")
     public String index(@PageableDefault(size = 3) Pageable pageable, Model model) {
 
         Page<ResidentListDto> residentPage = residentService.findList(pageable);

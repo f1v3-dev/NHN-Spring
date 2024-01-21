@@ -5,6 +5,7 @@ import com.nhnacademy.certificate.domain.ResidentDeathDto;
 import com.nhnacademy.certificate.domain.ResidentDto;
 import com.nhnacademy.certificate.domain.ResidentFamilyDto;
 import com.nhnacademy.certificate.domain.ResidentListDto;
+import com.nhnacademy.certificate.domain.rest.ResidentRequestDto;
 import com.nhnacademy.certificate.entity.Resident;
 import java.util.List;
 import org.springframework.data.domain.Page;
@@ -25,4 +26,8 @@ public interface ResidentService {
     ResidentDeathDto findDeathResident(Integer residentSerialNumber);
 
     void deleteResident(Integer residentSerialNumber);
+
+    Resident register(ResidentRequestDto residentRequestDto);
+
+    Resident modify(Integer serialNumber, ResidentRequestDto resident);
 }

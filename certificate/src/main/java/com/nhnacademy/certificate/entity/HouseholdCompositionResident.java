@@ -13,8 +13,10 @@ import javax.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "household_composition_resident")
 public class HouseholdCompositionResident {
@@ -44,6 +46,7 @@ public class HouseholdCompositionResident {
 
 
     @Getter
+    @Setter
     @NoArgsConstructor
     @EqualsAndHashCode
     @Embeddable

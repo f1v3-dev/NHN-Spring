@@ -7,14 +7,14 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class BirthRequestDto {
+public class BirthDeathRequestDto {
 
 
     @JsonProperty("target_serial_number")
     private Integer targetSerialNumber;
 
-    @JsonProperty("birth_report_qualifications_code")
-    private String birthReportQualificationsCode;
+    @JsonProperty("report_qualifications_code")
+    private String reportQualificationsCode;
 
     @JsonProperty("email_address")
     private String emailAddress;
@@ -23,3 +23,4 @@ public class BirthRequestDto {
     private String phoneNumber;
 
 }
+

@@ -2,6 +2,7 @@ package com.nhnacademy.certificate.entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,8 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "household")
 public class Household {
@@ -33,6 +36,6 @@ public class Household {
     @Column(name = "current_house_movement_address")
     private String currentHouseMovementAddress;
 
-    @OneToMany(mappedBy = "household")
+    @OneToMany(mappedBy = "household", cascade = CascadeType.REMOVE)
     private List<HouseholdCompositionResident> householdCompositionResident;
 }

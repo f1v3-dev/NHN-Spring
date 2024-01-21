@@ -12,4 +12,7 @@ public interface HouseholdRepository extends JpaRepository<Household, Integer> {
             "FROM Household h " +
             "WHERE h.resident.residentSerialNumber = ?1")
     boolean isHeadOfHousehold(Integer residentSerialNumber);
+
+
+    Long countByHouseholdSerialNumber(Integer householdSerialNumber);
 }
