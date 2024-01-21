@@ -16,7 +16,6 @@ public class ResidentController {
 
     private final ResidentService residentService;
 
-
     public ResidentController(ResidentService residentService) {
         this.residentService = residentService;
     }

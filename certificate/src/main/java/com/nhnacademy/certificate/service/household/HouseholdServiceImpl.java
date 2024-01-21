@@ -17,4 +17,9 @@ public class HouseholdServiceImpl implements HouseholdService {
     public Household findBySerialNumber(Integer serialNumber) {
         return householdRepository.findByHouseholdSerialNumber(serialNumber);
     }
+
+    @Override
+    public boolean isHeadOfHousehold(Integer residentSerialNumber) {
+        return householdRepository.isHeadOfHousehold(residentSerialNumber);
+    }
 }

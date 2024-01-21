@@ -2,6 +2,7 @@ package com.nhnacademy.certificate.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -47,18 +48,18 @@ public class Resident {
     @Column(name = "death_place_address")
     private String deathPlaceAddress;
 
-    @OneToMany(mappedBy = "resident")
+    @OneToMany(mappedBy = "resident", cascade = CascadeType.REMOVE)
     private List<HouseholdCompositionResident> householdCompositionResidents;
 
-    @OneToMany(mappedBy = "resident")
+    @OneToMany(mappedBy = "resident", cascade = CascadeType.REMOVE)
     private List<BirthDeathReportResident> birthDeathReportResidents;
 
-    @OneToMany(mappedBy = "resident")
+    @OneToMany(mappedBy = "resident", cascade = CascadeType.REMOVE)
     private List<CertificateIssue> certificateIssues;
 
-    @OneToMany(mappedBy = "resident")
+    @OneToMany(mappedBy = "resident", cascade = CascadeType.REMOVE)
     private List<FamilyRelationship> familyRelationships;
 
-    @OneToMany(mappedBy = "resident")
+    @OneToMany(mappedBy = "resident", cascade = CascadeType.REMOVE)
     private List<Household> households;
 }

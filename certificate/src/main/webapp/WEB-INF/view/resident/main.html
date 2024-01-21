@@ -90,7 +90,11 @@
 					</a>
 				</td>
 				<td>
-					<button class="material-symbols-outlined">check</button>
+					<form th:action="@{/residents/delete}" method="post">
+						<input type="hidden" name="_method" value="delete">
+						<input th:name="residentSerialNumber" th:value="${resident.residentSerialNumber}" hidden="hidden">
+						<button class="material-symbols-outlined">check</button>
+					</form>
 				</td>
 			</tr>
 			</tbody>

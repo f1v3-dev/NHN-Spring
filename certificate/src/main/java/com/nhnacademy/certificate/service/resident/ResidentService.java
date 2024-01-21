@@ -23,4 +23,6 @@ public interface ResidentService {
     ResidentBirthDto findBirthResident(Integer residentSerialNumber);
 
     ResidentDeathDto findDeathResident(Integer residentSerialNumber);
+
+    void deleteResident(Integer residentSerialNumber);
 }

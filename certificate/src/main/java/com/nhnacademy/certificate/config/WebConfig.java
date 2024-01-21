@@ -69,4 +69,6 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
         return templateResolver;
     }
+
+
 }

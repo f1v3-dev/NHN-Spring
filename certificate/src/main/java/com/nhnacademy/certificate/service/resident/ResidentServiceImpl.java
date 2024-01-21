@@ -6,7 +6,9 @@ import com.nhnacademy.certificate.domain.ResidentDto;
 import com.nhnacademy.certificate.domain.ResidentFamilyDto;
 import com.nhnacademy.certificate.domain.ResidentListDto;
 import com.nhnacademy.certificate.entity.Resident;
+import com.nhnacademy.certificate.exception.HeadOfHouseholdDeletionException;
 import com.nhnacademy.certificate.repository.resident.ResidentRepository;
+import com.nhnacademy.certificate.service.household.HouseholdService;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,8 +19,11 @@ public class ResidentServiceImpl implements ResidentService {
 
     private final ResidentRepository residentRepository;
 
-    public ResidentServiceImpl(ResidentRepository residentRepository) {
+    private final HouseholdService householdService;
+
+    public ResidentServiceImpl(ResidentRepository residentRepository, HouseholdService householdService) {
         this.residentRepository = residentRepository;
+        this.householdService = householdService;
     }
 
     @Override
@@ -50,5 +55,15 @@ public class ResidentServiceImpl implements ResidentService {
     @Override
     public ResidentDeathDto findDeathResident(Integer residentSerialNumber) {
         return residentRepository.findDeathResidentByResidentSerialNumber(residentSerialNumber);
+    }
+
+    @Override
+    public void deleteResident(Integer residentSerialNumber) {
+
+        if (householdService. isHeadOfHousehold(residentSerialNumber)) {
+            throw new HeadOfHouseholdDeletionException();
+        }
+
+        residentRepository.deleteById(residentSerialNumber);
     }
 }
