@@ -54,9 +54,9 @@
 				<td>
 					<form th:if="${resident.householdSerialNumber != null}"
 					      th:action="@{/certificate/residents}" method="post">
-						<input th:name="householdId" th:value="${resident.householdSerialNumber}"
+						<input th:name="householdSerialNumber" th:value="${resident.householdSerialNumber}"
 						       hidden="hidden">
-						<input th:name="residentId" th:value="${resident.residentSerialNumber}"
+						<input th:name="residentSerialNumber" th:value="${resident.residentSerialNumber}"
 						       hidden="hidden">
 
 						<button class="btn-custom" type="submit">주민등록등본</button>
@@ -65,25 +65,27 @@
 
 				<td>
 					<form th:action="@{/certificate/family}" method="post">
-						<input th:name="residentId" th:value="${resident.residentSerialNumber}" hidden="hidden">
+						<input th:name="residentSerialNumber" th:value="${resident.residentSerialNumber}" hidden="hidden">
 						<button class="btn-custom" type="submit">가족관계증명서</button>
 					</form>
 				</td>
 				<td>
-					<a th:if="${resident.birthDeathTypeCode eq '출생'}"
-					   th:href="@{/certificate/birth(serialNumber = ${resident.residentSerialNumber})}">
-						출생신고서
-					</a>
+					<form th:if="${resident.birthDeathTypeCode eq '출생'}"
+							th:action="@{/certificate/birth}" method="post">
+						<input th:name="residentSerialNumber" th:value="${resident.residentSerialNumber}" hidden="hidden">
+						<button class="btn-custom" type="submit">출생신고서</button>
+					</form>
 				</td>
 				<td>
-					<a th:if="${resident.birthDeathTypeCode eq '사망'}"
-					   th:href="@{/certificate/death(serialNumber = ${resident.residentSerialNumber})}">
-						사망신고서
-					</a>
+					<form th:if="${resident.birthDeathTypeCode eq '사망'}"
+					      th:action="@{/certificate/death}" method="post">
+						<input th:name="residentSerialNumber" th:value="${resident.residentSerialNumber}" hidden="hidden">
+						<button class="btn-custom" type="submit">사망신고서</button>
+					</form>
 				</td>
 				<td>
 					<a th:if="${resident.certificateNumber != null}"
-					   th:href="@{/copy/residents/{id}(id = ${resident.certificateNumber})}">
+					   th:href="@{/certificate/list/{id}(id = ${resident.certificateNumber})}">
 						발급목록
 					</a>
 				</td>

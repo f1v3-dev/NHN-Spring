@@ -37,9 +37,9 @@ public class ResidentRegistrationController {
         this.certificateIssueService = certificateIssueService;
     }
 
-    @GetMapping("/{serialNumber}")
-    public String getResidentRegistration(@PathVariable("serialNumber") Integer householdSerialNumber,
-                                          @RequestParam("certificateId") Long certificateConfirmationNumber,
+    @GetMapping("/{householdSerialNumber}")
+    public String getResidentRegistration(@PathVariable Integer householdSerialNumber,
+                                          @RequestParam Long certificateConfirmationNumber,
                                           Model model) {
 
         List<HouseholdMovementAddress> addressList = addressService.findBySerialNumber(householdSerialNumber);
@@ -55,13 +55,12 @@ public class ResidentRegistrationController {
     }
 
     @PostMapping
-    public String registerResidentRegistration(@RequestParam("householdId") Integer householdSerialNumber,
-                                           @RequestParam("residentId") Integer residentSerialNumber) {
-
+    public String registerResidentRegistration(@RequestParam Integer householdSerialNumber,
+                                           @RequestParam Integer residentSerialNumber) {
 
         CertificateIssue register = certificateIssueService.register(residentSerialNumber, "주민등록등본");
 
-        return "redirect:/certificate/residents/" + householdSerialNumber + "?certificateId=" +
+        return "redirect:/certificate/residents/" + householdSerialNumber + "?certificateConfirmationNumber=" +
                 register.getCertificateConfirmationNumber();
     }
 }

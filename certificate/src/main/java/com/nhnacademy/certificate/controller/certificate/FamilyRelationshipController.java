@@ -28,9 +28,9 @@ public class FamilyRelationshipController {
         this.residentService = residentService;
     }
 
-    @GetMapping("/{serialNumber}")
-    public String getFamilyRelationship(@PathVariable("serialNumber") Integer residentSerialNumber,
-                                        @RequestParam("certificateId") Long certificateConfirmationNumber,
+    @GetMapping("/{residentSerialNumber}")
+    public String getFamilyRelationship(@PathVariable Integer residentSerialNumber,
+                                        @RequestParam Long certificateConfirmationNumber,
                                         Model model) {
 
         IssueDto issue = certificateIssueService.findById(certificateConfirmationNumber);
@@ -46,12 +46,12 @@ public class FamilyRelationshipController {
 
 
     @PostMapping
-    public String registerFamilyRelationship(@RequestParam("residentId") Integer residentSerialNumber) {
+    public String registerFamilyRelationship(@RequestParam Integer residentSerialNumber) {
 
 
         CertificateIssue register = certificateIssueService.register(residentSerialNumber, "가족관계증명서");
 
-        return "redirect:/certificate/family/" + residentSerialNumber + "?certificateId=" +
+        return "redirect:/certificate/family/" + residentSerialNumber + "?certificateConfirmationNumber=" +
                 register.getCertificateConfirmationNumber();
     }
 }
