@@ -1,0 +1,31 @@
+### POST /residents/register
+
+POST localhost:8080/residents
+Content-Type: application/json
+
+{
+  "resident_serial_number": 13,
+  "name" : "정승조",
+  "resident_registration_number": "990513-1234567",
+  "gender_code" : "남",
+  "birth_date" : "1999-05-13T00:00:00",
+  "birth_place_code" : "병원",
+  "registration_base_address" : "인천광역시 부평구 부개3동 123-4"
+}
+
+
+
+### PUT /residents/{serialNumber}
+
+PUT localhost:8080/residents/13
+Content-Type: application/json
+
+{
+  "resident_serial_number": 13,
+  "name" : "f1v3",
+  "resident_registration_number": "990513-1234567",
+  "gender_code" : "남",
+  "birth_date" : "1999-05-13T00:00:00",
+  "birth_place_code" : "병원",
+  "registration_base_address" : "전라남도 화순군 화순읍"
+}

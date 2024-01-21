@@ -1,0 +1,24 @@
+### POST
+
+POST localhost:8080/residents/7/death
+Content-Type: application/json
+
+{
+  "target_serial_number": 4,
+  "report_qualifications_code": "자녀",
+  "email_address": "nhn@academy.com",
+  "phone_number": "010-1010-9876"
+}
+
+### PUT
+PUT localhost:8080/residents/7/death/4
+Content-Type: application/json
+
+{
+  "report_qualifications_code": "자녀",
+  "email_address": "nhn@chosun.ac.kr",
+  "phone_number": "010-1234-5678"
+}
+
+### DELETE
+DELETE localhost:8080/residents/7/death/4

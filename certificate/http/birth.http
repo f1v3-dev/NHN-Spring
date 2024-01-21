@@ -5,8 +5,7 @@ Content-Type: application/json
 
 {
   "target_serial_number": 8,
-  "birth_report_qualifications_code": "모",
-  "email_address": "",
+  "report_qualifications_code": "모",
   "phone_number": "010-1234-9876"
 }
 
@@ -15,7 +14,7 @@ PUT localhost:8080/residents/5/birth/8
 Content-Type: application/json
 
 {
-  "birth_report_qualifications_code": "모",
+  "report_qualifications_code": "모",
   "email_address": "nhn@academy.com",
   "phone_number": "010-1234-5678"
 }
