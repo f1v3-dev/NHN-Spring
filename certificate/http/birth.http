@@ -1,3 +1,17 @@
+### TEST를 위해 8번 주민을 추가해줘야 함
+POST localhost:8080/residents
+Content-Type: application/json
+
+{
+  "resident_serial_number": 8,
+  "name" : "남남",
+  "resident_registration_number": "240101-1234567",
+  "gender_code" : "남",
+  "birth_date" : "2024-01-01T00:00:00",
+  "birth_place_code" : "병원",
+  "registration_base_address" : "서울시 강남구"
+}
+
 ### POST
 
 POST localhost:8080/residents/5/birth

@@ -1,0 +1,55 @@
+
+### TEST를 위해 새로운 household를 생성
+POST localhost:8080/household
+Content-Type: application/json
+
+{
+  "household_serial_number": 2,
+  "household_resident_serial_number": 7,
+  "household_composition_date": "2024-01-01",
+  "household_composition_reason_code": "세대분리",
+  "current_house_momvement_address": "서울시 강남구",
+  "household_composition_resident": {
+    "household_serial_number": 2,
+    "resident_serial_number": 7,
+    "report_date": "2024-01-01",
+    "household_relationship_code": "본인",
+    "household_composition_change_reason_code": "세대분리"
+  }
+}
+
+### POST - 2, 2024-01-01
+
+POST localhost:8080/household/2/movement
+Content-Type: application/json
+
+{
+    "house_movement_report_date": "2024-01-01",
+    "house_movement_address": "서울시 강남구",
+    "last_address_yn": "Y"
+}
+
+### POST - 2, 2024-02-02 (이전 주소 업데이트도 같이)
+
+POST localhost:8080/household/2/movement
+Content-Type: application/json
+
+{
+"house_movement_report_date": "2024-02-02",
+"house_movement_address": "광주광역시 동구",
+"last_address_yn": "Y"
+}
+
+### PUT
+
+PUT localhost:8080/household/2/movement/20240202
+Content-Type: application/json
+
+{
+    "house_movement_address": "광주광역시 동구 NHN Academy",
+    "last_address_yn": "Y"
+}
+
+### DELETE
+
+DELETE localhost:8080/household/2/movement/20240202
