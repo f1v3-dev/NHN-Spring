@@ -57,7 +57,7 @@ public class Resident {
     @OneToMany(mappedBy = "resident", cascade = CascadeType.REMOVE)
     private List<CertificateIssue> certificateIssues;
 
-    @OneToMany(mappedBy = "resident", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "resident", cascade = {CascadeType.REMOVE, CascadeType.PERSIST, CascadeType.MERGE})
     private List<FamilyRelationship> familyRelationships;
 
     @OneToMany(mappedBy = "resident", cascade = CascadeType.REMOVE)

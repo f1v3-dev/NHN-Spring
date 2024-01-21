@@ -9,4 +9,11 @@ public interface FamilyRelationshipService {
     List<FamilyRelationship> findDistinct();
 
     List<ParentResponseDto> findParents(Integer residentSerialNumber);
+
+
+    FamilyRelationship register(Integer residentSerialNumber, Integer familySerialNumber, String relationship);
+
+    void deleteById(Integer residentSerialNumber, Integer familySerialNumber);
+
+    FamilyRelationship modify(Integer residentSerialNumber, Integer familySerialNumber, String relationship);
 }

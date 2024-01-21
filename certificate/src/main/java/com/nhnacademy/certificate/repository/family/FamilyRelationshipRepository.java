@@ -17,4 +17,9 @@ public interface FamilyRelationshipRepository extends JpaRepository<FamilyRelati
             "WHERE f.pk.baseResidentSerialNumber = ?1 " +
             "AND f.familyRelationshipCode IN ('부', '모')")
     List<ParentResponseDto> findParents(Integer residentSerialNumber);
+
+    @Query("SELECT COUNT(f) > 0 " +
+            "FROM FamilyRelationship f " +
+            "WHERE f.pk.familyResidentSerialNumber = ?1")
+    boolean findByFamilySerialNumber(Integer familySerialNumber);
 }

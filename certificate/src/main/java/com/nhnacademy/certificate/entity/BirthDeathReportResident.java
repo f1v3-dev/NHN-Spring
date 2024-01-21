@@ -13,8 +13,11 @@ import javax.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Getter
 @Entity
+@Setter
 @Table(name = "birth_death_report_resident")
 public class BirthDeathReportResident {
 
@@ -42,6 +45,7 @@ public class BirthDeathReportResident {
     private Resident resident;
 
     @Getter
+    @Setter
     @NoArgsConstructor
     @EqualsAndHashCode
     @Embeddable
