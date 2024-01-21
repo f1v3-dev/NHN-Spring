@@ -1,0 +1,36 @@
+### 등록
+
+### 1. 새로운 가족관계를 등록하기 위해서 가족을 새로 생성
+
+### INSERT INTO `resident` VALUES(8, '남남', '130405-1234555', '남', '2013-04-05 00:00:00', '병원', '경기 성남시 분당구 대왕판교로645번길', NULL, NULL, NULL);
+
+### 2-1. 가족관계 등록 (부)
+POST localhost:8080/residents/8/relationship
+Content-Type: application/json
+
+{
+  "family_serial_number": 4,
+  "relationship": "부"
+}
+
+### 2-2. 가족관계 등록 (모)
+POST localhost:8080/residents/8/relationship
+Content-Type: application/json
+
+{
+  "family_serial_number": 5,
+  "relationship": "모"
+}
+
+
+### 수정
+PUT localhost:8080/residents/8/relationship/5
+Content-Type: application/json
+
+{
+  "relationship": "엄마"
+}
+
+
+### 삭제
+DELETE localhost:8080/residents/8/relationship/4
