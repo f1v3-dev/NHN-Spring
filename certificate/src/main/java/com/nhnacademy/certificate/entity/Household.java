@@ -38,4 +38,7 @@ public class Household {
 
     @OneToMany(mappedBy = "household", cascade = CascadeType.REMOVE)
     private List<HouseholdCompositionResident> householdCompositionResident;
+
+    @OneToMany(mappedBy = "household")
+    private List<HouseholdMovementAddress> householdMovementAddress;
 }

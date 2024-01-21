@@ -13,8 +13,10 @@ import javax.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "household_movement_address")
 public class HouseholdMovementAddress {
@@ -31,11 +33,11 @@ public class HouseholdMovementAddress {
     @Column(name = "house_movement_address")
     private String houseMovementAddress;
 
-    // last_address_yn
     @Column(name = "last_address_yn")
-    private String lastAddressYN;
+    private String lastAddressYn;
 
     @Getter
+    @Setter
     @NoArgsConstructor
     @EqualsAndHashCode
     @Embeddable
