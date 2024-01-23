@@ -13,7 +13,7 @@ public class AccountWebController {
 
     private final AccountService accountService;
 
-    @GetMapping("web/accounts/{id}")
+    @GetMapping("/web/accounts/{id}")
     public String getAccount(@PathVariable("id") Long id,
                              Model model) {
 
