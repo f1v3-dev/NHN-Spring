@@ -11,7 +11,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
 
-        boolean present = Optional.ofNullable(request.getSession(true).getAttribute("accountId")).isPresent();
+        boolean present = Optional.ofNullable(request.getSession(true).getAttribute("account")).isPresent();
         
         if (present) {
             return true;

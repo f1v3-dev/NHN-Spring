@@ -1,8 +1,16 @@
 package com.nhnacademy.springboot.gateway.exception;
 
-public class ValidationFailedException extends RuntimeException{
+import java.util.stream.Collectors;
+import org.springframework.validation.BindingResult;
 
-    public ValidationFailedException() {
-        super("Validation Failed!!!");
+public class ValidationFailedException extends RuntimeException {
+
+    public ValidationFailedException(BindingResult bindingResult) {
+        super(bindingResult.getAllErrors()
+                .stream()
+                .map(error -> new StringBuilder().append("ObjectName = ").append(error.getObjectName())
+                        .append(", Message = ").append(error.getDefaultMessage())
+                        .append(", Code = ").append(error.getCode()))
+                .collect(Collectors.joining(" | ")));
     }
 }

@@ -3,6 +3,7 @@ package com.nhnacademy.springboot.gateway.adaptor;
 import com.nhnacademy.springboot.gateway.domain.account.Account;
 import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
 import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterDto;
+import com.nhnacademy.springboot.gateway.domain.account.AccountRequestDto;
 import java.util.List;
 
 public interface AccountAdaptor {
@@ -15,5 +16,5 @@ public interface AccountAdaptor {
 
     void deleteAccount(Long id);
 
-    boolean matches(AccountLoginRequestDto account);
+    AccountRequestDto matches(AccountLoginRequestDto account);
 }

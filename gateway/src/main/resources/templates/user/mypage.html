@@ -10,13 +10,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 
 	<style>
-		.custom-btn {
-			border: none;
-			padding: 8px 20px;
-			border-radius: 4px;
-			font-weight: bold;
-			background-color: #1F4E8C;
-			color: white;
+		.container{
+			width: 500px;
 		}
 	</style>
 
@@ -40,9 +35,6 @@
 						<li class="nav-item">
 							<span class="nav-link" aria-disabled="true">업무</span>
 						</li>
-<!--						<li class="nav-item">-->
-<!--							<a class="nav-link" href="#">Link</a>-->
-<!--						</li>-->
 					</ul>
 
 					<ul class="navbar-nav">
@@ -62,9 +54,51 @@
 	<div class="container" style="padding-top: 60px">
 		<main class="flex-shrink-0">
 			<div class="album py-5">
-				<button class="custom-btn" th:onclick="|window.open('@{/task/write}', '_blank');|">새 업무</button>
-				<h1 style="color: #1F4E8C" class="mt-5"> Mini Dooray! </h1>
-				<p> NHN Academy (6조) </p>
+				<h3>내 프로필</h3>
+
+				<form th:action="@{/mypage}" method="post">
+					<div th:object="${account}">
+						<div style="display: none" class="w-100 col">
+							<input disabled th:value="*{id}" type="text" class="form-control" placeholder="ID"
+							       aria-label="ID" th:name="id" required>
+						</div><br/>
+
+						<div class="w-100 col">
+							<p>이름</p>
+							<input th:value="*{name}" type="text" class="form-control" placeholder="Name"
+							       aria-label="이름" th:name="name" required>
+						</div><br/>
+
+						<div class="w-100 col">
+							<p>아이디</p>
+							<input disabled th:value="*{userId}" type="text" class="form-control" placeholder="ID"
+							       aria-label="ID" th:name="userId" required>
+						</div><br/>
+
+						<div class="w-100 col">
+							<p>비밀번호</p>
+							<input th:value="*{password}" type="password" class="form-control" placeholder="Password"
+							       aria-label="password" th:name="password" required>
+						</div><br/>
+
+						<div class="w-100 col">
+							<p>메일</p>
+							<input th:value="*{email}" type="email" class="form-control" placeholder="E-mail"
+							       aria-label="email" th:name="email" required>
+						</div><br/>
+
+
+
+						<div class="w-100 col">
+							<p>휴대전화</p>
+							<input th:value="*{phoneNumber}" type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+							       placeholder="Phone Number (010-0000-0000)" aria-label="핸드폰 번호" th:name="phoneNumber" required>
+						</div><br/>
+
+						<button class="w-100 btn btn-lg" style="color: #1F4E8C;" type="submit">회원 정보 수정</button>
+
+					</div>
+				</form>
 			</div>
 		</main>
 	</div>

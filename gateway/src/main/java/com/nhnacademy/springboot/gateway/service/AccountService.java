@@ -2,8 +2,9 @@ package com.nhnacademy.springboot.gateway.service;
 
 import com.nhnacademy.springboot.gateway.adaptor.AccountAdaptor;
 import com.nhnacademy.springboot.gateway.domain.account.Account;
-import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterDto;
 import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
+import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterDto;
+import com.nhnacademy.springboot.gateway.domain.account.AccountRequestDto;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,7 @@ public class AccountService {
         accountAdaptor.deleteAccount(id);
     }
 
-    public boolean matches(AccountLoginRequestDto account) {
+    public AccountRequestDto matches(AccountLoginRequestDto account) {
         return accountAdaptor.matches(account);
     }
 }

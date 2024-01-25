@@ -33,11 +33,9 @@
 			align-items: center;
 		}
 
-		.form-floating {
-			margin-bottom: 15px;
-			width: 100%;
+		input{
+			height: 50px;
 		}
-
 	</style>
 
 	<title>Mini Dooray</title>
@@ -54,30 +52,30 @@
 				</a>
 				<p style="color: darkgray; font-size: 20px; margin-bottom: 30px">회원가입 정보를 입력해주세요</p>
 
-				<div class="form-floating" style="margin-bottom: 15px;">
-					<input type="text" class="form-control" id="id" placeholder="id" name="id">
-					<label for="id">ID</label>
-				</div>
+				<div class="w-100 col">
+					<input type="text" class="form-control" placeholder="ID"
+					       aria-label="ID" th:name="id" required>
+				</div><br/>
 
-				<div class="form-floating">
-					<input type="password" class="form-control" id="password" placeholder="password" name="password">
-					<label for="password">Password</label>
-				</div>
+				<div class="w-100 col">
+					<input type="password" class="form-control" placeholder="Password"
+					       aria-label="password" th:name="password" required>
+				</div><br/>
 
-				<div class="form-floating">
-					<input type="email" class="form-control" id="email" placeholder="Email" name="email">
-					<label for="email">Email</label>
-				</div>
+				<div class="w-100 col">
+					<input type="email" class="form-control" placeholder="E-mail"
+					       aria-label="email" th:name="email" required>
+				</div><br/>
 
-				<div class="form-floating">
-					<input type="text" class="form-control" id="name" placeholder="Name" name="name">
-					<label for="name">이름</label>
-				</div>
+				<div class="w-100 col">
+					<input type="text" class="form-control" placeholder="Name"
+					       aria-label="이름" th:name="name" required>
+				</div><br/>
 
-				<div class="form-floating">
-					<input type="text" class="form-control" id="phoneNumber" placeholder="phoneNumber" name="phoneNumber">
-					<label for="phoneNumber">전화번호</label>
-				</div>
+				<div class="w-100 col">
+					<input type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+					       placeholder="Phone Number (010-0000-0000)" aria-label="핸드폰 번호" th:name="phoneNumber" required>
+				</div><br/>
 
 
 				<button class="w-100 btn btn-lg" style="color: #1F4E8C;" type="submit">회원가입</button>

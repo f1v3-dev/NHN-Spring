@@ -4,6 +4,7 @@ import com.nhnacademy.springboot.gateway.config.AccountAdaptorProperties;
 import com.nhnacademy.springboot.gateway.domain.account.Account;
 import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
 import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterDto;
+import com.nhnacademy.springboot.gateway.domain.account.AccountRequestDto;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -16,14 +17,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class AccountAdapterImpl implements AccountAdaptor {
+public class AccountAdaptorImpl implements AccountAdaptor {
 
     private final RestTemplate restTemplate;
 
     private final AccountAdaptorProperties accountAdaptorProperties;
 
 
-    public AccountAdapterImpl(RestTemplate restTemplate, AccountAdaptorProperties accountAdaptorProperties) {
+    public AccountAdaptorImpl(RestTemplate restTemplate, AccountAdaptorProperties accountAdaptorProperties) {
         this.restTemplate = restTemplate;
         this.accountAdaptorProperties = accountAdaptorProperties;
     }
@@ -120,7 +121,7 @@ public class AccountAdapterImpl implements AccountAdaptor {
     }
 
     @Override
-    public boolean matches(AccountLoginRequestDto account) {
+    public AccountRequestDto matches(AccountLoginRequestDto account) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
@@ -128,17 +129,18 @@ public class AccountAdapterImpl implements AccountAdaptor {
 
         HttpEntity<AccountLoginRequestDto> requestEntity = new HttpEntity<>(account, httpHeaders);
 
-        ResponseEntity<Boolean> exchange =
+        ResponseEntity<AccountRequestDto> exchange =
                 restTemplate.exchange(accountAdaptorProperties.getAddress() + "/accounts/login",
                         HttpMethod.GET,
                         requestEntity,
-                        new ParameterizedTypeReference<Boolean>() {
+                        new ParameterizedTypeReference<AccountRequestDto>() {
                         });
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
             throw new RuntimeException();
         }
 
-        return Boolean.TRUE.equals(exchange.getBody());
+
+        return exchange.getBody();
     }
 }

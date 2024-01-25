@@ -1,6 +1,8 @@
 package com.nhnacademy.springboot.gateway.controller.login;
 
 import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
+import com.nhnacademy.springboot.gateway.domain.account.AccountRequestDto;
+import com.nhnacademy.springboot.gateway.domain.account.AccountStatus;
 import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
 import com.nhnacademy.springboot.gateway.service.AccountService;
 import java.io.IOException;
@@ -26,8 +28,7 @@ public class LoginController {
     }
 
     @GetMapping
-    public String getLoginForm(HttpServletRequest request,
-                               HttpServletResponse response) throws IOException {
+    public String getLoginForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         HttpSession session = request.getSession(true);
 
@@ -39,12 +40,11 @@ public class LoginController {
     }
 
     @PostMapping
-    public String doLogin(@Valid AccountLoginRequestDto account,
-                          BindingResult bindingResult,
+    public String doLogin(@Valid AccountLoginRequestDto account, BindingResult bindingResult,
                           HttpServletRequest request) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationFailedException();
+            throw new ValidationFailedException(bindingResult);
         }
 
         HttpSession session = request.getSession(true);
@@ -54,8 +54,18 @@ public class LoginController {
 //            return "redirect:/";
 //        }
 
+        // account.getId() -> accountService.matches(account)로 가져온 객체로 바꿔야됨 (ex. loginAccount)
+
+//        accountService.matches(account);
+
         if ("1234".equals(account.getId()) && "1234".equals(account.getPassword())) {
-            session.setAttribute("accountId", account.getId());
+
+            AccountRequestDto requestDto =
+                    new AccountRequestDto(1L, "seungjo", "1234", "정승조",
+                            "f1v3@kakao.com", "010-2717-8134",
+                            AccountStatus.SIGN_UP);
+
+            session.setAttribute("account", requestDto);
             return "redirect:/";
         }
 

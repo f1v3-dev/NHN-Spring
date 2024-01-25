@@ -33,7 +33,7 @@ public class SignUpController {
                          BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            throw new ValidationFailedException();
+            throw new ValidationFailedException(bindingResult);
         }
 
         log.info("account = {}", account);
