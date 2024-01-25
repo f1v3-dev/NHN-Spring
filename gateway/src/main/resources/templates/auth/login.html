@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+	<style>
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			margin: 0;
+		}
+
+		.mainContainer {
+			text-align: center;
+		}
+
+		.container {
+			width: 500px;
+			margin: auto;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.form-floating {
+			margin-bottom: 15px;
+			width: 100%;
+		}
+
+		p {
+			color: darkgray;
+			font-size: 15px;
+			margin-bottom: 10px;
+		}
+
+	</style>
+
+	<title>Mini Dooray</title>
+</head>
+
+<body style="font-family: 'Noto Sans KR', sans-serif;">
+<div class="mainContainer">
+	<!-- Content -->
+	<div class="container">
+		<main>
+			<form th:action="@{/login}" method="post">
+				<a th:href="@{/login}">
+					<img style="justify-content: center" th:src="@{/images/logo_dooray.png}" alt="logo">
+				</a>
+				<p>회원 정보를 입력해주세요</p>
+
+				<div class="form-floating" style="margin-bottom: 15px;">
+					<input type="text" class="form-control" id="id" placeholder="id" name="id">
+					<label for="id">ID</label>
+				</div>
+				<div class="form-floating">
+					<input type="password" class="form-control" id="password" placeholder="password" name="password">
+					<label for="password">Password</label>
+				</div>
+
+				<button class="w-100 btn btn-lg" style="color: #1F4E8C;" type="submit">로그인</button>
+			</form>
+		</main>
+
+		<p>회원이 아니신가요?  <a style="text-decoration: none" href="/signup">회원가입</a></p>
+	</div>
+</div>
+</body>
+</html>
