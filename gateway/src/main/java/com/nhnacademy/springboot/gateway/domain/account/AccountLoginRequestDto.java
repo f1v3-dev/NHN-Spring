@@ -1,6 +1,5 @@
 package com.nhnacademy.springboot.gateway.domain.account;
 
-import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

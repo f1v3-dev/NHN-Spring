@@ -2,9 +2,9 @@ package com.nhnacademy.springboot.gateway.adaptor;
 
 import com.nhnacademy.springboot.gateway.config.AccountAdaptorProperties;
 import com.nhnacademy.springboot.gateway.domain.account.Account;
+import com.nhnacademy.springboot.gateway.domain.account.AccountDeleteResponse;
 import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
-import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterDto;
-import com.nhnacademy.springboot.gateway.domain.account.AccountRequestDto;
+import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterRequestDto;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -46,7 +46,6 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                         new ParameterizedTypeReference<>() {
                         });
 
-
         if (HttpStatus.OK != exchange.getStatusCode()) {
             throw new RuntimeException();
         }
@@ -79,13 +78,13 @@ public class AccountAdaptorImpl implements AccountAdaptor {
     }
 
     @Override
-    public Account createAccount(AccountRegisterDto account) {
+    public Account createAccount(AccountRegisterRequestDto account) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        HttpEntity<AccountRegisterDto> requestEntity = new HttpEntity<>(account, httpHeaders);
+        HttpEntity<AccountRegisterRequestDto> requestEntity = new HttpEntity<>(account, httpHeaders);
 
         ResponseEntity<Account> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/account",
                 HttpMethod.POST,
@@ -101,7 +100,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
     }
 
     @Override
-    public void deleteAccount(Long id) {
+    public AccountDeleteResponse deleteAccount(Long accountId) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
@@ -109,19 +108,22 @@ public class AccountAdaptorImpl implements AccountAdaptor {
 
         HttpEntity<Integer> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<Void> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/account/{id}",
-                HttpMethod.DELETE,
-                requestEntity,
-                new ParameterizedTypeReference<Void>() {
-                });
+        ResponseEntity<AccountDeleteResponse> exchange =
+                restTemplate.exchange(accountAdaptorProperties.getAddress() + "/account/{accountId}",
+                        HttpMethod.DELETE,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, accountId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
             throw new RuntimeException();
         }
+
+        return exchange.getBody();
     }
 
     @Override
-    public AccountRequestDto matches(AccountLoginRequestDto account) {
+    public Account matches(AccountLoginRequestDto account) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
@@ -129,11 +131,11 @@ public class AccountAdaptorImpl implements AccountAdaptor {
 
         HttpEntity<AccountLoginRequestDto> requestEntity = new HttpEntity<>(account, httpHeaders);
 
-        ResponseEntity<AccountRequestDto> exchange =
+        ResponseEntity<Account> exchange =
                 restTemplate.exchange(accountAdaptorProperties.getAddress() + "/login",
                         HttpMethod.POST,
                         requestEntity,
-                        new ParameterizedTypeReference<AccountRequestDto>() {
+                        new ParameterizedTypeReference<Account>() {
                         });
 
         if (HttpStatus.OK != exchange.getStatusCode()) {

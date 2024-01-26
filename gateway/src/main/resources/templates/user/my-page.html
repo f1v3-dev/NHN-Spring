@@ -59,7 +59,7 @@
 				<form th:action="@{/mypage}" method="post">
 					<div th:object="${account}">
 						<div style="display: none" class="w-100 col">
-							<input disabled th:value="*{id}" type="text" class="form-control" placeholder="ID"
+							<input disabled th:value="*{accountId}" type="text" class="form-control" placeholder="ID"
 							       aria-label="ID" th:name="id" required>
 						</div><br/>
 
@@ -95,9 +95,18 @@
 							       placeholder="Phone Number (010-0000-0000)" aria-label="핸드폰 번호" th:name="phoneNumber" required>
 						</div><br/>
 
-						<button class="w-100 btn btn-lg" style="color: #1F4E8C;" type="submit">회원 정보 수정</button>
+<!--						<button class="w-100 btn btn-lg" style="color: #1F4E8C;" type="submit">회원 정보 수정</button>-->
 
 					</div>
+				</form>
+
+				<br/>
+
+				<!-- 회원 탈퇴 버튼 -->
+				<form th:action="@{'/account/' + ${account.getAccountId()}}" method="post">
+					<input type="hidden" name="_method" value="delete"/>
+					<input type="hidden" th:name="accountId" th:value="${account.accountId}">
+					<button class="w-100 btn btn-lg" style="color: lightcoral;" type="submit">회원 탈퇴</button>
 				</form>
 			</div>
 		</main>

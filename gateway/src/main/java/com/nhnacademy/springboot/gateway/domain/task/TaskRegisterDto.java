@@ -10,6 +10,9 @@ import lombok.ToString;
 @Data
 public class TaskRegisterDto {
 
+    @NotBlank
+    private String registrant;
+
     private List<Long> tagIdList;
 
     private Long milestoneId;
@@ -19,9 +22,5 @@ public class TaskRegisterDto {
 
     @NotBlank
     private String taskDetails;
-
-    @NotBlank
-    private String registrant;
-
 
 }

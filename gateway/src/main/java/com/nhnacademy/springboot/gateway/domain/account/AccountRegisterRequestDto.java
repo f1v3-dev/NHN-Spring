@@ -8,16 +8,23 @@ import lombok.ToString;
 
 @ToString
 @Data
-public class AccountRegisterDto {
-
-    @NotBlank
-    private String id;
-
-    @NotBlank
-    private String password;
+public class AccountRegisterRequestDto {
+    /**
+     *     private String name;
+     *     private String userId;
+     *     private String password;
+     *     private String email;
+     *     private String phoneNumber;
+     */
 
     @NotBlank
     private String name;
+
+    @NotBlank
+    private String userId;
+
+    @NotBlank
+    private String password;
 
     @Email
     private String email;

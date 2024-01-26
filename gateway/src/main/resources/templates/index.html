@@ -40,9 +40,6 @@
 						<li class="nav-item">
 							<span class="nav-link" aria-disabled="true">업무</span>
 						</li>
-						<!--						<li class="nav-item">-->
-						<!--							<a class="nav-link" href="#">Link</a>-->
-						<!--						</li>-->
 					</ul>
 
 					<ul class="navbar-nav">
@@ -66,12 +63,23 @@
 				<h1 style="color: #1F4E8C" class="mt-5"> Mini Dooray! </h1>
 				<p> NHN Academy (6조) </p>
 
-				<button class="custom-btn" th:onclick="|location.href='@{/task}'|">전체 업무</button>
+				<button class="custom-btn" th:onclick="|location.href='@{/project/register}'|">새 프로젝트</button>
+				<table style="margin-top: 15px;" class="table table-hover text-center">
+					<thead>
+					<tr>
+						<th>프로젝트 명</th>
+						<th>프로젝트 상태</th>
+					</tr>
+					</thead>
 
-				<button class="custom-btn" th:onclick="|window.open('@{/task/write}', '_blank');|">새 업무</button>
-
-
-				<button class="custom-btn" th:onclikc="|location.href='@{/project/register}'|" >새로운 프로젝트 등록</button>
+					<tbody>
+					<tr th:each="project : ${projectList}">
+						<td><a th:text="${project.projectName}" th:href="@{'/project/' + ${project.projectId}}"></a>
+						</td>
+						<td th:text="${project.statusName}"></td>
+					</tr>
+					</tbody>
+				</table>
 			</div>
 		</main>
 	</div>

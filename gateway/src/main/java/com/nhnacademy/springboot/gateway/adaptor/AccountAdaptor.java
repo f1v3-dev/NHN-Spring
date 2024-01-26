@@ -1,9 +1,9 @@
 package com.nhnacademy.springboot.gateway.adaptor;
 
 import com.nhnacademy.springboot.gateway.domain.account.Account;
+import com.nhnacademy.springboot.gateway.domain.account.AccountDeleteResponse;
 import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
-import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterDto;
-import com.nhnacademy.springboot.gateway.domain.account.AccountRequestDto;
+import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterRequestDto;
 import java.util.List;
 
 public interface AccountAdaptor {
@@ -12,9 +12,9 @@ public interface AccountAdaptor {
 
     Account getAccount(Long id);
 
-    Account createAccount(AccountRegisterDto account);
+    Account createAccount(AccountRegisterRequestDto account);
 
-    void deleteAccount(Long id);
+    AccountDeleteResponse deleteAccount(Long accountId);
 
-    AccountRequestDto matches(AccountLoginRequestDto account);
+    Account matches(AccountLoginRequestDto account);
 }

@@ -1,7 +1,7 @@
 package com.nhnacademy.springboot.gateway.controller.login;
 
 import com.nhnacademy.springboot.gateway.domain.account.Account;
-import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterDto;
+import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterRequestDto;
 import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
 import com.nhnacademy.springboot.gateway.service.AccountService;
 import java.util.Objects;
@@ -30,7 +30,7 @@ public class SignUpController {
     }
 
     @PostMapping
-    public String singUp(@Valid AccountRegisterDto account,
+    public String singUp(@Valid AccountRegisterRequestDto account,
                          BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

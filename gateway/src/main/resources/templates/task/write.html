@@ -36,7 +36,12 @@
 			<h2 style="margin-bottom: 10px">업무 등록</h2>
 			<form th:action="@{/task/write}" method="post">
 
-				<input type="hidden" th:name="registrant" th:value="${accountId}">
+				<div class="w-100 col" style="margin-bottom: 10px;">
+					작성자 : <span th:name="registrant"  th:text="${registrant}">작성자</span>
+					<input style="display: none" type="text" class="form-control" placeholder="작성자"
+					       th:name="registrant" th:value="${registrant}" required>
+				</div>
+
 
 				<select style="margin-bottom: 10px" th:name="tagIdList"
 				        size="2" class="form-select" aria-label="tag select" multiple>
@@ -55,7 +60,6 @@
 					        th:text="|${milestone.getMilestoneName()} (${milestone.getStartDate()} ~ ${milestone.getEndDate()})|">
 					</option>
 				</select>
-
 
 				<div class="w-100 col">
 					<input style="padding: 10px" type="text" class="form-control" placeholder="제목을 입력해주세요."

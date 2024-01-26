@@ -1,7 +1,7 @@
 package com.nhnacademy.springboot.gateway.controller.login;
 
 import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
-import com.nhnacademy.springboot.gateway.domain.account.AccountRequestDto;
+import com.nhnacademy.springboot.gateway.domain.account.Account;
 import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
 import com.nhnacademy.springboot.gateway.service.AccountService;
 import java.io.IOException;
@@ -54,10 +54,11 @@ public class LoginController {
 
         log.info("account = {}", account);
 
-        AccountRequestDto loginAccount = accountService.matches(account);
+        Account loginAccount = accountService.matches(account);
 
         if (Objects.nonNull(loginAccount)) {
             session.setAttribute("account", loginAccount);
+            log.info("account = {}", loginAccount);
             return "redirect:/";
         }
 

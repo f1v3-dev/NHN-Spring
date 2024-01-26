@@ -60,74 +60,51 @@
 		<main class="flex-shrink-0">
 			<div class="album py-5">
 
-				<div style="float: right;">
-					<button class="custom-btn"
-					        th:onclick="|location.href='@{/project/' + ${projectId} + '/milestone}'|">
-						업무 <br/> 마일스톤 관리
-					</button>
-					<button class="custom-btn" th:onclick="|location.href='@{/project/' + ${projectId} + '/tage}'|">
-						업무 <br/> 태그 관리
-					</button>
-				</div>
+				<button class="custom-btn" th:onclick="|location.href='@{/project/' + ${projectId} + '/milestone}'|">
+					프로젝트 <br/>마일스톤 관리
+				</button>
+				<button class="custom-btn" th:onclick="|location.href='@{/project/' + ${projectId} + '/tag}'|">
+					프로젝트 <br/>태그 관리
+				</button>
 
-				<br/>
+				<button style="float: right" class="custom-btn" th:onclick="|location.href='@{/task/write}'|">새 업무
+				</button>
 
-				<table style="margin-top: 80px;" class="table table-bordered text-center">
+
+				<table style="margin-top: 15px;" class="table table-hover text-center">
+					<h3 style="margin-top: 30px; margin-bottom: 15px;"> 두레이 프로젝트 </h3>
+					<p style="color: gray"> NHN Academy (6조) - 미니 두레이 프로젝트입니다. </p>
+					<thead>
+					<tr>
+						<th>업무 명</th>
+						<th>등록자</th>
+						<th>마일스톤</th>
+					</tr>
+					</thead>
 
 					<tbody>
 					<tr>
-						<td>등록자</td>
+						<!--th:href="@{'/task/' + ${task.taskId}}"-->
+						<td><a href="#"> 업무명 테스트 111</a></td>
 						<td>정승조</td>
-					</tr>
-					<tr>
-						<td>업무명</td>
-						<td>미니 두레이 프로젝트 Gateway 개발</td>
-					</tr>
-					<tr>
-						<td>업무 상세</td>
-						<td>
-							6팀 프로젝트인 미니 두레이 개발 프로젝트입니다. <br/>
-							현재 Gateway 개발을 진행중이며 템플릿 엔진은 Thymeleaf를 사용하고 있습니다.
-						</td>
+						<td>마일스톤 1 (2024-01-01 ~ 2024-01-31)</td>
+
 					</tr>
 
 					<tr>
-						<td>태그</td>
-						<td>
-							[Dooray] [NHN Academy]
-						</td>
+						<td><a href="#"> 업무명 테스트 222</a></td>
+						<td>이가은</td>
+						<td>마일스톤 2 (2024-02-01 ~ 2024-03-31)</td>
+
 					</tr>
 
 					<tr>
-						<td>마일스톤</td>
-						<td>
-							미니 두레이 개발 완료 [2024-01-24 ~ 2024-01-28]
-						</td>
+						<td><a href="#"> 업무명 테스트 3</a></td>
+						<td>이정범</td>
+						<td>마일스톤 3 (2024-01-01 ~ 2024-01-31)</td>
 					</tr>
 					</tbody>
 				</table>
-
-				<h3 style="margin-top: 50px; margin-bottom: 30px">
-					댓글
-				</h3>
-
-				<div class="card" style="margin-bottom: 15px;">
-					<div class="card-header">
-						정승조
-					</div>
-					<div class="card-body">
-						가나다라마바사아자차카타파하
-					</div>
-				</div>
-
-				<div class="card">
-					<div class="card-header">
-						정승조
-					</div>
-					<div class="card-body">
-						빨리 끝내고싶다...
-					</div>
-				</div>
 			</div>
 		</main>
 	</div>

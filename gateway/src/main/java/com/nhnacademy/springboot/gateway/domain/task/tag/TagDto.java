@@ -1,11 +1,11 @@
-package com.nhnacademy.springboot.gateway.domain.task;
+package com.nhnacademy.springboot.gateway.domain.task.tag;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Tag {
+public class TagDto {
 
     private Long tagId;
 
