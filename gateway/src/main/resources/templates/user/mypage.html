@@ -65,7 +65,7 @@
 
 						<div class="w-100 col">
 							<p>이름</p>
-							<input th:value="*{name}" type="text" class="form-control" placeholder="Name"
+							<input disabled th:value="*{name}" type="text" class="form-control" placeholder="Name"
 							       aria-label="이름" th:name="name" required>
 						</div><br/>
 
@@ -77,13 +77,13 @@
 
 						<div class="w-100 col">
 							<p>비밀번호</p>
-							<input th:value="*{password}" type="password" class="form-control" placeholder="Password"
+							<input disabled th:value="*{password}" type="password" class="form-control" placeholder="Password"
 							       aria-label="password" th:name="password" required>
 						</div><br/>
 
 						<div class="w-100 col">
 							<p>메일</p>
-							<input th:value="*{email}" type="email" class="form-control" placeholder="E-mail"
+							<input disabled th:value="*{email}" type="email" class="form-control" placeholder="E-mail"
 							       aria-label="email" th:name="email" required>
 						</div><br/>
 
@@ -91,7 +91,7 @@
 
 						<div class="w-100 col">
 							<p>휴대전화</p>
-							<input th:value="*{phoneNumber}" type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+							<input disabled th:value="*{phoneNumber}" type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
 							       placeholder="Phone Number (010-0000-0000)" aria-label="핸드폰 번호" th:name="phoneNumber" required>
 						</div><br/>
 

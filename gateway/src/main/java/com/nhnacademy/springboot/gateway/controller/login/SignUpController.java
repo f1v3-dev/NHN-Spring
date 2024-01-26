@@ -4,6 +4,7 @@ import com.nhnacademy.springboot.gateway.domain.account.Account;
 import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterDto;
 import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
 import com.nhnacademy.springboot.gateway.service.AccountService;
+import java.util.Objects;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,11 @@ public class SignUpController {
 
         log.info("account = {}", account);
 
-        accountService.createAccount(account);
+        Account signupAccount = accountService.createAccount(account);
+
+        if (Objects.isNull(signupAccount)) {
+            return "redirect:/signup";
+        }
 
         return "redirect:/login";
     }

@@ -40,7 +40,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
 
         ResponseEntity<List<Account>> exchange =
                 restTemplate.exchange(
-                        accountAdaptorProperties.getAddress() + "/accounts",
+                        accountAdaptorProperties.getAddress() + "/account/list",
                         HttpMethod.GET,
                         requestEntity,
                         new ParameterizedTypeReference<>() {
@@ -64,7 +64,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
 
         ResponseEntity<Account> exchange =
                 restTemplate.exchange(
-                        accountAdaptorProperties.getAddress() + "/accounts/{id}",
+                        accountAdaptorProperties.getAddress() + "/account/{id}",
                         HttpMethod.GET,
                         requestEntity,
                         new ParameterizedTypeReference<>() {
@@ -87,7 +87,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
 
         HttpEntity<AccountRegisterDto> requestEntity = new HttpEntity<>(account, httpHeaders);
 
-        ResponseEntity<Account> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/accounts",
+        ResponseEntity<Account> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/account",
                 HttpMethod.POST,
                 requestEntity,
                 new ParameterizedTypeReference<Account>() {
@@ -109,7 +109,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
 
         HttpEntity<Integer> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<Void> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/accounts/{id}",
+        ResponseEntity<Void> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/account/{id}",
                 HttpMethod.DELETE,
                 requestEntity,
                 new ParameterizedTypeReference<Void>() {
@@ -130,8 +130,8 @@ public class AccountAdaptorImpl implements AccountAdaptor {
         HttpEntity<AccountLoginRequestDto> requestEntity = new HttpEntity<>(account, httpHeaders);
 
         ResponseEntity<AccountRequestDto> exchange =
-                restTemplate.exchange(accountAdaptorProperties.getAddress() + "/accounts/login",
-                        HttpMethod.GET,
+                restTemplate.exchange(accountAdaptorProperties.getAddress() + "/login",
+                        HttpMethod.POST,
                         requestEntity,
                         new ParameterizedTypeReference<AccountRequestDto>() {
                         });

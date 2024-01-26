@@ -11,17 +11,17 @@ import lombok.ToString;
 public class AccountRequestDto implements Serializable {
     // session에 넣기 위해서 Serializable 사용!!
 
-    private Long id;
+    private Long accountId;
+
+    private String name;
 
     private String userId;
 
     private String password;
 
-    private String name;
-
     private String email;
 
     private String phoneNumber;
 
-    private AccountStatus status;
+    private String statusId;
 }
