@@ -2,6 +2,7 @@ package com.nhnacademy.springboot.gateway.adaptor;
 
 import com.nhnacademy.springboot.gateway.config.TaskAdaptorProperties;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
+import com.nhnacademy.springboot.gateway.domain.task.CreateResponseString;
 import com.nhnacademy.springboot.gateway.domain.task.StatusDto;
 import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
 import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
@@ -452,7 +453,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
     }
 
     @Override
-    public ProjectMember registerMember(Long projectId, UserDto user) {
+    public CreateResponseString registerMember(Long projectId, UserDto user) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
@@ -460,7 +461,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<UserDto> requestEntity = new HttpEntity<>(user, httpHeaders);
 
-        ResponseEntity<ProjectMember> exchange = restTemplate.exchange(
+        ResponseEntity<CreateResponseString> exchange = restTemplate.exchange(
                 taskAdaptorProperties.getAddress() + "/project/{id}/member",
                 HttpMethod.POST,
                 requestEntity,
@@ -469,6 +470,29 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
             throw new RuntimeException("프로젝트 멤버 등록 실패");
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CreateResponseString deleteUserFromProject(Long projectId, UserDto user) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<UserDto> requestEntity = new HttpEntity<>(user, httpHeaders);
+
+        ResponseEntity<CreateResponseString> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/project/{id}/member",
+                HttpMethod.DELETE,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, projectId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException("프로젝트 멤버 삭제 실패");
         }
 
         return exchange.getBody();

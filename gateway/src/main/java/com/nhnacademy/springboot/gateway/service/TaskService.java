@@ -2,6 +2,7 @@ package com.nhnacademy.springboot.gateway.service;
 
 import com.nhnacademy.springboot.gateway.adaptor.TaskAdaptor;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
+import com.nhnacademy.springboot.gateway.domain.task.CreateResponseString;
 import com.nhnacademy.springboot.gateway.domain.task.StatusDto;
 import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
 import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
@@ -99,7 +100,11 @@ public class TaskService {
         return taskAdaptor.getMemberListByProjectId(projectId);
     }
 
-    public ProjectMember registerMember(Long projectId, UserDto user) {
+    public CreateResponseString registerMember(Long projectId, UserDto user) {
         return taskAdaptor.registerMember(projectId, user);
+    }
+
+    public CreateResponseString deleteUserFromProject(Long projectId, UserDto userDto) {
+        return taskAdaptor.deleteUserFromProject(projectId, userDto);
     }
 }

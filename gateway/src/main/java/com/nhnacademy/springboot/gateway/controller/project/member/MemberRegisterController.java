@@ -1,6 +1,6 @@
 package com.nhnacademy.springboot.gateway.controller.project.member;
 
-import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMember;
+import com.nhnacademy.springboot.gateway.domain.task.CreateResponseString;
 import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
 import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
 import com.nhnacademy.springboot.gateway.service.AccountService;
@@ -32,11 +32,7 @@ public class MemberRegisterController {
     public String getMemberRegisterForm(@PathVariable("projectId") Long projectId,
                                         Model model) {
 
-//        List<Account> accounts = accountService.getAccounts();
-//
-//        model.addAttribute("accounts", accounts);
-
-
+        model.addAttribute("projectId", projectId);
         return "project/member/member-register";
     }
 
@@ -49,7 +45,7 @@ public class MemberRegisterController {
             throw new ValidationFailedException(bindingResult);
         }
 
-        ProjectMember response = taskService.registerMember(projectId, user);
+        CreateResponseString response = taskService.registerMember(projectId, user);
 
         log.info("response : {}", response);
 
