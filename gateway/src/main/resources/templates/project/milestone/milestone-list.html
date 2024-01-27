@@ -1,95 +1,104 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>마일스톤 목록 페이지</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>프로젝트 마일스톤 목록 페이지</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+			margin: 0;
+			padding: 0;
+		}
+
+		#app {
+			max-width: 800px;
+			margin: 50px auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+
+		h1 {
+			color: #3498db;
+		}
+
+		.button-container {
+			margin-top: 10px;
+		}
+
+		.action-link, .tag-action-link {
+			display: inline-block;
+			padding: 10px;
+			margin: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			color: #fff;
+			text-decoration: none;
+			border-radius: 3px;
+		}
+
+		.action-link {
+			background-color: #1F4E8C;
+		}
+
+		.tag-container {
+			margin-top: 20px;
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+
+		li {
+			border: 1px solid #ddd;
+			margin: 5px 0;
+			padding: 10px;
+			background-color: #fff;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		p {
+			color: #555;
+		}
+	</style>
+
 </head>
 <body>
 
-<div id="app" >
-    <h1>마일스톤 목록 페이지</h1>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+<div id="app">
+	<h1>마일스톤 목록 페이지</h1>
 
-        #app {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+	<a th:href="'/project/' + ${projectId}"> 프로젝트로 돌아가기</a>
+	<div class="tag-container">
+		<h2>마일스톤 목록</h2>
+		<div class="button-container">
+			<a th:href="@{'/project/' + ${projectId} + '/milestone/register'}" class="action-link">마일스톤 추가</a>
+		</div>
+		<ul>
+			<li th:each="milestone : ${milestoneList}">
+				<span th:text="${milestone.milestoneName}">마일스톤 이름</span>
+				<span th:text="${milestone.startDate}">시작일</span>
+				<span th:text="${milestone.endDate}">마감일</span>
 
-        h1 {
-            color: #3498db;
-        }
+				<div style="float: right">
+					<form th:action="@{'/project/' + ${projectId} + '/milestone/update/' + ${milestone.milestoneId}}" method="get">
+						<button type="submit" class="tag-action-link" style="background-color: #1F4E8C;">수정</button>
+					</form>
 
-        .button-container {
-            margin-top: 10px;
-        }
-
-        .action-link, .tag-action-link {
-            display: inline-block;
-            padding: 10px;
-            margin: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 3px;
-        }
-
-        .action-link {
-            background-color: #3498db;
-        }
-
-        .tag-container {
-            margin-top: 20px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            border: 1px solid #ddd;
-            margin: 5px 0;
-            padding: 10px;
-            background-color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        p {
-            color: #555;
-        }
-    </style>
-
-    <div class="tag-container">
-        <h2>마일스톤 목록</h2>
-        <div class="button-container">
-            <a href="#" th:href="@{'/project/' + ${projectId} + '/add-milestone'}" class="action-link">마일스톤 추가</a>
-        </div>
-        <ul>
-            <li th:each="milestone : ${milestoneList}">
-                <span th:text="${milestone.milestoneName}">마일스톤 이름</span>
-                <span th:text="${milestone.startDate}">시작일</span>
-                <span th:text="${milestone.endDate}">마감일</span>
-                <div class="button-container">
-                    <a href="#" th:href="@{'/project/' + ${projectId} + '/edit-milestone/' + ${milestone.milestoneId}}" class="tag-action-link" style="background-color: #2980b9;">수정</a>
-                    <a href="#" th:href="@{'/project/' + ${projectId} + '/delete-milestone/' + ${milestone.milestoneId}}" class="tag-action-link" style="background-color: #2980b9;">삭제</a>
-                </div>
-            </li>
-        </ul>
-    </div>
+					<form th:action="@{'/project/' + ${projectId} + '/milestone/delete'}" method="post">
+						<input type="hidden" name="_method" value="delete"/>
+						<input type="hidden" name="tagId" th:value="${milestone.milestoneId}"/>
+						<button type="submit" class="tag-action-link" style="background-color: #1F4E8C;">삭제</button>
+					</form>
+				</div>
+			</li>
+		</ul>
+	</div>
 </div>
 
 </body>

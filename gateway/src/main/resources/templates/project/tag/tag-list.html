@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>태그 목록 페이지</title>
+	<title>프로젝트 태그 목록 페이지</title>
 
 	<style>
 		body {
@@ -62,22 +62,19 @@
 			justify-content: space-between;
 			align-items: center;
 		}
-
-		p {
-			color: #555;
-		}
 	</style>
 
 </head>
 <body>
 
 <div id="app">
-	<h1>태그 목록 페이지</h1>
+	<h1>프로젝트 태그 목록 페이지</h1>
+	<a th:href="'/project/' + ${projectId}"> 프로젝트로 돌아가기</a>
 
 	<div class="tag-container">
 		<h2>태그 목록</h2>
 		<div class="button-container">
-			<a href="#" th:href="@{'/project/' + ${projectId} + '/tag/register'}" class="action-link">태그 추가</a>
+			<a th:href="@{'/project/' + ${projectId} + '/tag/register'}" class="action-link">태그 추가</a>
 		</div>
 		<ul>
 			<li th:each="tag : ${tagList}">

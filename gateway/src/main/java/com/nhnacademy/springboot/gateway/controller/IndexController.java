@@ -1,7 +1,7 @@
 package com.nhnacademy.springboot.gateway.controller;
 
 import com.nhnacademy.springboot.gateway.domain.account.Account;
-import com.nhnacademy.springboot.gateway.domain.task.ProjectListRequestDto;
+import com.nhnacademy.springboot.gateway.domain.task.project.ProjectListRequestDto;
 import com.nhnacademy.springboot.gateway.service.TaskService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;

@@ -2,8 +2,7 @@ package com.nhnacademy.springboot.gateway.controller.project;
 
 import com.nhnacademy.springboot.gateway.domain.account.Account;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
-import com.nhnacademy.springboot.gateway.domain.task.ProjectRegisterRequestDto;
-import com.nhnacademy.springboot.gateway.domain.task.ProjectRegisterResponseDto;
+import com.nhnacademy.springboot.gateway.domain.task.project.ProjectRegisterRequestDto;
 import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
 import com.nhnacademy.springboot.gateway.service.TaskService;
 import javax.servlet.http.HttpServletRequest;

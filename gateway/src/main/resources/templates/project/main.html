@@ -60,48 +60,62 @@
 		<main class="flex-shrink-0">
 			<div class="album py-5">
 
-				<button class="custom-btn" th:onclick="|location.href='@{/project/' + ${projectId} + '/milestone}'|">
+				<button class="custom-btn"
+				        th:onclick="|location.href='/project/${projectId}/milestone'|">
 					프로젝트 <br/>마일스톤 관리
 				</button>
-				<button class="custom-btn" th:onclick="|location.href='@{/project/' + ${projectId} + '/tag}'|">
+				<button class="custom-btn"
+				        th:onclick="|location.href='/project/${projectId}/tag'|">
 					프로젝트 <br/>태그 관리
 				</button>
 
-				<button style="float: right" class="custom-btn" th:onclick="|location.href='@{/task/write}'|">새 업무
+				<button class="custom-btn" th:onclick="|location.href='/project/${projectId}/member'|">
+					프로젝트 <br/>멤버 관리
 				</button>
 
 
+				<button style="float: right;" class="custom-btn"
+				        th:onclick="|location.href='/task/write/${projectId}'|"> 새 업무
+				</button>
+
+				<h3 style="margin-top: 30px; margin-bottom: 15px;" th:text="${taskList.project.projectName}">
+					프로젝트 명
+				</h3>
+				<span style="color: gray; margin-bottom: 50px" th:text="${taskList.project.detail}">
+					프로젝트 디테일
+				</span>
+				<span style="float: right; color: green" th:text="'프로젝트 상태 : ' + ${taskList.project.status.statusName}">
+					프로젝트 상태
+				</span>
+
 				<table style="margin-top: 15px;" class="table table-hover text-center">
-					<h3 style="margin-top: 30px; margin-bottom: 15px;"> 두레이 프로젝트 </h3>
-					<p style="color: gray"> NHN Academy (6조) - 미니 두레이 프로젝트입니다. </p>
 					<thead>
 					<tr>
-						<th>업무 명</th>
-						<th>등록자</th>
+						<th>업무명</th>
 						<th>마일스톤</th>
+						<th>태그</th>
 					</tr>
 					</thead>
 
 					<tbody>
-					<tr>
+					<tr th:each="task : ${taskList.task}">
+						<td>
+							<a th:href="@{'/task/' + ${task.taskId}}" th:text="${task.taskName}">
+								업무명 테스트1
+							</a>
+						</td>
 						<!--th:href="@{'/task/' + ${task.taskId}}"-->
-						<td><a href="#"> 업무명 테스트 111</a></td>
-						<td>정승조</td>
-						<td>마일스톤 1 (2024-01-01 ~ 2024-01-31)</td>
+						<td th:text="${task.milestoneDTO.milestoneName} + ' (' + ${task.milestoneDTO.startDate} + ' ~ ' + ${task.milestoneDTO.endDate} + ')'">
+							마일스톤 1 (2024-01-01 ~ 2024-01-31)
+						</td>
+						<td style="color: olivedrab">
+							<span th:each="tag : ${task.tags}"
+							      th:text="'[' + ${tag.tagName} + ']  '">
+								태그
+							</span>
 
-					</tr>
 
-					<tr>
-						<td><a href="#"> 업무명 테스트 222</a></td>
-						<td>이가은</td>
-						<td>마일스톤 2 (2024-02-01 ~ 2024-03-31)</td>
-
-					</tr>
-
-					<tr>
-						<td><a href="#"> 업무명 테스트 3</a></td>
-						<td>이정범</td>
-						<td>마일스톤 3 (2024-01-01 ~ 2024-01-31)</td>
+						</td>
 					</tr>
 					</tbody>
 				</table>

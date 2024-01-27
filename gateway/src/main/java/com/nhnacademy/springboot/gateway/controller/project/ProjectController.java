@@ -1,11 +1,17 @@
 package com.nhnacademy.springboot.gateway.controller.project;
 
+import com.nhnacademy.springboot.gateway.domain.task.task.TaskListResponse;
 import com.nhnacademy.springboot.gateway.service.TaskService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller("/project/{projectId}")
+@Slf4j
+@Controller
+@RequestMapping("/project/{projectId}")
 public class ProjectController {
 
     private final TaskService taskService;
@@ -15,14 +21,18 @@ public class ProjectController {
     }
 
     @GetMapping
-    public String getProject(@PathVariable("projectId") Long projectId) {
+    public String getProject(@PathVariable("projectId") Long projectId,
+                             Model model) {
 
-        // getProject -> 이 projectId를 참조하고있는 모든 task를 던져줌
-        // ex. Project Dto + List<Task> taskListByProjectId
+        TaskListResponse taskList = taskService.getTaskList(projectId);
 
-//        taskService.getProject(projectId);
+        log.info("taskList: {}", taskList);
+        log.info("projectId: {}", projectId);
+
+        model.addAttribute("projectId", projectId);
+        model.addAttribute("taskList", taskList);
 
 
-        return null;
+        return "project/main";
     }
 }

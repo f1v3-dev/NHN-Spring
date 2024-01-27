@@ -3,11 +3,13 @@ package com.nhnacademy.springboot.gateway.domain.account;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @ToString
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Account implements Serializable {
     // session에 넣기 위해서 Serializable 사용!!
 

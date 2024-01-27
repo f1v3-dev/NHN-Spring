@@ -2,8 +2,10 @@ package com.nhnacademy.springboot.gateway.controller.login;
 
 import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
 import com.nhnacademy.springboot.gateway.domain.account.Account;
+import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
 import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
 import com.nhnacademy.springboot.gateway.service.AccountService;
+import com.nhnacademy.springboot.gateway.service.TaskService;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,8 +27,11 @@ public class LoginController {
 
     private final AccountService accountService;
 
-    public LoginController(AccountService accountService) {
+    private final TaskService taskService;
+
+    public LoginController(AccountService accountService, TaskService taskService) {
         this.accountService = accountService;
+        this.taskService = taskService;
     }
 
     @GetMapping
@@ -55,8 +60,10 @@ public class LoginController {
         log.info("account = {}", account);
 
         Account loginAccount = accountService.matches(account);
-
         if (Objects.nonNull(loginAccount)) {
+
+//            TaskUser taskUser = taskService.matches(loginAccount.getUserId());
+//            session.setAttribute("taskUser", taskUser);
             session.setAttribute("account", loginAccount);
             log.info("account = {}", loginAccount);
             return "redirect:/";

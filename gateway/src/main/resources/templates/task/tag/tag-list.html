@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>태그 목록 페이지</title>
+
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+			margin: 0;
+			padding: 0;
+		}
+
+		#app {
+			max-width: 800px;
+			margin: 50px auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+
+		h1 {
+			color: #1F4E8C;
+		}
+
+		.button-container {
+			margin-top: 10px;
+		}
+
+		.action-link, .tag-action-link {
+			display: inline-block;
+			padding: 10px;
+			margin: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			color: #fff;
+			text-decoration: none;
+			border-radius: 3px;
+		}
+
+		.action-link {
+			background-color: #1F4E8C;
+		}
+
+		.tag-container {
+			margin-top: 20px;
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+
+		li {
+			border: 1px solid #ddd;
+			margin: 5px 0;
+			padding: 10px;
+			background-color: #fff;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		p {
+			color: #555;
+		}
+	</style>
+
+</head>
+<body>
+
+<div id="app">
+	<h1>태그 목록 페이지</h1>
+
+	<div class="tag-container">
+		<h2>태그 목록</h2>
+		<div class="button-container">
+			<a href="#" th:href="@{'/project/' + ${projectId} + '/tag/register'}" class="action-link">태그 추가</a>
+		</div>
+		<ul>
+			<li th:each="tag : ${tagList}">
+				<span th:text="${tag.tagName}">태그 이름</span>
+				<div class="button-container">
+
+					<form th:action="@{'/project/' + ${projectId} + '/tag/update'}" method="get">
+						<input type="hidden" name="tagId" th:value="${tag.tagId}"/>
+						<input type="hidden" name="tagName" th:value="${tag.tagName}"/>
+						<button type="submit" class="tag-action-link" style="background-color: #1F4E8C;">수정</button>
+					</form>
+
+					<form th:action="@{'/project/' + ${projectId} + '/tag/delete'}" method="post">
+						<input type="hidden" name="_method" value="delete"/>
+						<input type="hidden" name="tagId" th:value="${tag.tagId}"/>
+						<button type="submit" class="tag-action-link" style="background-color: #1F4E8C;">삭제</button>
+					</form>
+
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

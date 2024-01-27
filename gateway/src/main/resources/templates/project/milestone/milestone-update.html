@@ -55,13 +55,20 @@
 
 <div id="app">
 	<h1>마일스톤 수정</h1>
-	<form th:action="@{'/project/'+ ${projectId} + '/edit-milestone'}" method="post">
-		<label for="milestoneName">마일스톤 이름:</label>
-		<input type="text" id="milestoneName" name="milestoneName" th:value="${milestone.getMilestoneName}" required/>
-		<label for="startDate">시작일:</label>
-		<input type="text" id="startDate" name="startDate" th:value="${milestone.getStartDate}" required/>
-		<label for="endDate">마감일:</label>
-		<input type="text" id="endDate" name="endDate" th:value="${milestone.getEndDate}" required/>
+	<form th:action="@{'/project/'+ ${projectId} + '/milestone/update'}" method="post">
+		<input type="hidden" name="_method" value="put"/>
+		<input type="hidden" name="milestoneId" th:value="${milestone.milestoneId}"/>
+		<label for="milestoneName">마일스톤 이름
+			<input type="text" id="milestoneName" name="milestoneName" th:value="${milestone.milestoneName}"
+			       required/>
+		</label>
+		<label for="startDate">시작일
+			<input type="date" id="startDate" name="startDate" th:value="${milestone.startDate}" required/>
+		</label>
+		<label for="endDate">마감일
+			<input type="date" id="endDate" name="endDate" th:value="${milestone.endDate}" required/>
+		</label>
+
 		<button type="submit">수정</button>
 	</form>
 </div>

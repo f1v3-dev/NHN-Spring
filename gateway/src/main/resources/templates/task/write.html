@@ -34,7 +34,7 @@
 	<div class="container" style="padding-top: 60px">
 		<main>
 			<h2 style="margin-bottom: 10px">업무 등록</h2>
-			<form th:action="@{/task/write}" method="post">
+			<form th:action="'/task/write/' + ${projectId}" method="post">
 
 				<div class="w-100 col" style="margin-bottom: 10px;">
 					작성자 : <span th:name="registrant"  th:text="${registrant}">작성자</span>
@@ -43,7 +43,7 @@
 				</div>
 
 
-				<select style="margin-bottom: 10px" th:name="tagIdList"
+				<select style="margin-bottom: 10px" th:name="tagIds"
 				        size="2" class="form-select" aria-label="tag select" multiple>
 					<option selected value="">태그 없음</option>
 					<option th:each="tag : ${tagList}"

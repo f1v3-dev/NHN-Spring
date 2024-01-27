@@ -2,14 +2,20 @@ package com.nhnacademy.springboot.gateway.adaptor;
 
 import com.nhnacademy.springboot.gateway.config.TaskAdaptorProperties;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
-import com.nhnacademy.springboot.gateway.domain.task.Milestone;
-import com.nhnacademy.springboot.gateway.domain.task.ProjectListRequestDto;
-import com.nhnacademy.springboot.gateway.domain.task.ProjectRegisterRequestDto;
-import com.nhnacademy.springboot.gateway.domain.task.TaskDto;
+import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
+import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
+import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneDto;
+import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneRegisterDto;
+import com.nhnacademy.springboot.gateway.domain.task.project.ProjectListRequestDto;
+import com.nhnacademy.springboot.gateway.domain.task.project.ProjectRegisterRequestDto;
 import com.nhnacademy.springboot.gateway.domain.task.tag.TagDto;
-import com.nhnacademy.springboot.gateway.domain.task.tag.TagResponseDto;
+import com.nhnacademy.springboot.gateway.domain.task.tag.TagListModuleResponse;
 import com.nhnacademy.springboot.gateway.domain.task.tag.TagRequestDto;
+import com.nhnacademy.springboot.gateway.domain.task.task.TaskListResponse;
+import com.nhnacademy.springboot.gateway.domain.task.task.TaskModuleResponse;
+import com.nhnacademy.springboot.gateway.domain.task.task.TaskRegisterDto;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +26,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+@Slf4j
 @Component
 public class TaskAdaptorImpl implements TaskAdaptor {
     private final RestTemplate restTemplate;
@@ -32,7 +39,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
     }
 
     @Override
-    public List<TagResponseDto> getTagList(Long projectId) {
+    public List<TagListModuleResponse> getTagList(Long projectId) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
@@ -40,7 +47,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<List<TagResponseDto>> exchange = restTemplate.exchange(
+        ResponseEntity<List<TagListModuleResponse>> exchange = restTemplate.exchange(
                 taskAdaptorProperties.getAddress() + "/project/{id}/tag",
                 HttpMethod.GET,
                 requestEntity,
@@ -56,26 +63,51 @@ public class TaskAdaptorImpl implements TaskAdaptor {
     }
 
     @Override
-    public List<Milestone> getMilestoneList() {
+    public List<MilestoneDto> getMilestoneList(Long projectId) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
 
-        return null;
+        ResponseEntity<List<MilestoneDto>> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/project/{id}/milestone",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, projectId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException("마일스톤 조회 실패");
+        }
+
+        return exchange.getBody();
     }
 
     @Override
-    public List<TaskDto> getTaskList() {
+    public TaskListResponse getTaskList(Long projectId) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        HttpEntity<Object> requestEntity = new HttpEntity<>(httpHeaders);
-        return null;
+        HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<TaskListResponse> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/project/{id}",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, projectId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException();
+        }
+
+        log.info("exchange.getBody() : {}", exchange.getBody());
+
+        return exchange.getBody();
     }
 
     @Override
@@ -208,6 +240,162 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
             throw new RuntimeException();
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public TaskUser matches(String userId) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<TaskUser> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/login/{id}",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, userId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException();
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CreateResponse registerMilestone(MilestoneRegisterDto milestone) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<MilestoneRegisterDto> requestEntity = new HttpEntity<>(milestone, httpHeaders);
+
+        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/milestone",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+
+        if (HttpStatus.CREATED != exchange.getStatusCode()) {
+            throw new RuntimeException("마일스톤 등록 실패");
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public MilestoneDto getMilestone(Long milestoneId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<MilestoneDto> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/milestone/{id}",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, milestoneId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException("마일스톤 조회 실패");
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CreateResponse updateMilestone(Long milestoneId, MilestoneRegisterDto milestone) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<MilestoneRegisterDto> requestEntity = new HttpEntity<>(milestone, httpHeaders);
+
+        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/milestone/{id}",
+                HttpMethod.PUT,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, milestoneId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException("마일스톤 수정 실패");
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CreateResponse registerTask(TaskRegisterDto task) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<TaskRegisterDto> requestEntity = new HttpEntity<>(task, httpHeaders);
+
+        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/task",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+
+        if (HttpStatus.CREATED != exchange.getStatusCode()) {
+            throw new RuntimeException("업무 등록 실패");
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public TaskModuleResponse getTask(Long taskId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<TaskModuleResponse> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/task/{id}",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, taskId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException("업무 조회 실패");
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CreateResponse registerComment(Long taskId, CommentRequest comment) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<CommentRequest> requestEntity = new HttpEntity<>(comment, httpHeaders);
+
+        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/task/{id}/comment",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, taskId);
+
+        if (HttpStatus.CREATED != exchange.getStatusCode()) {
+            throw new RuntimeException("댓글 등록 실패");
         }
 
         return exchange.getBody();

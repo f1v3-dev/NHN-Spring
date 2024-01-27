@@ -2,12 +2,17 @@ package com.nhnacademy.springboot.gateway.service;
 
 import com.nhnacademy.springboot.gateway.adaptor.TaskAdaptor;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
-import com.nhnacademy.springboot.gateway.domain.task.Milestone;
-import com.nhnacademy.springboot.gateway.domain.task.ProjectListRequestDto;
-import com.nhnacademy.springboot.gateway.domain.task.ProjectRegisterRequestDto;
-import com.nhnacademy.springboot.gateway.domain.task.TaskDto;
-import com.nhnacademy.springboot.gateway.domain.task.tag.TagResponseDto;
+import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
+import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
+import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneDto;
+import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneRegisterDto;
+import com.nhnacademy.springboot.gateway.domain.task.project.ProjectListRequestDto;
+import com.nhnacademy.springboot.gateway.domain.task.project.ProjectRegisterRequestDto;
+import com.nhnacademy.springboot.gateway.domain.task.tag.TagListModuleResponse;
 import com.nhnacademy.springboot.gateway.domain.task.tag.TagRequestDto;
+import com.nhnacademy.springboot.gateway.domain.task.task.TaskListResponse;
+import com.nhnacademy.springboot.gateway.domain.task.task.TaskModuleResponse;
+import com.nhnacademy.springboot.gateway.domain.task.task.TaskRegisterDto;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +25,16 @@ public class TaskService {
         this.taskAdaptor = taskAdaptor;
     }
 
-    public List<TagResponseDto> getTagList(Long projectId) {
+    public List<TagListModuleResponse> getTagList(Long projectId) {
         return taskAdaptor.getTagList(projectId);
     }
 
-    public List<Milestone> getMilestoneList() {
-        return taskAdaptor.getMilestoneList();
+    public List<MilestoneDto> getMilestoneList(Long projectId) {
+        return taskAdaptor.getMilestoneList(projectId);
     }
 
-    public List<TaskDto> getTaskList() {
-        return taskAdaptor.getTaskList();
+    public TaskListResponse getTaskList(Long projectId) {
+        return taskAdaptor.getTaskList(projectId);
     }
 
     public List<ProjectListRequestDto> getProjectList(String userId) {
@@ -50,5 +55,35 @@ public class TaskService {
 
     public CreateResponse updateTag(Long projectId, TagRequestDto tagUpdateRequestDto) {
         return taskAdaptor.updateTag(projectId, tagUpdateRequestDto);
+    }
+
+    public TaskUser matches(String userId) {
+        return taskAdaptor.matches(userId);
+    }
+
+    public CreateResponse registerMilestone(MilestoneRegisterDto milestone) {
+        return taskAdaptor.registerMilestone(milestone);
+    }
+
+    public MilestoneDto getMilestone(Long milestoneId) {
+        return taskAdaptor.getMilestone(milestoneId);
+    }
+
+
+
+    public CreateResponse updateMilestone(Long milestoneId, MilestoneRegisterDto registerDto) {
+        return taskAdaptor.updateMilestone(milestoneId, registerDto);
+    }
+
+    public CreateResponse registerTask(TaskRegisterDto task) {
+        return taskAdaptor.registerTask(task);
+    }
+
+    public TaskModuleResponse getTask(Long taskId) {
+        return taskAdaptor.getTask(taskId);
+    }
+
+    public CreateResponse registerComment(Long taskId, CommentRequest comment) {
+        return taskAdaptor.registerComment(taskId, comment);
     }
 }

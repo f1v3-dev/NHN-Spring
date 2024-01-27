@@ -11,12 +11,14 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
 
-        boolean present = Optional.ofNullable(request.getSession(true).getAttribute("account")).isPresent();
-        
-        if (present) {
+        boolean isLogin = Optional.ofNullable(request.getSession(true).getAttribute("account")).isPresent();
+//        boolean isMember = Optional.ofNullable(request.getSession(true).getAttribute("taskUser")).isPresent();
+
+
+        if (isLogin) {
             return true;
         }
-        
+
         response.sendRedirect("/login");
         return false;
     }

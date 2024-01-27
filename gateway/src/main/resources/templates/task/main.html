@@ -62,10 +62,10 @@
 
 				<div style="float: right;">
 					<button class="custom-btn"
-					        th:onclick="|location.href='@{/project/' + ${projectId} + '/milestone}'|">
+					        th:onclick="|location.href='/task/' + ${task.taskId} + '/milestone'|">
 						업무 <br/> 마일스톤 관리
 					</button>
-					<button class="custom-btn" th:onclick="|location.href='@{/project/' + ${projectId} + '/tage}'|">
+					<button class="custom-btn" th:onclick="|location.href='/task/' + ${task.taskId} + '/tag'|">
 						업무 <br/> 태그 관리
 					</button>
 				</div>
@@ -74,34 +74,34 @@
 
 				<table style="margin-top: 80px;" class="table table-bordered text-center">
 
-					<tbody>
+					<tbody th:object="${task}">
 					<tr>
 						<td>등록자</td>
-						<td>정승조</td>
+						<td th:text="*{registrant}">등록자</td>
 					</tr>
 					<tr>
 						<td>업무명</td>
-						<td>미니 두레이 프로젝트 Gateway 개발</td>
+						<td th:text="*{taskName}">업무명</td>
 					</tr>
 					<tr>
 						<td>업무 상세</td>
-						<td>
-							6팀 프로젝트인 미니 두레이 개발 프로젝트입니다. <br/>
-							현재 Gateway 개발을 진행중이며 템플릿 엔진은 Thymeleaf를 사용하고 있습니다.
+						<td th:text="*{taskDetails}">
+							업무 상세
 						</td>
 					</tr>
 
 					<tr>
 						<td>태그</td>
 						<td>
-							[Dooray] [NHN Academy]
+							<span th:each="tag : ${task.tags}">
+								<span style="color: olivedrab;" th:text="'[' + ${tag.tagName} + ']'">태그</span>
+							</span>
 						</td>
 					</tr>
 
 					<tr>
 						<td>마일스톤</td>
-						<td>
-							미니 두레이 개발 완료 [2024-01-24 ~ 2024-01-28]
+						<td th:text="*{mileStone.milestoneName}">
 						</td>
 					</tr>
 					</tbody>
@@ -111,23 +111,27 @@
 					댓글
 				</h3>
 
-				<div class="card" style="margin-bottom: 15px;">
+				<form th:action="'/task/' + ${task.taskId} + '/comment/register'" method="post">
+					<input style="border: none; margin-bottom: 10px" readonly type="text" th:name="registrant" th:value="${userId}"/> <br/>
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="댓글을 입력해주세요." aria-label="commentText"
+						       th:name="commentText" required>
+						<button class="btn btn-outline-secondary" type="submit">댓글 등록</button>
+					</div>
+				</form>
+
+				<br/>
+
+				<div class="card" style="margin-bottom: 15px;" th:each="comment : ${task.comments}">
 					<div class="card-header">
-						정승조
+						<span th:text="*{comment.registrant}">작성자</span>
 					</div>
 					<div class="card-body">
-						가나다라마바사아자차카타파하
+						<span th:text="*{comment.commentText}"> 댓글 내용</span>
 					</div>
 				</div>
 
-				<div class="card">
-					<div class="card-header">
-						정승조
-					</div>
-					<div class="card-body">
-						빨리 끝내고싶다...
-					</div>
-				</div>
+
 			</div>
 		</main>
 	</div>
