@@ -76,7 +76,7 @@
 	<a th:href="'/project/' + ${projectId}"> 프로젝트로 돌아가기</a>
 	<div class="tag-container">
 		<h2>프로젝트 멤버 리스트</h2>
-		<div class="button-container">
+		<div th:if="${isManager}" class="button-container">
 			<a th:href="@{'/project/' + ${projectId} + '/member/register'}" class="action-link">멤버 추가</a>
 		</div>
 		<ul th:each="member : ${memberList}">
@@ -89,7 +89,7 @@
 					유저 권한
 				</span>
 
-				<div style="float: right">
+				<div th:if="${isManager}" style="float: right">
 					<form th:action="@{'/project/' + ${projectId} + '/member/delete'}" method="post">
 						<input type="hidden" name="_method" value="delete"/>
 						<input type="hidden" name="userId" th:value="${member.userId}"/>
