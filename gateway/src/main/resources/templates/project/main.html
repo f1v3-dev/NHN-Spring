@@ -73,10 +73,16 @@
 					프로젝트 <br/>멤버 관리
 				</button>
 
-
 				<button style="float: right;" class="custom-btn"
 				        th:onclick="|location.href='/task/write/${projectId}'|"> 새 업무
+				</button> <br/>
+
+
+				<button style="float: right" class="btn btn-outline-dark"
+				        th:onclick="|location.href='/project/${projectId}/status'|"> 프로젝트 상태 변경
 				</button>
+
+
 
 				<h3 style="margin-top: 30px; margin-bottom: 15px;" th:text="${taskList.project.projectName}">
 					프로젝트 명
@@ -84,7 +90,7 @@
 				<span style="color: gray; margin-bottom: 50px" th:text="${taskList.project.detail}">
 					프로젝트 디테일
 				</span>
-				<span style="float: right; color: green" th:text="'프로젝트 상태 : ' + ${taskList.project.status.statusName}">
+				<span style="float: right; color: darkred" th:text="'프로젝트 상태 : ' + ${taskList.project.status.statusName}">
 					프로젝트 상태
 				</span>
 
@@ -97,16 +103,16 @@
 					</tr>
 					</thead>
 
-					<tbody>
+					<tbody style="vertical-align: middle">
 					<tr th:each="task : ${taskList.task}">
 						<td>
 							<a th:href="@{'/task/' + ${task.taskId}}" th:text="${task.taskName}">
-								업무명 테스트1
+								업무명
 							</a>
 						</td>
-						<!--th:href="@{'/task/' + ${task.taskId}}"-->
-						<td th:text="${task.milestoneDTO.milestoneName} + ' (' + ${task.milestoneDTO.startDate} + ' ~ ' + ${task.milestoneDTO.endDate} + ')'">
-							마일스톤 1 (2024-01-01 ~ 2024-01-31)
+						<td>
+							<span th:text="${task.milestoneDTO.milestoneName}"></span> <br/>
+							<span th:text="' (' + ${task.milestoneDTO.startDate} + ' ~ ' + ${task.milestoneDTO.endDate} + ')'"></span>
 						</td>
 						<td style="color: olivedrab">
 							<span th:each="tag : ${task.tags}"

@@ -26,13 +26,8 @@ public class ProjectController {
 
         TaskListResponse taskList = taskService.getTaskList(projectId);
 
-        log.info("taskList: {}", taskList);
-        log.info("projectId: {}", projectId);
-
         model.addAttribute("projectId", projectId);
         model.addAttribute("taskList", taskList);
-
-
         return "project/main";
     }
 }

@@ -62,17 +62,14 @@
 
 				<div style="float: right;">
 					<button class="custom-btn"
-					        th:onclick="|location.href='/task/' + ${task.taskId} + '/milestone'|">
-						업무 <br/> 마일스톤 관리
-					</button>
-					<button class="custom-btn" th:onclick="|location.href='/task/' + ${task.taskId} + '/tag'|">
-						업무 <br/> 태그 관리
+					        th:onclick="|location.href='/task/' + ${task.taskId} + '/update'|">
+						업무 수정
 					</button>
 				</div>
 
 				<br/>
 
-				<table style="margin-top: 80px;" class="table table-bordered text-center">
+				<table style="vertical-align: middle; margin-top: 80px;" class="table table-bordered text-center">
 
 					<tbody th:object="${task}">
 					<tr>
@@ -101,7 +98,9 @@
 
 					<tr>
 						<td>마일스톤</td>
-						<td th:text="*{mileStone.milestoneName}">
+						<td>
+							<p th:text="*{mileStone.milestoneName}"></p>
+							<span th:text="*{' (' + mileStone.startDate + '~' +mileStone.endDate + ')'}"></span>
 						</td>
 					</tr>
 					</tbody>

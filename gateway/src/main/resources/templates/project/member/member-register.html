@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mini Dooray</title>
+
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+			margin: 0;
+			padding: 0;
+		}
+
+		#app {
+			max-width: 800px;
+			margin: 50px auto;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+
+		h1 {
+			color: #1F4E8C;
+		}
+
+		form {
+			margin-top: 20px;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		input {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
+
+		button {
+			padding: 10px;
+			background-color: #1F4E8C;
+			color: #fff;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+
+<div id="app">
+	<h1>멤버 추가</h1>
+	<form th:action="@{'/project/'+ ${projectId} + '/member/register'}" method="post">
+		<label for="userId">회원 ID를 입력해주세요 :
+			<input type="text" id="userId" th:name="userId" required/>
+		</label>
+		<button type="submit">추가</button>
+	</form>
+</div>
+</body>
+</html>

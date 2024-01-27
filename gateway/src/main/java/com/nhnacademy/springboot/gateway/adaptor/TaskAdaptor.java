@@ -1,11 +1,15 @@
 package com.nhnacademy.springboot.gateway.adaptor;
 
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
+import com.nhnacademy.springboot.gateway.domain.task.StatusDto;
 import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
 import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
+import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMember;
+import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
 import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneDto;
 import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneRegisterDto;
 import com.nhnacademy.springboot.gateway.domain.task.project.ProjectListRequestDto;
+import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMemberListResponse;
 import com.nhnacademy.springboot.gateway.domain.task.project.ProjectRegisterRequestDto;
 import com.nhnacademy.springboot.gateway.domain.task.tag.TagDto;
 import com.nhnacademy.springboot.gateway.domain.task.tag.TagListModuleResponse;
@@ -29,7 +33,7 @@ public interface TaskAdaptor {
 
     CreateResponse registerTag(TagRequestDto tagRegisterDto);
 
-    void deleteTag(Long tagId);
+    CreateResponse deleteTag(Long projectId, Long tagId);
 
     TagDto getTag(Long tagId);
 
@@ -49,4 +53,10 @@ public interface TaskAdaptor {
     TaskModuleResponse getTask(Long taskId);
 
     CreateResponse registerComment(Long taskId, CommentRequest comment);
+
+    CreateResponse editProjectStatus(Long projectId, StatusDto statusDto);
+
+    List<ProjectMemberListResponse> getMemberListByProjectId(Long projectId);
+
+    ProjectMember registerMember(Long projectId, UserDto user);
 }

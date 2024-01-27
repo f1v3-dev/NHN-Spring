@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>프로젝트 태그 목록 페이지</title>
-
+	<title>Mini Dooray</title>
 	<style>
 		body {
 			font-family: Arial, sans-serif;
@@ -22,7 +21,7 @@
 		}
 
 		h1 {
-			color: #1F4E8C;
+			color: #3498db;
 		}
 
 		.button-container {
@@ -62,40 +61,45 @@
 			justify-content: space-between;
 			align-items: center;
 		}
+
+		p {
+			color: #555;
+		}
 	</style>
 
 </head>
 <body>
 
 <div id="app">
-	<h1>프로젝트 태그 목록 페이지</h1>
+	<h1>프로젝트 멤버 리스트</h1>
+
 	<a th:href="'/project/' + ${projectId}"> 프로젝트로 돌아가기</a>
-
 	<div class="tag-container">
-		<h2>태그 목록</h2>
+		<h2>프로젝트 멤버 리스트</h2>
 		<div class="button-container">
-			<a th:href="@{'/project/' + ${projectId} + '/tag/register'}" class="action-link">태그 추가</a>
+			<a th:href="@{'/project/' + ${projectId} + '/member/register'}" class="action-link">멤버 추가</a>
 		</div>
-		<ul>
-			<li th:each="tag : ${tagList}">
-				<span th:text="${tag.tagName}">태그 이름</span>
-				<div class="button-container">
+		<ul th:each="member : ${memberList}">
+			<li>
+				<span th:text="${member.userId}">
+					유저 아이디
+				</span>
 
-					<form th:action="@{'/project/' + ${projectId} + '/tag/update'}" method="get">
-						<input type="hidden" name="tagId" th:value="${tag.tagId}"/>
-						<input type="hidden" name="tagName" th:value="${tag.tagName}"/>
-						<button type="submit" class="tag-action-link" style="background-color: #1F4E8C;">수정</button>
-					</form>
+				<span th:text="${member.role.roleName}">
+					유저 권한
+				</span>
 
-					<form th:action="@{'/project/' + ${projectId} + '/tag/delete/' + ${tag.tagId}}" method="post">
+				<div style="float: right">
+					<form th:action="@{'/project/' + ${projectId} + '/member/delete'}" method="post">
 						<input type="hidden" name="_method" value="delete"/>
+						<input type="hidden" name="userId" th:value="${userId}"/>
 						<button type="submit" class="tag-action-link" style="background-color: #1F4E8C;">삭제</button>
 					</form>
-
 				</div>
 			</li>
 		</ul>
 	</div>
 </div>
+
 </body>
 </html>

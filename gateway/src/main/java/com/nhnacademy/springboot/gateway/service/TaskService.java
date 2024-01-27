@@ -2,11 +2,15 @@ package com.nhnacademy.springboot.gateway.service;
 
 import com.nhnacademy.springboot.gateway.adaptor.TaskAdaptor;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
+import com.nhnacademy.springboot.gateway.domain.task.StatusDto;
 import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
 import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
+import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMember;
+import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
 import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneDto;
 import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneRegisterDto;
 import com.nhnacademy.springboot.gateway.domain.task.project.ProjectListRequestDto;
+import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMemberListResponse;
 import com.nhnacademy.springboot.gateway.domain.task.project.ProjectRegisterRequestDto;
 import com.nhnacademy.springboot.gateway.domain.task.tag.TagListModuleResponse;
 import com.nhnacademy.springboot.gateway.domain.task.tag.TagRequestDto;
@@ -49,8 +53,8 @@ public class TaskService {
         return taskAdaptor.registerTag(tagRegisterDto);
     }
 
-    public void deleteTag(Long tagId) {
-        taskAdaptor.deleteTag(tagId);
+    public CreateResponse deleteTag(Long projectId, Long tagId) {
+        return taskAdaptor.deleteTag(projectId, tagId);
     }
 
     public CreateResponse updateTag(Long projectId, TagRequestDto tagUpdateRequestDto) {
@@ -85,5 +89,17 @@ public class TaskService {
 
     public CreateResponse registerComment(Long taskId, CommentRequest comment) {
         return taskAdaptor.registerComment(taskId, comment);
+    }
+
+    public CreateResponse editProjectStatus(Long projectId, StatusDto statusDto) {
+        return taskAdaptor.editProjectStatus(projectId, statusDto);
+    }
+
+    public List<ProjectMemberListResponse> getMemberListByProjectId(Long projectId) {
+        return taskAdaptor.getMemberListByProjectId(projectId);
+    }
+
+    public ProjectMember registerMember(Long projectId, UserDto user) {
+        return taskAdaptor.registerMember(projectId, user);
     }
 }

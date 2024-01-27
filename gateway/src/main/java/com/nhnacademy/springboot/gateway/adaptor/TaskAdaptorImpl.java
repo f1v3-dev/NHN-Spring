@@ -2,8 +2,12 @@ package com.nhnacademy.springboot.gateway.adaptor;
 
 import com.nhnacademy.springboot.gateway.config.TaskAdaptorProperties;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
+import com.nhnacademy.springboot.gateway.domain.task.StatusDto;
 import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
 import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
+import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMember;
+import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMemberListResponse;
+import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
 import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneDto;
 import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneRegisterDto;
 import com.nhnacademy.springboot.gateway.domain.task.project.ProjectListRequestDto;
@@ -15,7 +19,6 @@ import com.nhnacademy.springboot.gateway.domain.task.task.TaskListResponse;
 import com.nhnacademy.springboot.gateway.domain.task.task.TaskModuleResponse;
 import com.nhnacademy.springboot.gateway.domain.task.task.TaskRegisterDto;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +29,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-@Slf4j
 @Component
 public class TaskAdaptorImpl implements TaskAdaptor {
     private final RestTemplate restTemplate;
@@ -105,7 +107,6 @@ public class TaskAdaptorImpl implements TaskAdaptor {
             throw new RuntimeException();
         }
 
-        log.info("exchange.getBody() : {}", exchange.getBody());
 
         return exchange.getBody();
     }
@@ -179,24 +180,25 @@ public class TaskAdaptorImpl implements TaskAdaptor {
     }
 
     @Override
-    public void deleteTag(Long tagId) {
+    public CreateResponse deleteTag(Long projectId, Long tagId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<Void> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/tag/{id}",
+        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/project/{id}/tag/{tagId}",
                 HttpMethod.DELETE,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
-                }, tagId);
+                }, projectId, tagId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException("프로젝트 - 태그 삭제 실패");
         }
 
+        return exchange.getBody();
     }
 
     @Override
@@ -396,6 +398,77 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
             throw new RuntimeException("댓글 등록 실패");
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CreateResponse editProjectStatus(Long projectId, StatusDto statusDto) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<StatusDto> requestEntity = new HttpEntity<>(statusDto, httpHeaders);
+
+        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/project/{id}/status",
+                HttpMethod.PUT,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, projectId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException("프로젝트 상태 변경 실패");
+        }
+
+        return exchange.getBody();
+
+    }
+
+    @Override
+    public List<ProjectMemberListResponse> getMemberListByProjectId(Long projectId) {
+
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+
+        HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<List<ProjectMemberListResponse>> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/project/{projectId}/members",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, projectId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException("프로젝트 상태 변경 실패");
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public ProjectMember registerMember(Long projectId, UserDto user) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<UserDto> requestEntity = new HttpEntity<>(user, httpHeaders);
+
+        ResponseEntity<ProjectMember> exchange = restTemplate.exchange(
+                taskAdaptorProperties.getAddress() + "/project/{id}/member",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }, projectId);
+
+        if (HttpStatus.CREATED != exchange.getStatusCode()) {
+            throw new RuntimeException("프로젝트 멤버 등록 실패");
         }
 
         return exchange.getBody();
