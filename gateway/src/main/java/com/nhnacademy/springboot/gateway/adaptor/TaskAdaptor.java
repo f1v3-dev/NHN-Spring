@@ -3,7 +3,6 @@ package com.nhnacademy.springboot.gateway.adaptor;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponseString;
 import com.nhnacademy.springboot.gateway.domain.task.StatusDto;
-import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
 import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
 import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMemberListResponse;
 import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
@@ -39,8 +38,6 @@ public interface TaskAdaptor {
 
     CreateResponse updateTag(Long projectId, TagRequestDto tagUpdateRequestDto);
 
-    TaskUser matches(String userId);
-
     CreateResponse registerMilestone(MilestoneRegisterDto milestone);
 
     MilestoneDto getMilestone(Long milestoneId);
@@ -61,4 +58,8 @@ public interface TaskAdaptor {
     CreateResponseString registerMember(Long projectId, UserDto user);
 
     CreateResponseString deleteUserFromProject(Long projectId, UserDto user);
+
+    CreateResponse deleteComment(Long taskId, Long commentId);
+
+    CreateResponse updateComment(Long taskId, Long commentId, CommentRequest commentRequest);
 }

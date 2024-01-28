@@ -61,7 +61,7 @@
 			<div class="album py-5">
 
 				<div th:if="${task.registrant == userId}"
-						style="float: right;">
+				     style="float: right;">
 					<button class="custom-btn"
 					        th:onclick="|location.href='/task/' + ${task.taskId} + '/update'|">
 						업무 수정
@@ -112,7 +112,8 @@
 				</h3>
 
 				<form th:action="'/task/' + ${task.taskId} + '/comment/register'" method="post">
-					<input style="border: none; margin-bottom: 10px" readonly type="text" th:name="registrant" th:value="${userId}"/> <br/>
+					<input style="border: none; margin-bottom: 10px" readonly type="text" th:name="registrant"
+					       th:value="${userId}"/> <br/>
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" placeholder="댓글을 입력해주세요." aria-label="commentText"
 						       th:name="commentText" required>
@@ -124,7 +125,24 @@
 
 				<div class="card" style="margin-bottom: 15px;" th:each="comment : ${task.comments}">
 					<div class="card-header">
-						<span th:text="*{comment.registrant}">작성자</span>
+						<span th:text="*{comment.registrant}" style="float: left; margin: 5px;">작성자</span>
+						<div th:if="*{comment.registrant eq userId}">
+
+							<form th:action="'/task/' + ${task.taskId} + '/comment/' + ${comment.commentId} + '/delete'"
+							      method="post">
+								<input type="hidden" name="_method" value="delete"/>
+								<button type="submit" class="btn" style="float: right; color: indianred">
+									삭제
+								</button>
+							</form>
+
+							<form th:action="'/task/' + ${task.taskId} + '/comment/' + ${comment.commentId} + '/update'"
+							      method="get">
+								<button type="submit" class="btn" style="float: right; color: royalblue">
+									수정
+								</button>
+							</form>
+						</div>
 					</div>
 					<div class="card-body">
 						<span th:text="*{comment.commentText}"> 댓글 내용</span>

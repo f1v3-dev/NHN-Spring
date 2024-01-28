@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 public class CommentRequest {
 
     @NotBlank
-    private String commentText;
+    private String registrant;
 
     @NotBlank
-    private String registrant;
+    private String commentText;
 }

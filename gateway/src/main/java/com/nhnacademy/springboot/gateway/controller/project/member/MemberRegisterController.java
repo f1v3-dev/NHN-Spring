@@ -1,5 +1,6 @@
 package com.nhnacademy.springboot.gateway.controller.project.member;
 
+import com.nhnacademy.springboot.gateway.domain.account.CheckAccount;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponseString;
 import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
 import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
@@ -45,11 +46,15 @@ public class MemberRegisterController {
             throw new ValidationFailedException(bindingResult);
         }
 
-        CreateResponseString response = taskService.registerMember(projectId, user);
+        CheckAccount account = accountService.isAccountExist(user);
+        if (account.isExist()) {
+            CreateResponseString response = taskService.registerMember(projectId, user);
+            log.info("response : {}", response);
 
-        log.info("response : {}", response);
+            return "redirect:/project/" + projectId + "/member";
+        }
 
 
-        return "redirect:/project/" + projectId + "/member";
+        return "redirect:/project/" + projectId + "/member/register";
     }
 }

@@ -5,6 +5,8 @@ import com.nhnacademy.springboot.gateway.domain.account.Account;
 import com.nhnacademy.springboot.gateway.domain.account.AccountDeleteResponse;
 import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
 import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterRequestDto;
+import com.nhnacademy.springboot.gateway.domain.account.CheckAccount;
+import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -47,7 +49,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                         });
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException("모든 회원 정보 조회 실패");
         }
 
         return exchange.getBody();
@@ -71,7 +73,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
 
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(id + "번 회원 정보 조회 실패");
         }
 
         return exchange.getBody();
@@ -93,7 +95,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                 });
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(account.getUserId() + " 회원 가입 실패");
         }
 
         return exchange.getBody();
@@ -116,7 +118,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                         }, accountId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(accountId + "번 회원 탈퇴 실패");
         }
 
         return exchange.getBody();
@@ -139,9 +141,33 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                         });
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(account.getUserId() + " 회원 로그인 실패");
         }
 
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CheckAccount isAccountExist(UserDto user) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<UserDto> requestEntity = new HttpEntity<>(user, httpHeaders);
+
+        ResponseEntity<CheckAccount> exchange = restTemplate.exchange(
+                accountAdaptorProperties.getAddress() + "/account/exist",
+                HttpMethod.POST,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                }
+        );
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException(user.getUserId() + " 회원 정보 조회 실패");
+        }
 
         return exchange.getBody();
     }

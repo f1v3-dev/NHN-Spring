@@ -5,7 +5,10 @@ import com.nhnacademy.springboot.gateway.domain.account.Account;
 import com.nhnacademy.springboot.gateway.domain.account.AccountDeleteResponse;
 import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
 import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterRequestDto;
+import com.nhnacademy.springboot.gateway.domain.account.CheckAccount;
+import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,5 +38,9 @@ public class AccountService {
 
     public Account matches(AccountLoginRequestDto account) {
         return accountAdaptor.matches(account);
+    }
+
+    public CheckAccount isAccountExist(UserDto user) {
+        return accountAdaptor.isAccountExist(user);
     }
 }

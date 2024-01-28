@@ -62,10 +62,6 @@ public class TaskService {
         return taskAdaptor.updateTag(projectId, tagUpdateRequestDto);
     }
 
-    public TaskUser matches(String userId) {
-        return taskAdaptor.matches(userId);
-    }
-
     public CreateResponse registerMilestone(MilestoneRegisterDto milestone) {
         return taskAdaptor.registerMilestone(milestone);
     }
@@ -106,5 +102,13 @@ public class TaskService {
 
     public CreateResponseString deleteUserFromProject(Long projectId, UserDto userDto) {
         return taskAdaptor.deleteUserFromProject(projectId, userDto);
+    }
+
+    public CreateResponse deleteComment(Long taskId, Long commentId) {
+        return taskAdaptor.deleteComment(taskId, commentId);
+    }
+
+    public CreateResponse updateComment(Long taskId, Long commentId, CommentRequest commentRequest) {
+        return taskAdaptor.updateComment(taskId, commentId, commentRequest);
     }
 }

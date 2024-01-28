@@ -4,9 +4,7 @@ import com.nhnacademy.springboot.gateway.config.TaskAdaptorProperties;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponseString;
 import com.nhnacademy.springboot.gateway.domain.task.StatusDto;
-import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
 import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
-import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMember;
 import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMemberListResponse;
 import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
 import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneDto;
@@ -50,15 +48,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<List<TagListModuleResponse>> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/project/{id}/tag",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, projectId);
+        ResponseEntity<List<TagListModuleResponse>> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/project/{id}/tag", HttpMethod.GET,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(projectId + "번 프로젝트 태그 리스트 조회 실패");
         }
 
 
@@ -74,15 +70,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<List<MilestoneDto>> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/project/{id}/milestone",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, projectId);
+        ResponseEntity<List<MilestoneDto>> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/project/{id}/milestone", HttpMethod.GET,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("마일스톤 조회 실패");
+            throw new RuntimeException("마일스톤 리스트 조회 실패");
         }
 
         return exchange.getBody();
@@ -97,15 +91,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<TaskListResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/project/{id}",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, projectId);
+        ResponseEntity<TaskListResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/project/{id}", HttpMethod.GET,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(projectId + "번 프로젝트 업무 리스트 조회 실패");
         }
 
 
@@ -121,15 +113,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<List<ProjectListRequestDto>> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/member/{id}/projects",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, userId);
+        ResponseEntity<List<ProjectListRequestDto>> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/member/{id}/projects", HttpMethod.GET,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, userId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(userId + "의 프로젝트 리스트 조회 실패");
         }
 
         return exchange.getBody();
@@ -143,16 +133,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<ProjectRegisterRequestDto> requestEntity = new HttpEntity<>(project, httpHeaders);
 
-        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/project",
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }
-        );
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/project", HttpMethod.POST, requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        });
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(project.getProjectName() + " 프로젝트 등록 실패");
         }
 
         return exchange.getBody();
@@ -166,15 +153,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<TagRequestDto> requestEntity = new HttpEntity<>(tagRegisterDto, httpHeaders);
 
-        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/tag",
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/tag", HttpMethod.POST, requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        });
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(tagRegisterDto.getTagName() + " 태그 등록 실패");
         }
 
         return exchange.getBody();
@@ -188,12 +173,10 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/project/{id}/tag/{tagId}",
-                HttpMethod.DELETE,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, projectId, tagId);
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/project/{id}/tag/{tagId}",
+                        HttpMethod.DELETE, requestEntity, new ParameterizedTypeReference<>() {
+                        }, projectId, tagId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
             throw new RuntimeException("프로젝트 - 태그 삭제 실패");
@@ -211,15 +194,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<TagDto> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/tag/{id}",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, tagId);
+        ResponseEntity<TagDto> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/tag/{id}", HttpMethod.GET, requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, tagId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(tagId + "번 태그 조회 실패");
         }
 
         return exchange.getBody();
@@ -234,38 +215,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<TagRequestDto> requestEntity = new HttpEntity<>(tagUpdateRequestDto, httpHeaders);
 
-        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/tag/{id}",
-                HttpMethod.PUT,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, projectId);
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/tag/{id}", HttpMethod.PUT, requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
-        }
-
-        return exchange.getBody();
-    }
-
-    @Override
-    public TaskUser matches(String userId) {
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-
-        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-
-        ResponseEntity<TaskUser> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/login/{id}",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, userId);
-
-        if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException();
+            throw new RuntimeException(projectId + "번 프로젝트 태그(" + tagUpdateRequestDto.getTagName() + ") 수정 실패");
         }
 
         return exchange.getBody();
@@ -280,15 +236,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<MilestoneRegisterDto> requestEntity = new HttpEntity<>(milestone, httpHeaders);
 
-        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/milestone",
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/milestone", HttpMethod.POST, requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        });
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException("마일스톤 등록 실패");
+            throw new RuntimeException(milestone.getMilestoneName() + " 마일스톤 등록 실패");
         }
 
         return exchange.getBody();
@@ -302,15 +256,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<MilestoneDto> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/milestone/{id}",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, milestoneId);
+        ResponseEntity<MilestoneDto> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/milestone/{id}", HttpMethod.GET,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, milestoneId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("마일스톤 조회 실패");
+            throw new RuntimeException(milestoneId + "번 마일스톤 조회 실패");
         }
 
         return exchange.getBody();
@@ -324,15 +276,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<MilestoneRegisterDto> requestEntity = new HttpEntity<>(milestone, httpHeaders);
 
-        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/milestone/{id}",
-                HttpMethod.PUT,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, milestoneId);
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/milestone/{id}", HttpMethod.PUT,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, milestoneId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("마일스톤 수정 실패");
+            throw new RuntimeException(milestone + "번 마일스톤 수정 실패");
         }
 
         return exchange.getBody();
@@ -346,15 +296,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<TaskRegisterDto> requestEntity = new HttpEntity<>(task, httpHeaders);
 
-        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/task",
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/task", HttpMethod.POST, requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        });
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException("업무 등록 실패");
+            throw new RuntimeException(task.getTaskName() + " 업무 등록 실패");
         }
 
         return exchange.getBody();
@@ -368,15 +316,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<TaskModuleResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/task/{id}",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, taskId);
+        ResponseEntity<TaskModuleResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/task/{id}", HttpMethod.GET, requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, taskId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("업무 조회 실패");
+            throw new RuntimeException(taskId + "번 업무 조회 실패");
         }
 
         return exchange.getBody();
@@ -390,15 +336,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<CommentRequest> requestEntity = new HttpEntity<>(comment, httpHeaders);
 
-        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/task/{id}/comment",
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, taskId);
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/task/{id}/comment", HttpMethod.POST,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, taskId);
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException("댓글 등록 실패");
+            throw new RuntimeException(taskId + "번 업무에 댓글 등록 실패");
         }
 
         return exchange.getBody();
@@ -412,15 +356,13 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<StatusDto> requestEntity = new HttpEntity<>(statusDto, httpHeaders);
 
-        ResponseEntity<CreateResponse> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/project/{id}/status",
-                HttpMethod.PUT,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, projectId);
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/project/{id}/status", HttpMethod.PUT,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("프로젝트 상태 변경 실패");
+            throw new RuntimeException(projectId + " 프로젝트 상태 변경 실패");
         }
 
         return exchange.getBody();
@@ -438,12 +380,10 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
 
-        ResponseEntity<List<ProjectMemberListResponse>> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/project/{projectId}/members",
-                HttpMethod.GET,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, projectId);
+        ResponseEntity<List<ProjectMemberListResponse>> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/project/{projectId}/members",
+                        HttpMethod.GET, requestEntity, new ParameterizedTypeReference<>() {
+                        }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
             throw new RuntimeException("프로젝트 상태 변경 실패");
@@ -461,12 +401,10 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<UserDto> requestEntity = new HttpEntity<>(user, httpHeaders);
 
-        ResponseEntity<CreateResponseString> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/project/{id}/member",
-                HttpMethod.POST,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, projectId);
+        ResponseEntity<CreateResponseString> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/project/{id}/member", HttpMethod.POST,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, projectId);
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
             throw new RuntimeException("프로젝트 멤버 등록 실패");
@@ -484,15 +422,61 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         HttpEntity<UserDto> requestEntity = new HttpEntity<>(user, httpHeaders);
 
-        ResponseEntity<CreateResponseString> exchange = restTemplate.exchange(
-                taskAdaptorProperties.getAddress() + "/project/{id}/member",
-                HttpMethod.DELETE,
-                requestEntity,
-                new ParameterizedTypeReference<>() {
-                }, projectId);
+        ResponseEntity<CreateResponseString> exchange =
+                restTemplate.exchange(taskAdaptorProperties.getAddress() + "/project/{id}/member",
+                        HttpMethod.DELETE,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
             throw new RuntimeException("프로젝트 멤버 삭제 실패");
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CreateResponse deleteComment(Long taskId, Long commentId) {
+
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(
+                        taskAdaptorProperties.getAddress() + "/task/{id}/comment/{commentId}",
+                        HttpMethod.DELETE,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, taskId, commentId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException("댓글 삭제 실패 : " + exchange.getStatusCode());
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CreateResponse updateComment(Long taskId, Long commentId, CommentRequest commentRequest) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<CommentRequest> requestEntity = new HttpEntity<>(commentRequest, httpHeaders);
+
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(
+                        taskAdaptorProperties.getAddress() + "/task/{id}/comment/{commentId}",
+                        HttpMethod.PUT,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, taskId, commentId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException("댓글 수정 실패");
         }
 
         return exchange.getBody();

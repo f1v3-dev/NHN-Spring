@@ -20,9 +20,9 @@ public class WebControllerAdvice {
     }
 
     @ExceptionHandler(RuntimeException.class)
-    public String handleRuntimeException(Model model) {
+    public String handleRuntimeException(Model model, RuntimeException exception) {
 
-        model.addAttribute("error", "알 수 없는 에러가 발생했습니다.");
+        model.addAttribute("error", exception.getMessage());
         return "error";
     }
 }
