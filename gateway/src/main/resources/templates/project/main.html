@@ -73,15 +73,15 @@
 					프로젝트 <br/>멤버 관리
 				</button>
 
-				<button style="float: right;" class="custom-btn"
+				<button style="float: right;" class="btn btn-outline-dark"
 				        th:onclick="|location.href='/task/write/${projectId}'|"> 새 업무
-				</button> <br/>
+				</button>
+				<br/>
 
 
 				<button style="float: right" class="btn btn-outline-dark"
 				        th:onclick="|location.href='/project/${projectId}/status'|"> 프로젝트 상태 변경
 				</button>
-
 
 
 				<h3 style="margin-top: 30px; margin-bottom: 15px;" th:text="${taskList.project.projectName}">
@@ -90,7 +90,8 @@
 				<span style="color: gray; margin-bottom: 50px" th:text="${taskList.project.detail}">
 					프로젝트 디테일
 				</span>
-				<span style="float: right; color: darkred" th:text="'프로젝트 상태 : ' + ${taskList.project.status.statusName}">
+				<span style="float: right; color: darkred"
+				      th:text="'프로젝트 상태 : ' + ${taskList.project.status.statusName}">
 					프로젝트 상태
 				</span>
 
@@ -106,21 +107,24 @@
 					<tbody style="vertical-align: middle">
 					<tr th:each="task : ${taskList.task}">
 						<td>
-							<a th:href="@{'/task/' + ${task.taskId}}" th:text="${task.taskName}">
+							<a th:href="@{'/project/' + ${projectId} + '/task/' + ${task.taskId}}"
+							   th:text="${task.taskName}">
 								업무명
 							</a>
 						</td>
 						<td>
-							<span th:text="${task.milestoneDTO.milestoneName}"></span> <br/>
-							<span th:text="' (' + ${task.milestoneDTO.startDate} + ' ~ ' + ${task.milestoneDTO.endDate} + ')'"></span>
+							<div th:if="${task.milestoneDTO != null}">
+								<span th:text="${task.milestoneDTO.milestoneName}"></span> <br/>
+								<span th:text="' (' + ${task.milestoneDTO.startDate} + ' ~ ' + ${task.milestoneDTO.endDate} + ')'"></span>
+							</div>
 						</td>
 						<td style="color: olivedrab">
-							<span th:each="tag : ${task.tags}"
-							      th:text="'[' + ${tag.tagName} + ']  '">
-								태그
-							</span>
-
-
+							<div th:if="${task.tags != null}">
+								<span th:each="tag : ${task.tags}"
+								      th:text="'[' + ${tag.tagName} + ']  '">
+									태그
+								</span>
+							</div>
 						</td>
 					</tr>
 					</tbody>

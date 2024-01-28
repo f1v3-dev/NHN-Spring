@@ -41,7 +41,6 @@ public class CommentUpdateController {
     }
 
 
-
     @PutMapping
     public String updateComment(@PathVariable("taskId") Long taskId,
                                 @PathVariable("commentId") Long commentId,
@@ -50,7 +49,6 @@ public class CommentUpdateController {
         log.info("commentRequest = {}", commentRequest);
 
         CreateResponse response = taskService.updateComment(taskId, commentId, commentRequest);
-
         log.info("response = {}", response);
 
         return "redirect:/task/" + taskId;

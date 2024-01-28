@@ -34,12 +34,13 @@
 	<div class="container" style="padding-top: 60px">
 		<main>
 			<h2 style="margin-bottom: 10px">업무 등록</h2>
-			<form th:action="'/task/write/' + ${projectId}" method="post">
+			<form th:action="'/project/' + ${projectId} + '/task/' + ${taskId} + '/update'" method="post">
+				<input type="hidden" name="_method" value="put">
 
 				<div class="w-100 col" style="margin-bottom: 10px;">
-					작성자 : <span th:name="registrant"  th:text="${registrant}">작성자</span>
+					작성자 : <span th:name="registrant" th:text="${task.registrant}">작성자</span>
 					<input style="display: none" type="text" class="form-control" placeholder="작성자"
-					       th:name="registrant" th:value="${registrant}" required>
+					       th:name="registrant" th:value="${task.registrant}" required>
 				</div>
 
 
@@ -62,14 +63,15 @@
 				</select>
 
 				<div class="w-100 col">
-					<input style="padding: 10px" type="text" class="form-control" placeholder="제목을 입력해주세요."
+					<input style="padding: 10px" type="text" class="form-control"
+					       th:value="${task.taskName}" placeholder="제목을 입력해주세요."
 					       aria-label="taskName" th:name="taskName" required>
 				</div>
 				<br/>
 
 				<div class="w-100 col">
 					<textarea class="form-control" placeholder="업무 내용을 입력해주세요." id="taskDetails"
-					          aria-label="taskDetails" th:name="taskDetails"
+					          th:text="${task.taskDetails}" aria-label="taskDetails" th:name="taskDetails"
 					          style="height: 300px; resize: none;"></textarea>
 				</div>
 				<br/>

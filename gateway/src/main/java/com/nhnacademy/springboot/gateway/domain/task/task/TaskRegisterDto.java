@@ -26,17 +26,4 @@ public class TaskRegisterDto {
 
     private Long projectId;
 
-
-
-
-    /**
-     *
-     *     private String taskName;
-     *     private String taskDetails;
-     *     private String registrant;
-     *     private Long projectId;
-     *     private Long milestoneId;
-     *     private List<Long> tagIds;
-     */
-
 }

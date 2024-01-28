@@ -111,4 +111,12 @@ public class TaskService {
     public CreateResponse updateComment(Long taskId, Long commentId, CommentRequest commentRequest) {
         return taskAdaptor.updateComment(taskId, commentId, commentRequest);
     }
+
+    public CreateResponse deleteTask(Long taskId) {
+        return taskAdaptor.deleteTask(taskId);
+    }
+
+    public CreateResponse updateTask(Long taskId, TaskRegisterDto task) {
+        return taskAdaptor.updateTask(taskId, task);
+    }
 }

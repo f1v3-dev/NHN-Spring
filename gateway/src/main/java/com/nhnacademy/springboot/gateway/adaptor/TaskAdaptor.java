@@ -62,4 +62,8 @@ public interface TaskAdaptor {
     CreateResponse deleteComment(Long taskId, Long commentId);
 
     CreateResponse updateComment(Long taskId, Long commentId, CommentRequest commentRequest);
+
+    CreateResponse deleteTask(Long taskId);
+
+    CreateResponse updateTask(Long taskId, TaskRegisterDto task);
 }

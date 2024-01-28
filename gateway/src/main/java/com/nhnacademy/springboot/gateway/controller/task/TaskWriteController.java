@@ -57,7 +57,12 @@ public class TaskWriteController {
             throw new ValidationFailedException(bindingResult);
         }
 
+        log.info("task.milestoneId = {}", task.getMilestoneId());
+
+
         task.setProjectId(projectId);
+
+
 
         log.info("task : {}", task);
 

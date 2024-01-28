@@ -1,8 +1,13 @@
 package com.nhnacademy.springboot.gateway.controller.task;
 
+import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
+import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneDto;
+import com.nhnacademy.springboot.gateway.domain.task.tag.TagListModuleResponse;
 import com.nhnacademy.springboot.gateway.domain.task.task.TaskModuleResponse;
 import com.nhnacademy.springboot.gateway.domain.task.task.TaskRegisterDto;
+import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
 import com.nhnacademy.springboot.gateway.service.TaskService;
+import java.util.List;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -15,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping("/task/{taskId}/update")
+@RequestMapping("/project/{projectId}/task/{taskId}/update")
 public class TaskUpdateController {
 
     private final TaskService taskService;
@@ -26,12 +31,19 @@ public class TaskUpdateController {
 
     @GetMapping
     public String getTaskUpdateForm(@PathVariable("taskId") Long taskId,
+                                    @PathVariable("projectId") String projectId,
                                     Model model) {
 
-        TaskModuleResponse task = taskService.getTask(taskId);
+        Long id = Long.valueOf(projectId);
 
-        log.info("task = {}", task);
+        TaskModuleResponse task = taskService.getTask(taskId);
+        List<TagListModuleResponse> tagList = taskService.getTagList(id);
+        List<MilestoneDto> milestoneList = taskService.getMilestoneList(id);
+
+        model.addAttribute("tagList", tagList);
+        model.addAttribute("milestoneList", milestoneList);
         model.addAttribute("task", task);
+        model.addAttribute("projectId", projectId);
 
         return "task/update";
     }
@@ -39,8 +51,19 @@ public class TaskUpdateController {
     @PutMapping
     public String updateTask(@PathVariable("taskId") Long taskId,
                              @Valid TaskRegisterDto task,
-                             BindingResult bindingResult) {
+                             BindingResult bindingResult,
+                             @PathVariable("projectId") Long projectId) {
 
-        return null;
+
+        task.setProjectId(projectId);
+
+        if (bindingResult.hasErrors()) {
+            throw new ValidationFailedException(bindingResult);
+        }
+
+        CreateResponse response = taskService.updateTask(taskId, task);
+        log.info("response : {}", response);
+
+        return "redirect:/project/" + projectId + "/task/" + taskId;
     }
 }

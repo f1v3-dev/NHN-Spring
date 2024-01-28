@@ -60,13 +60,17 @@
 		<main class="flex-shrink-0">
 			<div class="album py-5">
 
-				<div th:if="${task.registrant == userId}"
-				     style="float: right;">
-					<button class="custom-btn"
-					        th:onclick="|location.href='/task/' + ${task.taskId} + '/update'|">
-						업무 수정
+				<form th:action="'/project/' + ${projectId} + '/task/' + ${task.taskId} + '/delete'" method="post">
+					<input type="hidden" name="_method" value="delete"/>
+					<button type="submit" class="btn btn-outline-danger" style="float: right; margin-left: 10px;">
+						업무 삭제
 					</button>
-				</div>
+				</form>
+
+				<button class="btn btn-outline-success" style="float: right"
+				        th:onclick="|location.href='/project/' + ${projectId} + '/task/' + ${task.taskId} + '/update'|">
+					업무 수정
+				</button>
 
 				<br/>
 
@@ -100,8 +104,10 @@
 					<tr>
 						<td>마일스톤</td>
 						<td>
+							<div th:if="*{mileStone != null}">
 							<p th:text="*{mileStone.milestoneName}"></p>
 							<span th:text="*{' (' + mileStone.startDate + '~' +mileStone.endDate + ')'}"></span>
+							</div>
 						</td>
 					</tr>
 					</tbody>
@@ -138,6 +144,7 @@
 
 							<form th:action="'/task/' + ${task.taskId} + '/comment/' + ${comment.commentId} + '/update'"
 							      method="get">
+								<input type="hidden" th:name="projectId" th:value="${projectId}"/>
 								<button type="submit" class="btn" style="float: right; color: royalblue">
 									수정
 								</button>

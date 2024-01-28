@@ -481,4 +481,50 @@ public class TaskAdaptorImpl implements TaskAdaptor {
 
         return exchange.getBody();
     }
+
+    @Override
+    public CreateResponse deleteTask(Long taskId) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(
+                        taskAdaptorProperties.getAddress() + "/task/{id}",
+                        HttpMethod.DELETE,
+                        requestEntity, new ParameterizedTypeReference<>() {
+                        }, taskId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new RuntimeException("업무 삭제 실패 : " + exchange.getStatusCode());
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CreateResponse updateTask(Long taskId, TaskRegisterDto task) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<TaskRegisterDto> requestEntity = new HttpEntity<>(task, httpHeaders);
+
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(
+                        taskAdaptorProperties.getAddress() + "/task/{id}",
+                        HttpMethod.PUT,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {}, taskId);
+
+        if (HttpStatus.CREATED != exchange.getStatusCode()) {
+            throw new RuntimeException("업무 수정 실패 : " + exchange.getStatusCode());
+        }
+
+        return exchange.getBody();
+    }
 }

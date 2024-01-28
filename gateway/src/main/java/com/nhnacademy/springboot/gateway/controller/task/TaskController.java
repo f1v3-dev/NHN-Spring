@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping("/task/{taskId}")
+@RequestMapping("project/{projectId}/task/{taskId}")
 public class TaskController {
 
     private final TaskService taskService;
@@ -25,7 +25,8 @@ public class TaskController {
     @GetMapping
     public String getTaskList(@PathVariable("taskId") Long taskId,
                               HttpServletRequest request,
-                              Model model) {
+                              Model model,
+                              @PathVariable("projectId") Long projectId) {
 
 
         TaskModuleResponse task = taskService.getTask(taskId);
@@ -33,6 +34,7 @@ public class TaskController {
 
         model.addAttribute("userId", account.getUserId());
         model.addAttribute("task", task);
+        model.addAttribute("projectId", projectId);
 
         return "task/main";
     }
