@@ -4,14 +4,12 @@ import com.nhnacademy.springboot.gateway.adaptor.TaskAdaptor;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponseString;
 import com.nhnacademy.springboot.gateway.domain.task.StatusDto;
-import com.nhnacademy.springboot.gateway.domain.task.TaskUser;
 import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
-import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMember;
+import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMemberListResponse;
 import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
 import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneDto;
 import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneRegisterDto;
 import com.nhnacademy.springboot.gateway.domain.task.project.ProjectListRequestDto;
-import com.nhnacademy.springboot.gateway.domain.task.member.ProjectMemberListResponse;
 import com.nhnacademy.springboot.gateway.domain.task.project.ProjectRegisterRequestDto;
 import com.nhnacademy.springboot.gateway.domain.task.tag.TagListModuleResponse;
 import com.nhnacademy.springboot.gateway.domain.task.tag.TagRequestDto;
@@ -71,7 +69,6 @@ public class TaskService {
     }
 
 
-
     public CreateResponse updateMilestone(Long milestoneId, MilestoneRegisterDto registerDto) {
         return taskAdaptor.updateMilestone(milestoneId, registerDto);
     }
@@ -100,7 +97,7 @@ public class TaskService {
         return taskAdaptor.registerMember(projectId, user);
     }
 
-    public CreateResponseString deleteUserFromProject(Long projectId, UserDto userDto) {
+    public CreateResponseString deleteMemberFromProject(Long projectId, UserDto userDto) {
         return taskAdaptor.deleteUserFromProject(projectId, userDto);
     }
 
@@ -118,5 +115,9 @@ public class TaskService {
 
     public CreateResponse updateTask(Long taskId, TaskRegisterDto task) {
         return taskAdaptor.updateTask(taskId, task);
+    }
+
+    public CreateResponse deleteMilestone(Long milestoneId) {
+        return taskAdaptor.deleteMilestone(milestoneId);
     }
 }

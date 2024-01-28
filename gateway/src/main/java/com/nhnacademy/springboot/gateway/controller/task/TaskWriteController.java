@@ -57,17 +57,9 @@ public class TaskWriteController {
             throw new ValidationFailedException(bindingResult);
         }
 
-        log.info("task.milestoneId = {}", task.getMilestoneId());
-
-
         task.setProjectId(projectId);
 
-
-
-        log.info("task : {}", task);
-
         CreateResponse response = taskService.registerTask(task);
-
         log.info("response : {}", response);
 
         return "redirect:/project/" + projectId;

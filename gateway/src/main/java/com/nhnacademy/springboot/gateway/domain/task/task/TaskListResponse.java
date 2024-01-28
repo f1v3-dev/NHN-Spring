@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class TaskListResponse {
 
     private ProjectDto project;
-    
+
     private List<TaskListModule> task;
 }

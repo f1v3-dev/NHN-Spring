@@ -1,15 +1,11 @@
 package com.nhnacademy.springboot.gateway.domain.account;
 
 import javax.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
-@ToString
-@NoArgsConstructor
-@Setter
-@Getter
+@Data
+@AllArgsConstructor
 public class AccountLoginRequestDto {
 
     @NotBlank(message = "아이디를 입력해주세요")

@@ -4,10 +4,10 @@ import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
 import com.nhnacademy.springboot.gateway.domain.task.commnet.CommentRequest;
 import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
 import com.nhnacademy.springboot.gateway.service.TaskService;
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +25,8 @@ public class CommentController {
 
     @PostMapping("/register")
     public String registerComment(@PathVariable("taskId") Long taskId,
-                                  @ModelAttribute CommentRequest comment,
+                                  @Valid CommentRequest comment,
                                   BindingResult bindingResult) {
-
-        log.info("taskId = {}", taskId);
-        log.info("comment = {}", comment);
-
 
         if (bindingResult.hasErrors()) {
             throw new ValidationFailedException(bindingResult);

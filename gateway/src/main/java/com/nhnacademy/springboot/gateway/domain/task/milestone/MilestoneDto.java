@@ -1,10 +1,11 @@
 package com.nhnacademy.springboot.gateway.domain.task.milestone;
 
-import java.time.LocalDate;
 import java.sql.Date;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class MilestoneDto {
     private Long milestoneId;
 

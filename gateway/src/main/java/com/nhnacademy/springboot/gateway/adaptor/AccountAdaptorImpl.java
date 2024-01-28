@@ -7,6 +7,7 @@ import com.nhnacademy.springboot.gateway.domain.account.AccountLoginRequestDto;
 import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterRequestDto;
 import com.nhnacademy.springboot.gateway.domain.account.CheckAccount;
 import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
+import com.nhnacademy.springboot.gateway.exception.ConnectionServerException;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -49,7 +50,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                         });
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("모든 회원 정보 조회 실패");
+            throw new ConnectionServerException("모든 회원 정보 조회 실패");
         }
 
         return exchange.getBody();
@@ -73,7 +74,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
 
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(id + "번 회원 정보 조회 실패");
+            throw new ConnectionServerException(id + "번 회원 정보 조회 실패");
         }
 
         return exchange.getBody();
@@ -95,7 +96,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                 });
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException(account.getUserId() + " 회원 가입 실패");
+            throw new ConnectionServerException(account.getUserId() + " 회원 가입 실패");
         }
 
         return exchange.getBody();
@@ -118,7 +119,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                         }, accountId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(accountId + "번 회원 탈퇴 실패");
+            throw new ConnectionServerException(accountId + "번 회원 탈퇴 실패");
         }
 
         return exchange.getBody();
@@ -141,7 +142,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
                         });
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(account.getUserId() + " 회원 로그인 실패");
+            throw new ConnectionServerException(account.getUserId() + " 회원 로그인 실패");
         }
 
 
@@ -166,7 +167,7 @@ public class AccountAdaptorImpl implements AccountAdaptor {
         );
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(user.getUserId() + " 회원 정보 조회 실패");
+            throw new ConnectionServerException(user.getUserId() + " 회원 정보 조회 실패");
         }
 
         return exchange.getBody();

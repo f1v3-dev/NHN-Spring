@@ -1,14 +1,10 @@
-package com.nhnacademy.springboot.gateway.controller.task;
+package com.nhnacademy.springboot.gateway.controller;
 
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import com.nhnacademy.springboot.gateway.domain.account.Account;
-import com.nhnacademy.springboot.gateway.domain.task.task.TaskModuleResponse;
 import com.nhnacademy.springboot.gateway.service.TaskService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,14 +15,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(TaskController.class)
-class TaskControllerTest {
-
-    @Autowired
-    MockMvc mockMvc;
+@WebMvcTest(IndexController.class)
+class IndexControllerTest {
 
     @MockBean
     TaskService taskService;
+
+    @Autowired
+    MockMvc mockMvc;
 
     MockHttpSession session;
 
@@ -39,21 +35,13 @@ class TaskControllerTest {
         session.setAttribute("account", account);
     }
 
-
     @Test
-    @DisplayName("Task 페이지 요청")
-    void testGetTaskList() throws Exception {
+    @DisplayName("Index 페이지 요청")
+    void testGetIndex() throws Exception {
 
-        TaskModuleResponse task
-                = new TaskModuleResponse(1L, "task 1", "task 1 detail", "seungjo", null, null, null);
-
-        given(taskService.getTask(anyLong()))
-                .willReturn(task);
-
-        mockMvc.perform(get("/project/{projectId}/task/{taskId}", 1L, 1L)
+        mockMvc.perform(get("/")
                         .session(session))
                 .andExpect(status().isOk())
-                .andExpect(view().name("task/main"));
+                .andExpect(view().name("index"));
     }
-
 }

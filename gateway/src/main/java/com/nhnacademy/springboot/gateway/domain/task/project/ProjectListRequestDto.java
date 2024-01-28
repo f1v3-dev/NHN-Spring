@@ -7,15 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class ProjectListRequestDto {
 
-    /**
-     * 프로젝트 ID, 프로젝트명, 상태
-     *
-     *
-     *     private Long projectId;
-     *     private String projectName;
-     *     private String statusName;
-     */
-
     private Long projectId;
 
     private String projectName;

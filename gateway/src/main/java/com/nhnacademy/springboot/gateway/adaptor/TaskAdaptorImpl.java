@@ -17,6 +17,7 @@ import com.nhnacademy.springboot.gateway.domain.task.tag.TagRequestDto;
 import com.nhnacademy.springboot.gateway.domain.task.task.TaskListResponse;
 import com.nhnacademy.springboot.gateway.domain.task.task.TaskModuleResponse;
 import com.nhnacademy.springboot.gateway.domain.task.task.TaskRegisterDto;
+import com.nhnacademy.springboot.gateway.exception.ConnectionServerException;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -54,7 +55,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(projectId + "번 프로젝트 태그 리스트 조회 실패");
+            throw new ConnectionServerException(projectId + "번 프로젝트 태그 리스트 조회 실패");
         }
 
 
@@ -76,7 +77,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("마일스톤 리스트 조회 실패");
+            throw new ConnectionServerException("마일스톤 리스트 조회 실패");
         }
 
         return exchange.getBody();
@@ -97,7 +98,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(projectId + "번 프로젝트 업무 리스트 조회 실패");
+            throw new ConnectionServerException(projectId + "번 프로젝트 업무 리스트 조회 실패");
         }
 
 
@@ -119,7 +120,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, userId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(userId + "의 프로젝트 리스트 조회 실패");
+            throw new ConnectionServerException(userId + "의 프로젝트 리스트 조회 실패");
         }
 
         return exchange.getBody();
@@ -139,7 +140,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         });
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException(project.getProjectName() + " 프로젝트 등록 실패");
+            throw new ConnectionServerException(project.getProjectName() + " 프로젝트 등록 실패");
         }
 
         return exchange.getBody();
@@ -159,7 +160,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         });
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException(tagRegisterDto.getTagName() + " 태그 등록 실패");
+            throw new ConnectionServerException(tagRegisterDto.getTagName() + " 태그 등록 실패");
         }
 
         return exchange.getBody();
@@ -179,7 +180,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, projectId, tagId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("프로젝트 - 태그 삭제 실패");
+            throw new ConnectionServerException("프로젝트 - 태그 삭제 실패");
         }
 
         return exchange.getBody();
@@ -200,7 +201,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, tagId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(tagId + "번 태그 조회 실패");
+            throw new ConnectionServerException(tagId + "번 태그 조회 실패");
         }
 
         return exchange.getBody();
@@ -221,7 +222,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(projectId + "번 프로젝트 태그(" + tagUpdateRequestDto.getTagName() + ") 수정 실패");
+            throw new ConnectionServerException(projectId + "번 프로젝트 태그(" + tagUpdateRequestDto.getTagName() + ") 수정 실패");
         }
 
         return exchange.getBody();
@@ -242,7 +243,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         });
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException(milestone.getMilestoneName() + " 마일스톤 등록 실패");
+            throw new ConnectionServerException(milestone.getMilestoneName() + " 마일스톤 등록 실패");
         }
 
         return exchange.getBody();
@@ -262,7 +263,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, milestoneId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(milestoneId + "번 마일스톤 조회 실패");
+            throw new ConnectionServerException(milestoneId + "번 마일스톤 조회 실패");
         }
 
         return exchange.getBody();
@@ -282,7 +283,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, milestoneId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(milestone + "번 마일스톤 수정 실패");
+            throw new ConnectionServerException(milestone + "번 마일스톤 수정 실패");
         }
 
         return exchange.getBody();
@@ -302,7 +303,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         });
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException(task.getTaskName() + " 업무 등록 실패");
+            throw new ConnectionServerException(task.getTaskName() + " 업무 등록 실패");
         }
 
         return exchange.getBody();
@@ -322,7 +323,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, taskId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(taskId + "번 업무 조회 실패");
+            throw new ConnectionServerException(taskId + "번 업무 조회 실패");
         }
 
         return exchange.getBody();
@@ -342,7 +343,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, taskId);
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException(taskId + "번 업무에 댓글 등록 실패");
+            throw new ConnectionServerException(taskId + "번 업무에 댓글 등록 실패");
         }
 
         return exchange.getBody();
@@ -362,7 +363,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException(projectId + " 프로젝트 상태 변경 실패");
+            throw new ConnectionServerException(projectId + " 프로젝트 상태 변경 실패");
         }
 
         return exchange.getBody();
@@ -386,7 +387,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("프로젝트 상태 변경 실패");
+            throw new ConnectionServerException("프로젝트 상태 변경 실패");
         }
 
         return exchange.getBody();
@@ -407,7 +408,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, projectId);
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException("프로젝트 멤버 등록 실패");
+            throw new ConnectionServerException("프로젝트 멤버 등록 실패");
         }
 
         return exchange.getBody();
@@ -429,7 +430,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, projectId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("프로젝트 멤버 삭제 실패");
+            throw new ConnectionServerException("프로젝트 멤버 삭제 실패");
         }
 
         return exchange.getBody();
@@ -453,7 +454,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, taskId, commentId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("댓글 삭제 실패 : " + exchange.getStatusCode());
+            throw new ConnectionServerException("댓글 삭제 실패 : " + exchange.getStatusCode());
         }
 
         return exchange.getBody();
@@ -476,7 +477,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, taskId, commentId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("댓글 수정 실패");
+            throw new ConnectionServerException("댓글 수정 실패");
         }
 
         return exchange.getBody();
@@ -499,7 +500,7 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         }, taskId);
 
         if (HttpStatus.OK != exchange.getStatusCode()) {
-            throw new RuntimeException("업무 삭제 실패 : " + exchange.getStatusCode());
+            throw new ConnectionServerException("업무 삭제 실패 : " + exchange.getStatusCode());
         }
 
         return exchange.getBody();
@@ -519,10 +520,35 @@ public class TaskAdaptorImpl implements TaskAdaptor {
                         taskAdaptorProperties.getAddress() + "/task/{id}",
                         HttpMethod.PUT,
                         requestEntity,
-                        new ParameterizedTypeReference<>() {}, taskId);
+                        new ParameterizedTypeReference<>() {
+                        }, taskId);
 
         if (HttpStatus.CREATED != exchange.getStatusCode()) {
-            throw new RuntimeException("업무 수정 실패 : " + exchange.getStatusCode());
+            throw new ConnectionServerException("업무 수정 실패 : " + exchange.getStatusCode());
+        }
+
+        return exchange.getBody();
+    }
+
+    @Override
+    public CreateResponse deleteMilestone(Long milestoneId) {
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<Long> requestEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<CreateResponse> exchange =
+                restTemplate.exchange(
+                        taskAdaptorProperties.getAddress() + "/milestone/{id}",
+                        HttpMethod.DELETE,
+                        requestEntity,
+                        new ParameterizedTypeReference<>() {
+                        }, milestoneId);
+
+        if (HttpStatus.OK != exchange.getStatusCode()) {
+            throw new ConnectionServerException("마일스톤 삭제 실패 : " + exchange.getStatusCode());
         }
 
         return exchange.getBody();

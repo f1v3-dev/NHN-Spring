@@ -60,9 +60,6 @@ class LoginControllerTest {
     @DisplayName("로그인 성공")
     void testDoLoginSuccess() throws Exception {
 
-        AccountLoginRequestDto accountLoginRequestDto = new AccountLoginRequestDto();
-        accountLoginRequestDto.setUserId("seungjo");
-        accountLoginRequestDto.setPassword("1234");
 
         Account account = new Account(1L, "정승조", "seungjo", "1234",
                 "seungjo@nhn.com", "010-1234-1234", "JOINED");
@@ -81,10 +78,6 @@ class LoginControllerTest {
     @DisplayName("로그인 실패 (존재하지 않는 회원)")
     void testDoLogin_Fail_NotExistAccount() throws Exception {
 
-        AccountLoginRequestDto accountLoginRequestDto = new AccountLoginRequestDto();
-        accountLoginRequestDto.setUserId("seungjo");
-        accountLoginRequestDto.setPassword("1234");
-
         given(accountService.matches(any(AccountLoginRequestDto.class))).willReturn(null);
 
         mockMvc.perform(post("/login")
@@ -100,12 +93,6 @@ class LoginControllerTest {
     @DisplayName("로그인 요청 (유효성 검사 실패)")
     void testDoLogin() throws Exception {
 
-        /**
-         *         if (bindingResult.hasErrors()) {
-         *             throw new ValidationFailedException(bindingResult);
-         *         }
-         */
-
         MvcResult mvcResult = mockMvc.perform(post("/login"))
                 .andExpect(content().contentType(MediaType.TEXT_HTML + ";charset=UTF-8"))
                 .andDo(print())
@@ -114,7 +101,6 @@ class LoginControllerTest {
         String viewName = mvcResult.getModelAndView().getViewName();
 
         Assertions.assertThat(viewName).isEqualTo("error");
-
     }
 
 }

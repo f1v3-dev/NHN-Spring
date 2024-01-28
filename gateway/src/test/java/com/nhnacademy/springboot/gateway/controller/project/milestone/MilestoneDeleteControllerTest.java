@@ -1,14 +1,11 @@
-package com.nhnacademy.springboot.gateway.controller.task;
+package com.nhnacademy.springboot.gateway.controller.project.milestone;
 
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import com.nhnacademy.springboot.gateway.domain.account.Account;
-import com.nhnacademy.springboot.gateway.domain.task.task.TaskModuleResponse;
 import com.nhnacademy.springboot.gateway.service.TaskService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,8 +16,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(TaskController.class)
-class TaskControllerTest {
+@WebMvcTest(MilestoneDeleteController.class)
+class MilestoneDeleteControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -28,32 +25,26 @@ class TaskControllerTest {
     @MockBean
     TaskService taskService;
 
-    MockHttpSession session;
+    MockHttpSession session = new MockHttpSession();
 
     @BeforeEach
     void setup() {
-        session = new MockHttpSession();
         Account account = new Account(1L, "정승조", "seungjo", "1234",
                 "seungjo@nhn.com", "010-1234-1234", "JOINED");
 
         session.setAttribute("account", account);
     }
 
-
     @Test
-    @DisplayName("Task 페이지 요청")
-    void testGetTaskList() throws Exception {
+    @DisplayName("마일스톤 삭제")
+    void testDeleteMilestone() throws Exception {
 
-        TaskModuleResponse task
-                = new TaskModuleResponse(1L, "task 1", "task 1 detail", "seungjo", null, null, null);
-
-        given(taskService.getTask(anyLong()))
-                .willReturn(task);
-
-        mockMvc.perform(get("/project/{projectId}/task/{taskId}", 1L, 1L)
+        mockMvc.perform(delete("/project/{projectId}/milestone/delete/{milestoneId}", 1L, 1L)
                         .session(session))
-                .andExpect(status().isOk())
-                .andExpect(view().name("task/main"));
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/project/1/milestone"))
+                .andDo(print());
     }
+
 
 }

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 @Controller
 @RequestMapping("/project/{projectId}/tag/update")
-///project/' + ${projectId} + '/tag/upate
 public class TagUpdateController {
 
     private final TaskService taskService;
@@ -28,8 +27,8 @@ public class TagUpdateController {
 
     @GetMapping
     public String getTagUpdateFormByProjectId(@PathVariable("projectId") Long projectId,
-                                   @ModelAttribute TagListModuleResponse tag,
-                                   Model model) {
+                                              @ModelAttribute TagListModuleResponse tag,
+                                              Model model) {
 
         model.addAttribute("projectId", projectId);
         model.addAttribute("tag", tag);
@@ -42,8 +41,8 @@ public class TagUpdateController {
 
     @PutMapping
     public String updateTagByProjectId(@PathVariable("projectId") Long projectId,
-                            @RequestParam("tagId") Long tagId,
-                            @RequestParam("tagName") String tagName) {
+                                       @RequestParam("tagId") Long tagId,
+                                       @RequestParam("tagName") String tagName) {
 
         log.info("projectId = {}", projectId);
         log.info("tagId = {}", tagId);

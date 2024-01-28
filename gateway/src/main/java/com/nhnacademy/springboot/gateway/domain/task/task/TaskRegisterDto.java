@@ -4,7 +4,6 @@ package com.nhnacademy.springboot.gateway.domain.task.task;
 import java.util.List;
 import javax.validation.constraints.NotBlank;
 import lombok.Data;
-import lombok.Setter;
 import lombok.ToString;
 
 @ToString

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @Controller
@@ -24,12 +23,9 @@ public class TagDeleteController {
     public String deleteTagByProjectId(@PathVariable("projectId") Long projectId,
                                        @PathVariable("tagId") Long tagId) {
 
-        log.info("projectId = {}", projectId);
-        log.info("tagId = {}", tagId);
 
         CreateResponse response = taskService.deleteTag(projectId, tagId);
-
-
+        log.info("response = {}", response);
         return "redirect:/project/" + projectId + "/tag";
     }
 

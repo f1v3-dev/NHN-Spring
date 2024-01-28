@@ -20,14 +20,6 @@ public class MemberDeleteController {
         this.taskService = taskService;
     }
 
-    /**
-     * <form th:action="@{'/project/' + ${projectId} + '/member/delete'}" method="post">
-     * <input type="hidden" name="_method" value="delete"/>
-     * <input type="hidden" name="userId" th:value="${userId}"/>
-     * <button type="submit" class="tag-action-link" style="background-color: #1F4E8C;">삭제</button>
-     * </form>
-     */
-
     @DeleteMapping
     public String deleteMemberFromProject(@PathVariable("projectId") Long projectId,
                                           UserDto userDto) {
@@ -35,7 +27,7 @@ public class MemberDeleteController {
         log.info("projectId = {}", projectId);
         log.info("userDto = {}", userDto);
 
-        CreateResponseString response = taskService.deleteUserFromProject(projectId, userDto);
+        CreateResponseString response = taskService.deleteMemberFromProject(projectId, userDto);
 
         log.info("response = {}", response);
 

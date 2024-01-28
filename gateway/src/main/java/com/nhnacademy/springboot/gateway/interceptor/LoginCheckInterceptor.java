@@ -12,8 +12,6 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             throws Exception {
 
         boolean isLogin = Optional.ofNullable(request.getSession(true).getAttribute("account")).isPresent();
-//        boolean isMember = Optional.ofNullable(request.getSession(true).getAttribute("taskUser")).isPresent();
-
 
         if (isLogin) {
             return true;

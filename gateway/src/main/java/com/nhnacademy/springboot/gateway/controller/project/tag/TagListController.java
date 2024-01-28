@@ -23,7 +23,7 @@ public class TagListController {
 
     @GetMapping
     public String getTagListByProjectId(@PathVariable("projectId") Long projectId,
-                             Model model) {
+                                        Model model) {
 
         List<TagListModuleResponse> tagList = taskService.getTagList(projectId);
 

@@ -2,7 +2,6 @@ package com.nhnacademy.springboot.gateway.controller.project.milestone;
 
 import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
 import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneRegisterDto;
-import com.nhnacademy.springboot.gateway.domain.task.milestone.MilestoneRequest;
 import com.nhnacademy.springboot.gateway.exception.ValidationFailedException;
 import com.nhnacademy.springboot.gateway.service.TaskService;
 import javax.validation.Valid;

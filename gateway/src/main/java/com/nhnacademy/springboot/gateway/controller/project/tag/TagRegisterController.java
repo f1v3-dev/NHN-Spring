@@ -32,7 +32,7 @@ public class TagRegisterController {
 
     @PostMapping
     public String registerTagByProjectId(@PathVariable("projectId") Long projectId,
-                              String tagName) {
+                                         String tagName) {
 
 
         CreateResponse createResponse = taskService.registerTag(new TagRequestDto(projectId, tagName));

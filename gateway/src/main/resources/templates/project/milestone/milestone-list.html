@@ -90,7 +90,7 @@
 						<button type="submit" class="tag-action-link" style="background-color: #1F4E8C;">수정</button>
 					</form>
 
-					<form th:action="@{'/project/' + ${projectId} + '/milestone/delete'}" method="post">
+					<form th:action="@{'/project/' + ${projectId} + '/milestone/delete/' + ${milestone.milestoneId}}" method="post">
 						<input type="hidden" name="_method" value="delete"/>
 						<input type="hidden" name="tagId" th:value="${milestone.milestoneId}"/>
 						<button type="submit" class="tag-action-link" style="background-color: #1F4E8C;">삭제</button>

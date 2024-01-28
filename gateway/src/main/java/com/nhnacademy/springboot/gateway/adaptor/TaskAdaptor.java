@@ -66,4 +66,6 @@ public interface TaskAdaptor {
     CreateResponse deleteTask(Long taskId);
 
     CreateResponse updateTask(Long taskId, TaskRegisterDto task);
+
+    CreateResponse deleteMilestone(Long milestoneId);
 }

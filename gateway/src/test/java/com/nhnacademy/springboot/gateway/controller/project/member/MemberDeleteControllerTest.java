@@ -1,14 +1,12 @@
-package com.nhnacademy.springboot.gateway.controller.tag;
+package com.nhnacademy.springboot.gateway.controller.project.member;
 
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.BDDMockito.given;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.nhnacademy.springboot.gateway.controller.project.tag.TagDeleteController;
 import com.nhnacademy.springboot.gateway.domain.account.Account;
-import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
 import com.nhnacademy.springboot.gateway.service.TaskService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,8 +17,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(TagDeleteController.class)
-class TagDeleteControllerTest {
+@WebMvcTest(MemberDeleteController.class)
+class MemberDeleteControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -39,16 +37,15 @@ class TagDeleteControllerTest {
     }
 
     @Test
-    @DisplayName("Tag 삭제 요청")
-    void testDeleteTag() throws Exception {
+    @DisplayName("프로젝트 멤버 삭제")
+    void testDeleteMemberFromProject() throws Exception {
 
-        given(taskService.deleteTag(anyLong(), anyLong()))
-                .willReturn(new CreateResponse(1L, "삭제가 완료되었습니다."));
-
-        mockMvc.perform(delete("/project/{projectId}/tag/delete/{tagId}", 1L, 1L)
-                        .session(session))
+        mockMvc.perform(delete("/project/{projectId}/member/delete", 1L)
+                        .session(session)
+                        .param("userId", "seungjo"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/project/1/tag"));
+                .andExpect(redirectedUrl("/project/1/member"))
+                .andDo(print());
     }
 
 }

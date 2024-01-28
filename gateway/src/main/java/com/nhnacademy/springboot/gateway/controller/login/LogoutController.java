@@ -12,7 +12,7 @@ public class LogoutController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         Optional.ofNullable(request.getSession())
-                    .ifPresent(HttpSession::invalidate);
+                .ifPresent(HttpSession::invalidate);
 
         return "redirect:/login";
     }

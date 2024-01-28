@@ -8,7 +8,6 @@ import com.nhnacademy.springboot.gateway.domain.account.AccountRegisterRequestDt
 import com.nhnacademy.springboot.gateway.domain.account.CheckAccount;
 import com.nhnacademy.springboot.gateway.domain.task.member.UserDto;
 import java.util.List;
-import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 
 @Service

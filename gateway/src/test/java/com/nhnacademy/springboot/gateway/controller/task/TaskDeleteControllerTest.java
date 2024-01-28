@@ -1,14 +1,10 @@
-package com.nhnacademy.springboot.gateway.controller.tag;
+package com.nhnacademy.springboot.gateway.controller.task;
 
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.BDDMockito.given;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.nhnacademy.springboot.gateway.controller.project.tag.TagDeleteController;
 import com.nhnacademy.springboot.gateway.domain.account.Account;
-import com.nhnacademy.springboot.gateway.domain.task.CreateResponse;
 import com.nhnacademy.springboot.gateway.service.TaskService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,8 +15,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 
-@WebMvcTest(TagDeleteController.class)
-class TagDeleteControllerTest {
+@WebMvcTest(TaskDeleteController.class)
+class TaskDeleteControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -31,24 +27,21 @@ class TagDeleteControllerTest {
     MockHttpSession session = new MockHttpSession();
 
     @BeforeEach
-    void setup() {
+    void setUp() {
         Account account = new Account(1L, "정승조", "seungjo", "1234",
                 "seungjo@nhn.com", "010-1234-1234", "JOINED");
+
 
         session.setAttribute("account", account);
     }
 
     @Test
-    @DisplayName("Tag 삭제 요청")
-    void testDeleteTag() throws Exception {
+    @DisplayName("업무 삭제")
+    void DeleteTask() throws Exception {
 
-        given(taskService.deleteTag(anyLong(), anyLong()))
-                .willReturn(new CreateResponse(1L, "삭제가 완료되었습니다."));
-
-        mockMvc.perform(delete("/project/{projectId}/tag/delete/{tagId}", 1L, 1L)
+        mockMvc.perform(delete("/project/{projectId}/task/{taskId}/delete", 1L, 1L)
                         .session(session))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/project/1/tag"));
+                .andExpect(status().is3xxRedirection());
     }
 
 }

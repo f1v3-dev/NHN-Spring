@@ -3,19 +3,12 @@ package com.nhnacademy.springboot.gateway.domain.account;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.ToString;
 
-@ToString
+@AllArgsConstructor
 @Data
 public class AccountRegisterRequestDto {
-    /**
-     *     private String name;
-     *     private String userId;
-     *     private String password;
-     *     private String email;
-     *     private String phoneNumber;
-     */
 
     @NotBlank
     private String name;
