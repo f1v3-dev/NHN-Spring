@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProjectMemberListResponse {
 
-    private String UserId;
+    private String userId;
 
     private Role role;
 }
