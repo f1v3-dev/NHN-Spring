@@ -44,5 +44,7 @@ public class ProductCategory {
         @Column(name = "category_id")
         private Integer categoryId;
     }
+
+
 }
 

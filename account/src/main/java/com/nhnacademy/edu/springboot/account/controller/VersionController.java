@@ -18,7 +18,7 @@ public class VersionController {
 
 
     @GetMapping("/system/version")
-    public ResponseEntity<?> getVersion() {
+    public ResponseEntity<VersionProperties> getVersion() {
 
         log.debug("versionProperties = {}", versionProperties.getVersion());
 

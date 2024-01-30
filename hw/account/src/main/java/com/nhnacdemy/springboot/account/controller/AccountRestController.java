@@ -42,7 +42,7 @@ public class AccountRestController {
         return accountService.createAccount(account);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteAccount(@PathVariable("id") Long id) {
         accountService.deleteAccount(id);
     }

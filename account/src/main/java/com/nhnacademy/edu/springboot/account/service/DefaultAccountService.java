@@ -1,6 +1,7 @@
 package com.nhnacademy.edu.springboot.account.service;
 
 import com.nhnacademy.edu.springboot.account.domain.Account;
+import com.nhnacademy.edu.springboot.account.exception.AccountNotFoundException;
 import com.nhnacademy.edu.springboot.account.repository.AccountRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -25,17 +26,17 @@ public class DefaultAccountService implements AccountService {
     @Transactional(readOnly = true)
     public Account getAccount(Long id) {
         return accountRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException());
+                .orElseThrow(AccountNotFoundException::new);
     }
 
     @Override
     @Transactional
     public Account createAccount(Account account) {
 
-        boolean present = accountRepository.findById(account.getId()).isPresent();
-        if (present) {
-            throw new IllegalStateException();
-        }
+//        boolean present = accountRepository.findById(account.getId()).isPresent();
+//        if (present) {
+//            throw new IllegalStateException();
+//        }
 
         return accountRepository.save(account);
     }
