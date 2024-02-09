@@ -43,3 +43,13 @@
 | ✨   | Chapter                                 |
 |-----|-----------------------------------------|
 | 1   | [Spring Security](5.Security/README.md) |
+
+
+
+### 프로젝트 과정 - 주문 결제 담당
+공부해야할 리스트 정리해야될 것 같음
+
+1. Spring Boot (Core, MVC)
+2. Spring JPA + 트랜잭션 중요!!
+3. 아마도 CI/CD 할 듯 (젠킨스 써보고싶음 + nginx 써봄)
+   
